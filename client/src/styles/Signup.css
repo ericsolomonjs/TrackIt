@@ -37,3 +37,7 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
+.form-group {
+  margin-top: 10px;
+}

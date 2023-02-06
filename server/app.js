@@ -1,25 +1,34 @@
 //  ---------------------------- server/app.js
 // declarations
-const express = require('express');
-const morgan = require('morgan');
-const {ENVIRONMENT, PORT} = process.env
-const bodyParser = require('body-parser');
-const enviroment = 'dev';
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+require("dotenv").config();
+const bodyParser = require("body-parser");
+const enviroment = "dev";
 
 //route paths
-const catsRoutes = require('./routes/catesRoutes')
+const catRoutes = require("./routes/catRoutes");
 
 const app = express();
 
 // middleware setup
 app.use(morgan(enviroment));
 app.use(bodyParser.json());
+app.use(cors());
 
 //routes
-app.use('/cats', catRoutes)
+app.use("/cats", catRoutes);
 
-app.get('/', (req, res) => {
-	res.json({greetings: 'hello world'});
-})
+app.get("/", (req, res) => {
+  res.json({ greetings: "hello world" });
+});
 
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+app.post("/user/new", (req, res) => {
+  console.log(req.headers);
+  console.log(req.body);
+});
+
+app.listen(process.env.PORT, () =>
+  console.log(`Server is listening on port ${process.env.PORT}`)
+);
