@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
+import { Outlet, Link } from "react-router-dom";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -141,7 +142,9 @@ export default function Signup() {
         <div className="right-panel">
           <h1>Track It</h1>
           <p>Already have an account?</p>
-          <button className="btn btn-primary">Sign in</button>
+          <Link to="/signin">
+            <button className="btn btn-primary">Sign in</button>
+          </Link>
         </div>
       </div>
     </div>
