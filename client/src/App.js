@@ -7,11 +7,11 @@ function App() {
   return (
     <>
       <header className="App-header">
-        <NavBar/>
+        <NavBar className="NavBar"/>
       </header>
-    <body>
-        <Signup/>
-    </body>
+    
+        <Signup className="signup"/>
+    
     </>
   );
 }

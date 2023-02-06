@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
+import Axios from 'axios';
+
+//axios defaults config (to be verified)
+Axios.defaults.baseURL = 'http://localhost:3001/api/';
+Axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+Axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,51 +1,57 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
-export default function NavBar() {
+export default function NavBar(props) {
+  
+  const user = props.user ? props.user : ""
+
   return (
     <>
-    <Navbar bg="light">
-      <Container>
-        <Navbar.Brand href="#home">Brand link</Navbar.Brand>
-      </Container>
-    </Navbar>
-    <br />
-    <Navbar bg="light">
-      <Container>
-        <Navbar.Brand>Brand text</Navbar.Brand>
-      </Container>
-    </Navbar>
-    <br />
-    <Navbar bg="dark">
-      <Container>
-        <Navbar.Brand href="#home">
-          <img
-            src="/logo.svg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          />
-        </Navbar.Brand>
-      </Container>
-    </Navbar>
-    <br />
-    <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="#home">
-          <img
-            alt=""
-            src="/logo.svg"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
-          React Bootstrap
-        </Navbar.Brand>
-      </Container>
-    </Navbar>
-  </>
+      <Navbar variant="dark" className="btn btn-secondary">
+        <Container>
+          <Navbar.Brand href="#home">Track-It</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+      <Navbar variant="dark" >
+        <Container>
+          <Navbar.Brand>Track your fitness</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+
+      {user ? (
+        <Container>
+          <Navbar variant="dark" className="btn btn-secondary">
+            <Container>
+              <Navbar.Brand >Logged in as {user.name}</Navbar.Brand>
+            </Container>
+          </Navbar>
+          <h1>|</h1>
+          <Navbar variant="dark" className="btn btn-secondary">
+            <Container>
+              <Navbar.Brand href="#logout">Log Out</Navbar.Brand>
+            </Container>
+          </Navbar>
+        </Container>
+      ) : (
+        <Container>
+          <Navbar variant="dark" className="btn btn-secondary">
+            <Container>
+              <Navbar.Brand href="#signup">Sign up</Navbar.Brand>
+            </Container>
+          </Navbar>
+          <h1>|</h1>
+          <Navbar variant="dark" className="btn btn-secondary">
+            <Container>
+              <Navbar.Brand href="#login">Log In</Navbar.Brand>
+            </Container>
+          </Navbar>
+        </Container>
+      )}
+
+      <br />
+
+    </>
   );
 }
