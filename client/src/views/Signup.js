@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Signup.css";
 
 export default function Signup() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
+
   return (
     <div className="main-container">
       <h1>Sign Up</h1>
       <div className="signup-container">
-        <form className="signup-form" action="">
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+            console.log("here");
+          }}
+          className="signup-form"
+        >
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <input
@@ -14,15 +30,19 @@ export default function Signup() {
               className="form-control"
               id="firstName"
               placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="lastName">First Name</label>
             <input
               type="text"
               className="form-control"
-              id="firstName"
-              placeholder="First Name"
+              id="lastName"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -31,7 +51,9 @@ export default function Signup() {
               type="passord"
               className="form-control"
               id="password"
-              placeholder="Passowir"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -41,6 +63,8 @@ export default function Signup() {
               className="form-control"
               id="passwordConfirmation"
               placeholder="Password Confirmation"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
           </div>
           <div className="button-container">
