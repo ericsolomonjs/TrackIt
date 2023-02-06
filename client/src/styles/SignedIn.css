@@ -1,0 +1,47 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.my-workouts-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  gap: 30px;
+}
+
+.workout-pic-info{
+  font-size: x-large;
+}
+
+.my-workouts-card-image {
+  width: 400px;
+  height: 475px;
+}
+
+.schedule-container {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+height: 50vh;
+gap: 30px;
+padding: 90px;
+}
+
+.my-schedule-image {
+
+width: 750px;
+padding-left: 60px;
+padding-bottom: 30px;
+
+}
+
+.go-to-schedule {
+  font-size: xx-large;
+}
