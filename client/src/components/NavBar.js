@@ -13,7 +13,7 @@ export default function NavBar(props) {
         </Container>
       </Navbar>
       <br />
-      <Navbar variant="dark" >
+      <Navbar variant="dark">
         <Container>
           <Navbar.Brand>Track your fitness</Navbar.Brand>
         </Container>
@@ -24,7 +24,7 @@ export default function NavBar(props) {
         <Container>
           <Navbar variant="dark" className="btn btn-secondary">
             <Container>
-              <Navbar.Brand >Logged in as {user.name}</Navbar.Brand>
+              <Navbar.Brand >Logged in as {user.firstName}</Navbar.Brand>
             </Container>
           </Navbar>
           <h1>|</h1>

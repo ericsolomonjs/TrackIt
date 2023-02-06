@@ -56,6 +56,7 @@ export default function Signup() {
         <br />
         <div>
           <button type="button" className="cancel btn btn-secondary">Cancel</button>
+          <div></div>
           <button type="submit" className="signup btn btn-primary" onClick={() => submitRegistrationForm(state)}>Sign Up</button>
         </div>
       </div>
