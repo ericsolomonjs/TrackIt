@@ -4,6 +4,7 @@ import "../styles/SignedIn.css";
 
 export default function SignedIn() {
   return <div className='main-container'>
+      <h3>Main Logged in </h3>
     <div className="my-workouts-grid">
       {/* add grid-container-view */}
       <div className="my-workouts-card">

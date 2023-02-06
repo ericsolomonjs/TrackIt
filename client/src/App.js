@@ -4,7 +4,7 @@ import SignedIn from './components/SignedIn';
 function App() {
  return (
   <div className="">
-    <hi>Main Logged in </hi>
+  
   <SignedIn />
   </div>
  );
