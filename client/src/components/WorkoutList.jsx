@@ -21,16 +21,16 @@ export default function WorkoutList(props) {
     }
   ];
 
-  let counter=0;
+  let counter=-1;
   const workoutListItems = workoutsArray.map((workout) => {
     counter++;
-    return <Workout
-      {...workout} id = {counter}
+    return <Workout 
+      {...workout} key = {counter}
     />
   })
 
   return (
-    <Container className="workout-list">
+    <Container className="workout-list container-md">
       {workoutListItems}
     </Container>
   )
