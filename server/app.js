@@ -5,9 +5,12 @@ const morgan = require('morgan');
 const {ENVIRONMENT, PORT} = process.env
 const bodyParser = require('body-parser');
 const enviroment = 'dev';
+const Axios = require('axios');
+
 
 //route paths
-const catsRoutes = require('./routes/catesRoutes')
+const catRoutes = require('./routes/catRoutes.js')
+const exercises = require('./routes/exercises.js')
 
 const app = express();
 
