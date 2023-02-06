@@ -1,7 +1,8 @@
 import './App.css';
 import NavBar from './components/NavBar';
-import Signup from './components/Signup';
+import Signup from './components/Signup_alternateOption';
 import { Fragment } from 'react';
+import WeeklySchedule from './components/WeeklySchedule';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <NavBar className="NavBar"/>
       </header>
     
-        <Signup className="signup"/>
+        <WeeklySchedule className="signup"/>
     
     </>
   );
