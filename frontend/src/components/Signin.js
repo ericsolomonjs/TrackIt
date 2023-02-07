@@ -8,6 +8,21 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const ops = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    };
+
+    fetch("http://localhost:8080/user/login", ops)
+      .then((res) => res.json())
+      .catch((err) => alert(err, "Server Error"))
+      .then((res) => console.log(res));
   };
 
   return (

@@ -15,4 +15,20 @@ const insertUser = (firstName, lastName, email, password) => {
   );
 };
 
-module.exports = { getUsers, insertUser };
+const loginUser = async (email, password) => {
+  // check if users email is in the db
+  try {
+    const user = await db.query("SELECT * FROM users WHERE email=$1", [email]);
+    // compare hash with password
+    const compare = bcrypt.compareSync(password, user.rows[0].password);
+    if (compare) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (e) {
+    return e;
+  }
+};
+
+module.exports = { getUsers, insertUser, loginUser };
