@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  padding-top: 60vh;
 }
 
 .my-workouts-grid {
@@ -19,8 +20,9 @@
 }
 
 .my-workouts-card-image {
-  width: 400px;
-  height: 475px;
+  width: 350px;
+  height: 400px;
+  border-radius: 25px;
 }
 
 .schedule-container {
@@ -34,11 +36,23 @@ padding: 90px;
 
 .my-schedule-image {
 height: 600px;
-padding-left: 60px;
-padding-bottom: 30px;
+
+border-radius: 25px;
 
 }
 
 .go-to-schedule {
   font-size: xx-large;
+  padding-right: 50px;
+}
+
+.my-arm-day a {
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
