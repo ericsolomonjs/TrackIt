@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+}
+
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  background-color: #282c34;
+  padding:1em;
+}
+.NavBar .btn {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-items: flex-start;
+    height: 30 px;
+}
+
+.navbar-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex start;
+  padding: 0.5em;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: 0.1em;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn {
+  padding: 0.5em;
+}
