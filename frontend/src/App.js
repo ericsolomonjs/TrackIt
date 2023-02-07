@@ -1,10 +1,7 @@
-import Signup from "./views/Signup";
-import Signin from "./views/Signin";
+import Signup from "./components/Signup";
+import Signin from "./components/Signin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import Signup from "./components/Signup";
-import { Fragment } from "react";
 
 function App() {
   return (
