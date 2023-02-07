@@ -1,57 +1,53 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-
 export default function NavBar(props) {
-  
-  const user = props.user ? props.user : ""
+  const user = props.user ? props.user : "";
 
   return (
-    <div className='NavBar'>
-      <Navbar variant="dark" className="btn btn-secondary">
-        <Container>
-          <Navbar.Brand href="#home">Track-It</Navbar.Brand>
-        </Container>
-      </Navbar>
-      <br />
-      <Navbar variant="dark">
-        <Container>
-          <Navbar.Brand>Track your fitness</Navbar.Brand>
-        </Container>
-      </Navbar>
-      <br />
-
-      {user ? (
-        <Container className='navbar-login'>
-          <Navbar variant="dark" className="btn btn-secondary">
-            <Container>
-              <Navbar.Brand >Logged in as {user.firstName}</Navbar.Brand>
-            </Container>
-          </Navbar>
-          <h1>|</h1>
-          <Navbar variant="dark" className="btn btn-secondary">
-            <Container>
-              <Navbar.Brand href="#logout">Log Out</Navbar.Brand>
-            </Container>
-          </Navbar>
-        </Container>
-      ) : (
-        <Container className='navbar-login'>
-          <Navbar variant="dark" className="btn btn-secondary">
-            <Container>
-              <Navbar.Brand href="#signup">Sign up</Navbar.Brand>
-            </Container>
-          </Navbar>
-          <h1>|</h1>
-          <Navbar variant="dark" className="btn btn-secondary">
-            <Container>
-              <Navbar.Brand href="#login">Log In</Navbar.Brand>
-            </Container>
-          </Navbar>
-        </Container>
-      )}
-
-      <br />
-
-    </div>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          Navbar
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Features
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Pricing
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+              >
+                Disabled
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }

@@ -20,14 +20,19 @@ export default function Signup() {
     };
 
     fetch("http://localhost:8080/user/login", ops)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("here");
+      })
       .catch((err) => alert(err, "Server Error"))
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log("here");
+        window.location = "home";
+      });
   };
 
   return (
     <div className="main-container">
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <div className="signup-container">
         <form
           onSubmit={(e) => {
