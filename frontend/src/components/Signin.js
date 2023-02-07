@@ -8,11 +8,31 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const ops = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    };
+
+    fetch("http://localhost:8080/user/login", ops)
+      .then((res) => {
+        console.log("here");
+      })
+      .catch((err) => alert(err, "Server Error"))
+      .then((res) => {
+        console.log("here");
+        window.location = "home";
+      });
   };
 
   return (
     <div className="main-container">
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <div className="signup-container">
         <form
           onSubmit={(e) => {

@@ -38,7 +38,7 @@ export default function Signup() {
 
     console.log("Options", ops);
 
-    fetch("http://localhost:8080/user/new", ops)
+    fetch("http://localhost:8080/user/create", ops)
       .then((res) => res.json())
       .catch((err) => alert(err, "Server Error"))
       .then((res) => console.log(res));
