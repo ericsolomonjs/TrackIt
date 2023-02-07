@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/Signup.css";
-import { Outlet, Link } from "react-router-dom";
+import "../styles/Signin.css";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function Signup() {
           className="signup-form"
         >
           <div className="form-group">
-            <label htmlFor="email">First Name</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               className="form-control"
@@ -35,7 +35,7 @@ export default function Signup() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">First Name</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
@@ -43,7 +43,7 @@ export default function Signup() {
               placeholder="Password"
               value={password}
               onChange={(e) => {
-                setEmail(e.target.value);
+                setPassword(e.target.value);
               }}
               required
             />
@@ -57,9 +57,9 @@ export default function Signup() {
         </form>
         <div className="right-panel">
           <h1>Track It</h1>
-          <p>Already have an account?</p>
-          <Link to="/signin">
-            <button className="btn btn-primary">Sign in</button>
+          <p>Don't have an account?</p>
+          <Link to="/">
+            <button className="btn btn-primary">Sign up</button>
           </Link>
         </div>
       </div>

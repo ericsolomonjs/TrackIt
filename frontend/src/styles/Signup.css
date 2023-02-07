@@ -15,7 +15,6 @@ h1 {
 .signup-container {
   display: flex !important;
   width: 50%;
-  margin: 0 auto;
   border: 1px solid grey;
   border-radius: 10px;
 }
@@ -39,5 +38,6 @@ h1 {
 }
 
 .form-group {
+  display: block !important;
   margin-top: 10px;
 }
