@@ -6,7 +6,7 @@ export default function NavBar(props) {
   const user = props.user ? props.user : ""
 
   return (
-    <>
+    <div className='NavBar'>
       <Navbar variant="dark" className="btn btn-secondary">
         <Container>
           <Navbar.Brand href="#home">Track-It</Navbar.Brand>
@@ -21,7 +21,7 @@ export default function NavBar(props) {
       <br />
 
       {user ? (
-        <Container>
+        <Container className='navbar-login'>
           <Navbar variant="dark" className="btn btn-secondary">
             <Container>
               <Navbar.Brand >Logged in as {user.firstName}</Navbar.Brand>
@@ -35,7 +35,7 @@ export default function NavBar(props) {
           </Navbar>
         </Container>
       ) : (
-        <Container>
+        <Container className='navbar-login'>
           <Navbar variant="dark" className="btn btn-secondary">
             <Container>
               <Navbar.Brand href="#signup">Sign up</Navbar.Brand>
@@ -52,6 +52,6 @@ export default function NavBar(props) {
 
       <br />
 
-    </>
+    </div>
   );
 }

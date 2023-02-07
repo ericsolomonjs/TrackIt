@@ -2,15 +2,26 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  height: 150px;
+  background-color: #282c34;
+  padding:1em;
+}
+.NavBar .btn {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-items: flex-start;
+    height: 30 px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
 }
 
 .App-header {
