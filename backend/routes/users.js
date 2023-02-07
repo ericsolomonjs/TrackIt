@@ -7,7 +7,12 @@ router.post("/new", async (req, res) => {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
-  await insertUser(firstName, lastName, email, password);
+
+  try {
+    await insertUser(firstName, lastName, email, password);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;

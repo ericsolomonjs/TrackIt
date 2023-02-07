@@ -7,14 +7,15 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const enviroment = "dev";
 const app = express();
-//route paths
-const userRoutes = require("./routes/users");
-app.use("/users", userRoutes);
 
 // middleware setup
 app.use(morgan(enviroment));
 app.use(bodyParser.json());
 app.use(cors());
+
+//route paths
+const userRoutes = require("./routes/users");
+app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.json({ greetings: "hello world" });

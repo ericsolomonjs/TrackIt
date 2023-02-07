@@ -10,7 +10,7 @@ const getUsers = () => {
 const insertUser = (firstName, lastName, email, password) => {
   const hash = bcrypt.hashSync(password, 10);
   return db.query(
-    "INSERT INTO users(firstName, lastName, email, password) VALUES ($1, $2, $3, $4)",
+    "INSERT INTO users(firstname, lastname, email, password) VALUES ($1, $2, $3, $4)",
     [firstName, lastName, email, hash]
   );
 };
