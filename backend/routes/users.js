@@ -21,6 +21,7 @@ router.post("/login", async (req, res) => {
   const password = req.body.password;
   try {
     if (await loginUser(email, password)) {
+      res.send("Success!");
     }
   } catch (e) {
     res.send(e);
