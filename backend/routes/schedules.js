@@ -12,6 +12,7 @@ router.route("/")
   .post(async (req, res) => {
     let success = false;
     //generate the scheduleObj with API data
+    
     //query to save the users schedule
     if (req.user_id) {
       try { await SaveUserSchedule(req.user_id, req.scheduleObj) }
