@@ -5,7 +5,7 @@ export default function NavBar(props) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          Track-It
         </a>
         <button
           className="navbar-toggler"
@@ -21,18 +21,18 @@ export default function NavBar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="main">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
+              <a className="nav-link" href="schedule">
+                My Schedule
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Pricing
+                Create
               </a>
             </li>
             <li className="nav-item">
