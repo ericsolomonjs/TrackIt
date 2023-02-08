@@ -46,11 +46,7 @@ border-radius: 25px;
   padding-right: 50px;
 }
 
-.my-arm-day a {
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-decoration: none;
-}
+
 
 a:hover, a:visited, a:link, a:active
 {
@@ -58,13 +54,38 @@ a:hover, a:visited, a:link, a:active
 }
 
 .btn-btn-primary {
-  background-color: #a3cffd;
+  background-color: #f8f8f8;
+  color: rgb(49, 128, 214);
     border-radius: 25px;
     width: 100%;
 }
 
 .btn-btn-primary:hover {
-  background-color: rgb(9, 46, 182);
+  background-color: rgb(64, 132, 216);
   color: #FFFFFF;
   transition: 0.7s ease;
+}
+
+.image-container {
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+.image-container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
