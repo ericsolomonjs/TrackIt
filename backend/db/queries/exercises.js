@@ -5,6 +5,11 @@ const getExercises = async () => {
   return Promise.resolve(data.rows);
 };
 
+const getExercisesByType = async (type) => {
+  const data = await db.query("SELECT * FROM exercises WHERE type=\"$1\" ; ", type)
+  return Promise.resolve(data.rows);
+};
+
 
 const clearExercises = async () => {
   const data = await db.query("DELETE FROM exercises;");
@@ -26,4 +31,4 @@ const insertExercise = async (exerciseObj) => {
   return Promise.resolve(data.rows)
 };
 
-module.exports = { getExercises, insertExercise, clearExercises };
+module.exports = { getExercises, insertExercise, clearExercises, getExercisesByType };
