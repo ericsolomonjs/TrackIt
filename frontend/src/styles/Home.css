@@ -46,6 +46,16 @@
 .section1-container {
   margin: 25px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.section2-container {
+  margin: 25px;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 25px;
@@ -54,5 +64,11 @@
 @media only screen and (max-width: 600px) {
   .heading-comment {
     font-size: 1rem !important;
+  }
+  .section1-container {
+    flex-direction: column;
+  }
+  .section2-container {
+    flex-direction: column-reverse;
   }
 }

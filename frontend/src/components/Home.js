@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="section1-container">
+        <div className="section2-container">
           <p style={{ fontSize: "2rem" }}>
             Track it is a new program and we don't have any memberships yet, but
             that will come in the future! Help us help you get better workouts
