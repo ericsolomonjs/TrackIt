@@ -1,28 +1,51 @@
-const db = require("../connection");
-const { insertExercise } = require("../queries/exercises")
+const { insertExercise, getExercises, clearExercises } = require("../queries/exercises")
 require("dotenv").config();
+const Axios = require("axios");
 
-const saveExerciseBatch = async (exercises) => {
-  for (let exerciseKey in exercises) {
-    await insertExercise(res[exerciseKey]);
+async function saveExerciseBatch(exercises) {
+  for (let exercise of exercises) {
+    await insertExercise(exercise)
   }
+  return Promise.resolve();
 }
 
-const initExercises = async () => {
-  for (let paginationCounter = 0; paginationCounter < 1000; paginationCounter = paginationCounter + 10)
-    await Axios.get(`https://api.api-ninjas.com/v1/exercises?offset=${paginationCounter}`, {
-      headers: {
-        "X-Api-Key": ENVApiKey
-      }.then((res) => {
-        //query to save exercises to the database
-        saveExerciseBatch(res)
-      })
-      .catch((err) => {
-        return console.error('Request failed:', err)
-      })
-    });
-}
+async function initExercises () {
+  const muscleGroupsArr = [
+    "abdominals",
+    "abductors",
+    "adductors",
+    "biceps",
+    "calves",
+    "chest",
+    "forearms",
+    "glutes",
+    "hamstrings",
+    "lats",
+    "lower_back",
+    "middle_back",
+    "neck",
+    "quadriceps",
+    "traps",
+    "triceps",
+  ]
 
+  for (let muscleGroup of muscleGroupsArr) {
+    const exercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleGroup}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
+    await saveExerciseBatch(exercises.data);
+  }
+  const cardioExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?type=cardio`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
+  await saveExerciseBatch(cardioExercises.data);
 
+  return Promise.resolve()
+};
 
+clearExercises();
 initExercises();
+
+getExercises()
+.then((data) => {
+  console.log(data.length + " exercise rows created");
+})
+.catch((error) => {
+  console.error(error);
+})
