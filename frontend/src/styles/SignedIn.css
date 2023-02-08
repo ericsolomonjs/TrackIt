@@ -1,0 +1,70 @@
+.general-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.my-workouts-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.workout-pic-info{
+  font-size: x-large;
+}
+
+.my-workouts-card-image {
+  width: 350px;
+  height: 400px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+
+.schedule-container {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 30px;
+padding: 90px;
+}
+
+.my-schedule-image {
+height: 600px;
+
+border-radius: 25px;
+
+}
+
+.go-to-schedule {
+  font-size: xx-large;
+  padding-right: 50px;
+}
+
+.my-arm-day a {
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.btn-btn-primary {
+  background-color: #a3cffd;
+    border-radius: 25px;
+    width: 100%;
+}
+
+.btn-btn-primary:hover {
+  background-color: rgb(9, 46, 182);
+  color: #FFFFFF;
+  transition: 0.7s ease;
+}
