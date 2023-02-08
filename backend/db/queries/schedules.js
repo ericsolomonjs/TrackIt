@@ -1,5 +1,10 @@
 const db = require("../connection");
-const { getExercisesForArms } = require("./exercises");
+const { getExercisesForCardio,
+  getExercisesForArms,
+  getExercisesForLegs,
+  getExercisesForBack,
+  getExercisesForAbs,
+  getExercisesForChest } = require("./exercises");
 
 const getSchedule = async (user) => {
   const data = await db.query("SELECT * FROM schedules WHERE user_id = \"$1\";", user.id)
@@ -7,6 +12,11 @@ const getSchedule = async (user) => {
     return Promise.resolve(data.rows);
   }
   return Promise.reject();
+};
+
+const saveSchedule = async (schedule, user) => {
+  await db.query("INSERT INTO schedules (schedule, user_id) VALUES ($1,$2);", [schedule, user.id]);
+  return Promise.resolve();
 };
 
 const generateSchedule = async (params) => {
@@ -34,11 +44,11 @@ const generateSchedule = async (params) => {
     },
     "5": {
       exercises: [],
-      daysFocus: ""
+      daysFocus: "rest"
     },
     "6": {
       exercises: [],
-      daysFocus: ""
+      daysFocus: "rest"
     }
   }
 
@@ -53,7 +63,7 @@ const generateSchedule = async (params) => {
   ) {
     if (params.cardio) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].push(await getExercisesForCardio());
           scheduleObj[`${i}`].daysFocus = "cardio";
           break;
@@ -62,7 +72,7 @@ const generateSchedule = async (params) => {
     }
     if (params.arms) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].exercises.push(await getExercisesForArms());
           scheduleObj[`${i}`].daysFocus = "arms";
           break;
@@ -71,7 +81,7 @@ const generateSchedule = async (params) => {
     }
     if (params.legs) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].push(await getExercisesForLegs());
           scheduleObj[`${i}`].daysFocus = "legs";
           break;
@@ -80,7 +90,7 @@ const generateSchedule = async (params) => {
     }
     if (params.chest) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].push(await getExercisesForChest());
           scheduleObj[`${i}`].daysFocus = "chest";
           break;
@@ -89,7 +99,7 @@ const generateSchedule = async (params) => {
     }
     if (params.abs) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].push(await getExercisesForAbs());
           scheduleObj[`${i}`].daysFocus = "abs";
           break;
@@ -98,7 +108,7 @@ const generateSchedule = async (params) => {
     }
     if (params.back) {
       for (let i = 0; i < 7; i++) {
-        if (scheduleObj[`${i}`].length === 0) {
+        if (scheduleObj[`${i}`].daysFocus === "") {
           scheduleObj[`${i}`].push(await getExercisesForBack());
           scheduleObj[`${i}`].daysFocus = "back";
           break;
@@ -112,5 +122,6 @@ const generateSchedule = async (params) => {
 
 module.exports = {
   getSchedule,
-  generateSchedule
+  generateSchedule,
+  saveSchedule
 };

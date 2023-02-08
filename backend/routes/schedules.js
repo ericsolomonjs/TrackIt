@@ -9,7 +9,7 @@ router.route("/")
 
     if (req.user) {
       try {
-        jsonObject = await getSchedule()
+        jsonObject = await getSchedule(req.user)
         res.send(jsonObject)
       }
       catch (error) {
