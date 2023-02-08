@@ -5,7 +5,6 @@ export default function WeeklySchedule() {
 
 
   return <div>
-    <br />
     <di className="caption-header"> Here's Your Weekly Workout Schedule!</di>
     <br />
     <p className="info-note"> Click on a day to open up that day's workout plan</p>
