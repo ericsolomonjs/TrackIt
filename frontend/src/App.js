@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import Create from "./components/Create";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/schedule" element={<WeeklySchedule />}></Route>
           <Route path="/main" element={<SignedIn />}></Route>
           <Route path="/home" element={<Home />}></Route>
+          <Route path="/create" element={<Create />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
