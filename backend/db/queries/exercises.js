@@ -5,8 +5,8 @@ const getExercises = async () => {
   return Promise.resolve(data.rows);
 };
 
-const getExercisesByType = async (type) => {
-  const data = await db.query("SELECT * FROM exercises WHERE type=\"$1\" ; ", type)
+const getExercisesForCardio = async () => {
+  const data = await db.query("SELECT * FROM exercises WHERE type=\"cardio\" ; ")
   return Promise.resolve(data.rows);
 };
 
@@ -60,7 +60,7 @@ module.exports = {
   getExercises,
   insertExercise,
   clearExercises,
-  getExercisesByType,
+  getExercisesForCardio,
   getExercisesForArms,
   getExercisesForLegs,
   getExercisesForBack,
