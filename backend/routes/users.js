@@ -1,6 +1,6 @@
 /////////// catsRoutes.js [EXAMPLE ROUTER ROUTE]
 const router = require("express").Router();
-const { insertUser, loginUser } = require("../db/queries/users");
+const { insertUser, loginUser, getUserId } = require("../db/queries/users");
 
 router.post("/create", async (req, res) => {
   const firstName = req.body.firstName;
@@ -10,9 +10,11 @@ router.post("/create", async (req, res) => {
 
   try {
     await insertUser(firstName, lastName, email, password);
-    res.send("Success!");
+    const user = await getUserId(email);
+    console.log(user);
+    //res.cookie("user_id", user.rows[0].id);
   } catch (e) {
-    console.log(e);
+    res.send(404);
   }
 });
 
@@ -21,10 +23,14 @@ router.post("/login", async (req, res) => {
   const password = req.body.password;
   try {
     if (await loginUser(email, password)) {
-      res.send("Success!");
+      const user = await getUserId(email);
+      res.cookie("user_id", user.rows[0].id);
+      res.send(200);
+    } else {
+      return Error("Incorrect creditials");
     }
   } catch (e) {
-    res.send(e);
+    res.sendStatus(404);
   }
 });
 

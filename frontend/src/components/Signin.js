@@ -10,6 +10,8 @@ export default function Signup() {
     e.preventDefault();
     const ops = {
       method: "POST",
+      mode: "cors",
+      credentials: "include",
       headers: {
         "Content-type": "application/json",
       },
@@ -20,14 +22,10 @@ export default function Signup() {
     };
 
     fetch("http://localhost:8080/user/login", ops)
-      .then((res) => {
-        console.log("here");
-      })
-      .catch((err) => alert(err, "Server Error"))
-      .then((res) => {
-        console.log("here");
+      .then(() => {
         window.location = "home";
-      });
+      })
+      .catch((err) => alert(err));
   };
 
   return (

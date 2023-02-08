@@ -7,6 +7,14 @@ const getUsers = () => {
   });
 };
 
+const getUserId = (email) => {
+  return db.query("SELECT id FROM users WHERE email=$1", [email]);
+};
+
+const getUserById = (id) => {
+  return db.query("SELECT * FROM users WHERE id=$1", [id]);
+};
+
 const insertUser = (firstName, lastName, email, password) => {
   const hash = bcrypt.hashSync(password, 10);
   return db.query(
@@ -31,4 +39,4 @@ const loginUser = async (email, password) => {
   }
 };
 
-module.exports = { getUsers, insertUser, loginUser };
+module.exports = { getUsers, getUserId, insertUser, loginUser };

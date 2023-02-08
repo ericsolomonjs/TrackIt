@@ -41,12 +41,12 @@ export default function NavBar(props) {
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="main">
+            <a className="nav-link active" aria-current="page" href="signin">
               Login
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="schedule">
+            <a className="nav-link" href="signup">
               Register
             </a>
           </li>

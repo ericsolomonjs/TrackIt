@@ -12,9 +12,9 @@ export default function Create() {
   const handleClick = () => {
     if (list.includes(selected)) {
       alert("Already selected this muscle group!");
-      return;
+    } else {
+      setList([...list, selected]);
     }
-    setList([...list, selected]);
   };
 
   const handleSubmit = () => {
@@ -23,7 +23,6 @@ export default function Create() {
       for (let i = 0; i < list.length; i++) {
         groups[`Workout${i}`] = list[i];
       }
-      console.log(groups);
     } else {
       alert("You need to select at least one mucle group");
     }

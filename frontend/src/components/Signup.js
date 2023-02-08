@@ -27,6 +27,8 @@ export default function Signup() {
       headers: {
         "Content-type": "application/json",
       },
+      mode: "cors",
+      credentials: "include",
       body: JSON.stringify({
         firstName,
         lastName,

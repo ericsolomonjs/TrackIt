@@ -1,5 +1,3 @@
--- Drop and recreate Exercises table
-
 DROP TABLE IF EXISTS exercises CASCADE; 
 CREATE TABLE exercises (
   id SERIAL NOT NULL,
