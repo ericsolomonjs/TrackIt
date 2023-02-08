@@ -46,11 +46,7 @@ border-radius: 25px;
   padding-right: 50px;
 }
 
-.my-arm-day a {
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-decoration: none;
-}
+
 
 a:hover, a:visited, a:link, a:active
 {
@@ -58,13 +54,14 @@ a:hover, a:visited, a:link, a:active
 }
 
 .btn-btn-primary {
-  background-color: #a3cffd;
+  background-color: #f8f8f8;
+  color: rgb(49, 128, 214);
     border-radius: 25px;
     width: 100%;
 }
 
 .btn-btn-primary:hover {
-  background-color: rgb(9, 46, 182);
+  background-color: rgb(64, 132, 216);
   color: #FFFFFF;
   transition: 0.7s ease;
 }
