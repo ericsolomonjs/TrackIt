@@ -1,13 +1,18 @@
 const db = require("../connection");
 
-const getExercises = () => {
-  return db.query("SELECT * FROM exercises;").then((data) => {
-    return data.rows;
-  });
+const getExercises = async () => {
+  const data = await db.query("SELECT * FROM exercises;")
+  return Promise.resolve(data.rows);
 };
 
-const insertExercise = (exerciseObj) => {
-  return db.query(
+
+const clearExercises = async () => {
+  const data = await db.query("DELETE FROM exercises;");
+  return Promise.resolve(data.rows)
+}
+
+const insertExercise = async (exerciseObj) => {
+  const data = await db.query(
     "INSERT INTO exercises(name, type, muscle, equipment, difficulty, instructions) VALUES ($1, $2, $3, $4, $5, $6);",
     [
       exerciseObj.name,
@@ -17,7 +22,8 @@ const insertExercise = (exerciseObj) => {
       exerciseObj.difficulty,
       exerciseObj.instructions
     ]
-  )  
+  )
+  return Promise.resolve(data.rows)
 };
 
-module.exports = { getExercises, insertExercise };
+module.exports = { getExercises, insertExercise, clearExercises };
