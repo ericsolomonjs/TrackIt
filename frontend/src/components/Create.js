@@ -10,7 +10,23 @@ export default function Create() {
   const [list, setList] = useState([]);
 
   const handleClick = () => {
+    if (list.includes(selected)) {
+      alert("Already selected this muscle group!");
+      return;
+    }
     setList([...list, selected]);
+  };
+
+  const handleSubmit = () => {
+    if (list.length > 0) {
+      const groups = {};
+      for (let i = 0; i < list.length; i++) {
+        groups[`Workout${i}`] = list[i];
+      }
+      console.log(groups);
+    } else {
+      alert("You need to select at least one mucle group");
+    }
   };
 
   return (
@@ -54,7 +70,11 @@ export default function Create() {
         {list.map((item) => (
           <p>{item}</p>
         ))}
-        <button className="btn btn-primary" style={{ width: "35%" }}>
+        <button
+          onClick={handleSubmit}
+          className="btn btn-primary"
+          style={{ width: "35%" }}
+        >
           Submit
         </button>
       </div>

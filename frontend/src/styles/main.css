@@ -46,3 +46,8 @@
   align-items: center;
   background-color: rgb(206, 206, 206);
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}

@@ -35,18 +35,22 @@ export default function NavBar(props) {
                 Create
               </a>
             </li>
-            <li className="nav-item">
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-              >
-                Disabled
-              </a>
-            </li>
           </ul>
         </div>
+      </div>
+      <div>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href="main">
+              Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="schedule">
+              Register
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
   );
