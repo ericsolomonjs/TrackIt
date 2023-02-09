@@ -34,8 +34,8 @@
   gap: 20px;
 }
 
-.create-button {
-}
+/* .create-button {
+} */
 
 @media only screen and (max-width: 600px) {
   .create-workout {

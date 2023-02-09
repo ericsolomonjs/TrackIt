@@ -54,15 +54,5 @@ export default function SignedIn() {
         />
       </div>
     </div>
-<<<<<<< HEAD
-  );
+  ;
 }
-=======
-    <div className="schedule-container">
-      <a href="/schedule" className="go-to-schedule"> Go to my full schedule </a>
-      <img className='my-schedule-image' src="https://images.unsplash.com/photo-1632077804406-188472f1a810?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
-
-    </div>
-  </div>
-}
->>>>>>> 28ceab5ea4fced3e2f5755719f6ed19381c06a26
