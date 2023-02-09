@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS schedules CASCADE;
+DROP TABLE IF EXISTS muscle_groups CASCADE;
 CREATE TABLE muscle_groups (
   id SERIAL PRIMARY KEY NOT NULL,
   muscle_groups JSON NOT NULL,
