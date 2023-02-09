@@ -3,7 +3,7 @@ import "../styles/SignedIn.css";
 
 
 export default function SignedIn() {
-  return <div>
+  return <div className="broad-container">
     <div class="image-container">
       <img className="main-image" src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all" alt="" />
       <a href="/create">
@@ -37,7 +37,7 @@ export default function SignedIn() {
     </div>
     <div className="schedule-container">
       <a href="/schedule" className="go-to-schedule"> Go to my full schedule </a>
-      <img className='my-schedule-image' src="https://images.unsplash.com/photo-1603077492579-39ff927823db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
+      <img className='my-schedule-image' src="https://images.unsplash.com/photo-1632077804406-188472f1a810?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
 
     </div>
   </div>
