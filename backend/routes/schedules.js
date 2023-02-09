@@ -1,11 +1,10 @@
 //schedules routes
 const router = require("express").Router();
-const { getSchedule, generateSchedule } = require("../db/queries/schedules");
+const { getSchedule, generateSchedule, saveSchedule } = require("../db/queries/schedules");
 
 router.route("/")
   //route for getting schedule
   .get(async (req, res) => {
-
     if (req.user) {
       try {
         const jsonObject = await getSchedule(req.user)
@@ -39,6 +38,7 @@ router.route("/create/")
   //route for generating a new schedule and returning it
   .get(async (req, res) => {
     const schedule = await generateSchedule(req.params);
+    await saveSchedule(schedule);
     res.send(schedule);
   })
 
