@@ -5,11 +5,10 @@ const { getSchedule, generateSchedule } = require("../db/queries/schedules");
 router.route("/")
   //route for getting schedule
   .get(async (req, res) => {
-    const jsonObject = {};
 
     if (req.user) {
       try {
-        jsonObject = await getSchedule(req.user)
+        const jsonObject = await getSchedule(req.user)
         res.send(jsonObject)
       }
       catch (error) {
@@ -36,7 +35,7 @@ router.route("/")
     res.send(success)
   })
 
-router.route("/new/")
+router.route("/create/")
   //route for generating a new schedule and returning it
   .get(async (req, res) => {
     const schedule = await generateSchedule(req.params);
