@@ -9,16 +9,34 @@ import NavBar from "./components/NavBar";
 import Create from "./components/Create";
 import DaysWorkout from "./components/DaysWorkout";
 import Footer from "./components/Footer";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 function App() {
+  const [loggedin, setLoggedIn] = useState();
+
+  useEffect(() => {
+    if (Cookies.get("user_id")) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+        <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} />
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/signin" element={<Signin />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+          <Route
+            path="/signin"
+            element={<Signin setLoggedIn={setLoggedIn} />}
+          ></Route>
+          <Route
+            path="/signup"
+            element={<Signup setLoggedIn={setLoggedIn} />}
+          ></Route>
           <Route path="/schedule" element={<WeeklySchedule />}></Route>
           <Route path="/main" element={<SignedIn />}></Route>a
           <Route path="/home" element={<Home />}></Route>

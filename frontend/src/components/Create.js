@@ -40,7 +40,9 @@ export default function Create() {
         }),
       };
       fetch("http://localhost:8080/user/groups", ops)
-        .then((res) => {})
+        .then((res) => {
+          window.location = "main";
+        })
         .catch((err) => alert(err, "Server Error"));
     } else {
       alert("You need to select at least one mucle group");

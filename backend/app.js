@@ -19,10 +19,6 @@ app.use(cors({ origin: true, credentials: true }));
 const userRoutes = require("./routes/users");
 app.use("/user", userRoutes);
 
-app.get("/", (req, res) => {
-  res.json({ greetings: "hello world" });
-});
-
 app.listen(process.env.PORT, () =>
   console.log(`Server is listening on port ${process.env.PORT}`)
 );

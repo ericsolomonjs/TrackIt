@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const setLoggedIn = props.setLoggedIn;
+
+  const navigate = useNavigate();
 
   const onChange = () => {
     console.log("here");
@@ -24,11 +28,11 @@ export default function Signup() {
 
     const ops = {
       method: "POST",
+      mode: "cors",
+      credentials: "include",
       headers: {
         "Content-type": "application/json",
       },
-      mode: "cors",
-      credentials: "include",
       body: JSON.stringify({
         firstName,
         lastName,
@@ -41,9 +45,11 @@ export default function Signup() {
     console.log("Options", ops);
 
     fetch("http://localhost:8080/user/create", ops)
-      .then((res) => res.json())
-      .catch((err) => alert(err, "Server Error"))
-      .then((res) => console.log(res));
+      .then((res) => {
+        setLoggedIn(true);
+        navigate("/main");
+      })
+      .catch((err) => alert(err, "Server Error"));
   };
 
   return (

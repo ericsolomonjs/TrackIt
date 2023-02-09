@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../styles/Signin.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signin(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const setLoggedIn = props.setLoggedIn;
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const ops = {
@@ -22,8 +24,13 @@ export default function Signup() {
     };
 
     fetch("http://localhost:8080/user/login", ops)
-      .then(() => {
-        window.location = "home";
+      .then((res) => {
+        if (res.status === 401) {
+          alert("Invalid credentials");
+        } else {
+          setLoggedIn(true);
+          navigate("/main");
+        }
       })
       .catch((err) => alert(err));
   };
