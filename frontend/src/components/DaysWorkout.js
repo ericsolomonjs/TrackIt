@@ -12,8 +12,9 @@ export default function DaysWorkout() {
       <img className="main-header-image" src="https://caribbeanhotelandtourism.com/wp-content/uploads/2018/03/Blog-Header.png" alt="" />
     </div>
     <p className="todays-workout"> Today's Workout</p>
+    <p className="workout-name"> Chest Day</p>
     <div className="main-workout-container">
-   
+  
     <Row xs={1} md={2} className="g-5 row-days">
       {Array.from({ length: 4 }).map((_, idx) => (
         <Col >

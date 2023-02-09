@@ -12,13 +12,22 @@
 .todays-workout {
   display: flex;
   justify-content: center;
-  font-size: xx-large;
-  padding-top: 15px;
-  padding-bottom: 35px;
+  font-size:larger;
+  padding-top: 25px;
+  padding-bottom: 15px;
 }
 
 
 .row-days {
   margin: 0;
   margin-left: 0 !important;
+}
+
+.workout-name {
+  display: flex;
+  justify-content: center;
+  font-size: 45px;
+  margin: 20px;
+  margin-bottom: 40px;
+  border: solid 3px;
 }

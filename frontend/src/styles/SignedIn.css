@@ -36,14 +36,16 @@ padding: 90px;
 
 .my-schedule-image {
 height: 700px;
-
+position: relative;
 border-radius: 25px;
 
 }
 
 .go-to-schedule {
   font-size: xx-large;
-  padding-right: 50px;
+  padding: 10px;
+  border: solid 3px;
+  margin-top: 20px;
 }
 
 
