@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   res.send(json)
 });
 
-router.post("/new"), async (req, res) => {
+router.post("/create/"), async (req, res) => {
   const json = req; 
   await insertExercise(json);
   res.sendStatus(201)
