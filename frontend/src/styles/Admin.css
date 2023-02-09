@@ -1,0 +1,41 @@
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  width: 100%;
+  font-size: medium;
+}
+
+.admin-container form {
+  display:flex;
+  flex-direction: column;
+  padding-inline:1em;
+  width: 70%;
+}
+
+.admin-container .btn {
+  justify-self: center;
+  align-self: center;
+  width: 150px;;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: f4f4f4;
+}
+
+.admin-container textarea {
+  margin:1em;
+}
+
+.admin-container input {
+  margin:1em;
+}
+
+.admin-analytics h1{
+  margin:1em;
+}
