@@ -50,7 +50,6 @@ body {
 .row {
   display: flex;
   flex-direction: row;
-  margin: 0 -5px;
   width: 100%;
 }
 
