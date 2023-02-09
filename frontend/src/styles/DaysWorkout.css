@@ -1,0 +1,33 @@
+.header-image-container {
+  position: relative;
+
+}
+
+.main-header-image {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+}
+
+.todays-workout {
+  display: flex;
+  justify-content: center;
+  font-size:larger;
+  padding-top: 25px;
+  padding-bottom: 15px;
+}
+
+
+.row-days {
+  margin: 0;
+  margin-left: 0 !important;
+}
+
+.workout-name {
+  display: flex;
+  justify-content: center;
+  font-size: 45px;
+  margin: 20px;
+  margin-bottom: 40px;
+  border: solid 3px;
+}
