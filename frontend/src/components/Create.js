@@ -17,12 +17,33 @@ export default function Create() {
     }
   };
 
+  const deleteGroup = (item, idx) => {
+    const filteredArray = list.filter((item, index) => index !== idx);
+    setList(filteredArray);
+  };
+
   const handleSubmit = () => {
     if (list.length > 0) {
       const groups = {};
       for (let i = 0; i < list.length; i++) {
         groups[`Workout${i}`] = list[i];
       }
+      //SEND POST REQUEST TO BACKEND HERE
+      const ops = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+        body: JSON.stringify({
+          groups,
+        }),
+      };
+
+      fetch("http://localhost:8080/user/groups", ops)
+        .then((res) => res.json())
+        .catch((err) => alert(err, "Server Error"));
     } else {
       alert("You need to select at least one mucle group");
     }
@@ -44,7 +65,6 @@ export default function Create() {
                 value={selected}
                 onChange={(e) => setSelected(e.target.value)}
               >
-                >
                 {options.map((value) => (
                   <option value={value} key={value}>
                     {value}
@@ -66,8 +86,24 @@ export default function Create() {
       </div>
       <div className="bottom-section">
         <h1 style={{ marginTop: "2rem" }}>Your Selections</h1>
-        {list.map((item) => (
-          <p>{item}</p>
+        {list.map((item, idx) => (
+          <div key={idx} className="create-alert">
+            <div
+              style={{ width: "200px" }}
+              className="alert-secondary"
+              role="alert"
+              key={idx + 1}
+            >
+              {item}
+            </div>
+            <button
+              onClick={(e) => deleteGroup(item, idx)}
+              className="btn btn-primary create-button"
+              key={idx + 2}
+            >
+              -
+            </button>
+          </div>
         ))}
         <button
           onClick={handleSubmit}

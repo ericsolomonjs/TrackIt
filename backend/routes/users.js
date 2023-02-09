@@ -1,6 +1,7 @@
 /////////// catsRoutes.js [EXAMPLE ROUTER ROUTE]
 const router = require("express").Router();
 const { insertUser, loginUser, getUserId } = require("../db/queries/users");
+const { insertGroups } = require("../db/queries/muscle_groups");
 
 router.post("/create", async (req, res) => {
   const firstName = req.body.firstName;
@@ -11,10 +12,10 @@ router.post("/create", async (req, res) => {
   try {
     await insertUser(firstName, lastName, email, password);
     const user = await getUserId(email);
-    console.log(user);
-    //res.cookie("user_id", user.rows[0].id);
+    res.cookie("user_id", user.rows[0].id);
+    res.send(200);
   } catch (e) {
-    res.send(404);
+    res.send(500);
   }
 });
 
@@ -30,13 +31,15 @@ router.post("/login", async (req, res) => {
       return Error("Incorrect creditials");
     }
   } catch (e) {
-    res.sendStatus(404);
+    res.send(500);
   }
 });
 
 router.post("/groups", async (req, res) => {
   const groups = req.body.groups;
-  console.log(groups);
+  const id = req.cookies["user_id"];
+  await insertGroups(groups, id);
+  res.send(200);
 });
 
 module.exports = router;

@@ -24,6 +24,19 @@
   align-items: center;
 }
 
+.create-alert {
+  display: flex;
+  align-items: center;
+  background-color: rgb(229, 229, 229);
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+  gap: 20px;
+}
+
+.create-button {
+}
+
 @media only screen and (max-width: 600px) {
   .create-workout {
     flex-direction: column;
