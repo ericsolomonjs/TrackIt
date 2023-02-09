@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Signup.css";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");

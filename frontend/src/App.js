@@ -8,12 +8,13 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Create from "./components/Create";
 import DaysWorkout from "./components/DaysWorkout";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div>
-      <NavBar />
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/signin" element={<Signin />}></Route>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/create" element={<Create />}></Route>
           <Route path="/days" element={<DaysWorkout />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

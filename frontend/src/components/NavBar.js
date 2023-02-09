@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function NavBar(props) {
   const user = props.user ? props.user : "";
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Track-It
-        </a>
+        <Link to="/" className="navbar-brand">
+          Track-it
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,24 +23,19 @@ export default function NavBar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="main">
+              <Link className="nav-link active" to="main">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="schedule">
-                My Schedule
-              </a>
+              <Link to="schedule" className="nav-link">
+                Schedule
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/create">
-                Create
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/days">
-                Workout
-              </a>
+              <Link className="nav-link" to="create">
+                Create Workouts
+              </Link>
             </li>
           </ul>
         </div>
@@ -46,14 +43,14 @@ export default function NavBar(props) {
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="signin">
+            <Link aria-current="page" className="nav-link active" to="signin">
               Login
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="signup">
+            <Link className="nav-link" to="signup">
               Register
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

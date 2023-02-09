@@ -40,7 +40,7 @@ export default function Create() {
         }),
       };
       fetch("http://localhost:8080/user/groups", ops)
-        .then((res) => res.json())
+        .then((res) => {})
         .catch((err) => alert(err, "Server Error"));
     } else {
       alert("You need to select at least one mucle group");
@@ -106,12 +106,11 @@ export default function Create() {
         <button
           onClick={handleSubmit}
           className="btn btn-primary"
-          style={{ width: "35%" }}
+          style={{ width: "35%", marginBottom: "25px" }}
         >
           Submit
         </button>
       </div>
-      <Footer />
     </div>
   );
 }
