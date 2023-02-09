@@ -4,10 +4,12 @@ import "../styles/SignedIn.css";
 
 export default function SignedIn() {
   return <div>
-      <div class="image-container">
-        <img className="main-image" src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all" alt="" />
-        <button class="btn btn-primary">Create New Workout</button>
-      </div>
+    <div class="image-container">
+      <img className="main-image" src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all" alt="" />
+      <a href="/create">
+      <button class="btn btn-primary">Create New Workout</button>
+      </a>
+    </div>
 
     <div className='general-container'>
       <h3>Main Logged in </h3>
@@ -32,11 +34,11 @@ export default function SignedIn() {
           </div>
         </div>
       </div>
-      <div className="schedule-container">
+    </div>
+    <div className="schedule-container">
       <a href="/schedule" className="go-to-schedule"> Go to my full schedule </a>
-        <img className='my-schedule-image' src="https://images.unsplash.com/photo-1603077492579-39ff927823db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
-       
-      </div>
+      <img className='my-schedule-image' src="https://images.unsplash.com/photo-1603077492579-39ff927823db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
+
     </div>
   </div>
 }

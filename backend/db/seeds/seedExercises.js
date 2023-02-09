@@ -9,7 +9,7 @@ async function saveExerciseBatch(exercises) {
   return Promise.resolve();
 }
 
-async function initExercises () {
+async function initExercises() {
   const muscleGroupsArr = [
     "abdominals",
     "abductors",
@@ -28,24 +28,30 @@ async function initExercises () {
     "traps",
     "triceps",
   ]
-
-  for (let muscleGroup of muscleGroupsArr) {
-    const exercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleGroup}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
+  for (let i = 0; i < 1000; i = i + 10) {
+    console.log("i = : ", i)
+    const exercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?offset=${i}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
     await saveExerciseBatch(exercises.data);
+    // for (let muscleGroup of muscleGroupsArr) {
+    // }
   }
-  const cardioExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?type=cardio`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
-  await saveExerciseBatch(cardioExercises.data);
+  // const cardioExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?type=cardio`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
+  // await saveExerciseBatch(cardioExercises.data);
 
   return Promise.resolve()
 };
 
 clearExercises();
-initExercises();
+initExercises()
+  .then(() => {
+    getExercises()
+      .then((data) => {
+        console.log(data.length + " exercise rows created");
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  })
 
-getExercises()
-.then((data) => {
-  console.log(data.length + " exercise rows created");
-})
-.catch((error) => {
-  console.error(error);
-})
+

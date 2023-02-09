@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Create from "./components/Create";
+import DaysWorkout from "./components/DaysWorkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/main" element={<SignedIn />}></Route>a
           <Route path="/home" element={<Home />}></Route>
           <Route path="/create" element={<Create />}></Route>
+          <Route path="/days" element={<DaysWorkout />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
