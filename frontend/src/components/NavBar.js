@@ -31,8 +31,13 @@ export default function NavBar(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/create">
                 Create
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/days">
+                Workout
               </a>
             </li>
           </ul>
