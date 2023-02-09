@@ -6,6 +6,19 @@ const { getExercisesForCardio,
   getExercisesForAbs,
   getExercisesForChest } = require("./exercises");
 
+const shuffleArray = async (array) => {
+  let index = array.length; 
+  let randomIndex;
+  while (index != 0) {
+    randomIndex = Math.floor(Math.random() * index);
+    index--;
+    [array[index], array[randomIndex]] = [
+      array[randomIndex], array[index]];
+  }
+  return Promise.resolve(array);
+}
+
+
 const getSchedule = async (user) => {
   const data = await db.query("SELECT * FROM schedules WHERE user_id = \"$1\";", user.id)
   if (data.rows.length > 0) {
@@ -117,6 +130,16 @@ const generateSchedule = async (params) => {
     }
   }
 
+  //shuffle the exercises
+  for (let i = 0; i < 7; i++) {
+    scheduleObj[`${i}`].exercises = await shuffleArray(scheduleObj[`${i}`].exercises); 
+  }
+  //truncate the exercises for time
+  //truncate fn
+  for (let i = 0; i < 7; i++) {
+    scheduleObj[`${i}`].exercises = scheduleObj[`${i}`].exercises.slice(0,9); //10 items for a 15 minutes schedule incl rest breaks
+  }
+  //return promise with scheduleObj completed
   return Promise.resolve(scheduleObj);
 }
 
