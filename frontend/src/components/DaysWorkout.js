@@ -9,7 +9,7 @@ export default function DaysWorkout() {
 
   return <div>
     <div class="header-image-container">
-      <img className="main-header-image" src="https://caribbeanhotelandtourism.com/wp-content/uploads/2018/03/Blog-Header.png" alt="" />
+      <img className="main-header-image" src="https://images.unsplash.com/photo-1637666062717-1c6bcfa4a4df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="" />
     </div>
     <p className="todays-workout"> Today's Workout</p>
     <p className="workout-name"> Chest Day</p>
