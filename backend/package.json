@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init:db": "node ./db/initDB.js && ./db/seeds/seedExercises.js",
+    "init:db": "node ./db/initDB.js && node ./db/seeds/seedExercises.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
