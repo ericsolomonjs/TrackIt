@@ -34,4 +34,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/groups", async (req, res) => {
+  const groups = req.body.groups;
+  console.log(groups);
+});
+
 module.exports = router;
