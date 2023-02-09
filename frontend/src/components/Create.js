@@ -28,7 +28,6 @@ export default function Create() {
       for (let i = 0; i < list.length; i++) {
         groups[`Workout${i}`] = list[i];
       }
-      //SEND POST REQUEST TO BACKEND HERE
       const ops = {
         method: "POST",
         headers: {
@@ -40,7 +39,6 @@ export default function Create() {
           groups,
         }),
       };
-
       fetch("http://localhost:8080/user/groups", ops)
         .then((res) => res.json())
         .catch((err) => alert(err, "Server Error"));
