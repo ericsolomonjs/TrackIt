@@ -50,6 +50,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/arms.jpg"
+                  alt="arms"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Arm Day</button>
@@ -63,6 +64,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/legs.jpg"
+                  alt="legs"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Leg Day</button>
@@ -76,6 +78,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/chest.jpg"
+                  alt="chest"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Chest Day</button>
@@ -89,6 +92,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/abs.jpg"
+                  alt="abs"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Abs Day</button>
