@@ -11,7 +11,8 @@ export default function SignedIn() {
     </div>
 
       <div className="general-container">
-        <h3>Main Logged in </h3>
+        <br />
+        <h3>My Quick Workouts </h3>
         <div className="my-workouts-grid">
           {/* add grid-container-view */}
           <div className="my-workouts-card">

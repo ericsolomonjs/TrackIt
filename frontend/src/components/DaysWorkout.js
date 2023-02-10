@@ -33,7 +33,17 @@ export default function DaysWorkout() {
                   <Card.Subtitle className="mb-2 text-muted">
                     Difficulty
                   </Card.Subtitle>
-                  <Card.Text>Beginner / Easy</Card.Text>
+                  <Card.Text>Beginner</Card.Text>
+                  <br />
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Equipment
+                  </Card.Subtitle>
+                  <Card.Text>None</Card.Text>
+                  <br />
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Sets/Reps
+                  </Card.Subtitle>
+                  <Card.Text>3 Sets - 10 reps each</Card.Text>
                   <br />
                   <Card.Subtitle className="mb-2 text-muted">
                     How-To
