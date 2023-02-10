@@ -14,7 +14,7 @@
   gap: 30px;
 }
 
-.workout-pic-info{
+.workout-pic-info {
   font-size: x-large;
 }
 
@@ -27,22 +27,20 @@
 }
 
 .schedule-container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: 30px;
-padding: 90px;
-padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 90px;
+  padding-bottom: 0px;
 }
 
 .my-schedule-image {
-height: 70vh;
-width: 100vw;
-position: relative;
-object-fit: cover;
-
-
+  height: 70vh;
+  width: 100vw;
+  position: relative;
+  object-fit: cover;
 }
 
 .go-to-schedule {
@@ -53,23 +51,23 @@ object-fit: cover;
   border-radius: 25px;
 }
 
-
-
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }
 
 .btn-btn-primary {
   background-color: #f8f8f8;
-  color: rgb(49, 128, 214);
-    border-radius: 25px;
-    width: 100%;
+  color: rgb(49, 108, 244);
+  border-radius: 25px;
+  width: 100%;
 }
 
 .btn-btn-primary:hover {
-  background-color: rgb(64, 132, 216);
-  color: #FFFFFF;
+  background-color: rgb(49, 108, 244);
+  color: #ffffff;
   transition: 0.7s ease;
 }
 

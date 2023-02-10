@@ -90,9 +90,11 @@ export default function NavBar(props) {
         <ul className="navbar-nav">
           <li className="nav-item"></li>
           <li className="nav-item user-buttons">
-            <Link className="nav-link" to="signup">
-              Register
-            </Link>
+            {!loggedIn && (
+              <Link className="nav-link" to="signup">
+                Register
+              </Link>
+            )}
             {button}
           </li>
         </ul>
