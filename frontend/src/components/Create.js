@@ -43,14 +43,8 @@ export default function Create() {
         }),
       };
       fetch("http://localhost:8080/user/groups", ops)
-        .then((res) => {
-          if (res.status === 404) {
-            alert(
-              "User has already created workouts, please contact the admin for help."
-            );
-          } else {
-            navigate("/home");
-          }
+        .then(() => {
+          navigate("/home");
         })
         .catch((err) => alert(err, "Server Error"));
     } else {

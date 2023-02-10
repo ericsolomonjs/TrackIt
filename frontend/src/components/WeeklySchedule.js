@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 export default function WeeklySchedule() {
   return (
     <div>
-       <div class="image-container">
-      <img className="main-image" src="https://images.unsplash.com/photo-1614928228253-dc09cbc3b11c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="" />
-      <Link to="/create">
-      <button class="btn btn-primary">Add New Workout</button>
-      </Link>
-    </div>
+      <div class="image-container">
+        <img
+          className="main-image"
+          src="https://images.unsplash.com/photo-1614928228253-dc09cbc3b11c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          alt=""
+        />
+        <Link to="/home">
+          <button class="btn btn-primary">See Quick Workouts</button>
+        </Link>
+      </div>
       <br />
       <di className="caption-header"> Here's Your Weekly Workout Schedule!</di>
       <br />
