@@ -5,33 +5,33 @@ const getExercises = async () => {
   return Promise.resolve(data.rows);
 };
 
-const getExercisesForCardio = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE type=\"cardio\" ; ")
+const getExercisesForCardio = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE type=\"cardio\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows);
 };
 
-const getExercisesForArms = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"biceps\" OR muscle=\"forearms\" OR muscle=\"triceps\";");
+const getExercisesForArms = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"biceps\" OR muscle=\"forearms\" OR muscle=\"triceps\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows)
 }
 
-const getExercisesForLegs = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"calves\" OR muscle=\"glutes\" OR muscle=\"hamstrings\";");
+const getExercisesForLegs = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"calves\" OR muscle=\"glutes\" OR muscle=\"hamstrings\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows)
 }
 
-const getExercisesForBack = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"lower_back\" OR muscle=\"middle_back\" OR muscle=\"traps\";");
+const getExercisesForBack = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"lower_back\" OR muscle=\"middle_back\" OR muscle=\"traps\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows)
 }
 
-const getExercisesForAbs = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"abdominals\";");
+const getExercisesForAbs = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"abdominals\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows)
 }
 
-const getExercisesForChest = async () => {
-  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"chest\";");
+const getExercisesForChest = async (difficulty) => {
+  const data = await db.query("SELECT * FROM exercises WHERE muscle=\"chest\" && difficulty=\"$1\";", [difficulty]);
   return Promise.resolve(data.rows)
 }
 
