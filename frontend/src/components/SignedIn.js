@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SignedIn.css";
-import Cookies from "js-cookie";
+import "../styles/main.css";
 import { Link } from "react-router-dom";
 
 export default function SignedIn() {
@@ -31,12 +31,15 @@ export default function SignedIn() {
 
   return (
     <div className="broad-container">
-      <div class="image-container">
+      <div class="img-container">
         <img
           className="main-image"
           src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all"
           alt=""
         />
+        <p className="heading-comment">
+          Track It. Where you can find the best workouts.
+        </p>
         <Link style={{ marginBottom: "25px" }} to="/create">
           <button className="btn btn-primary">Create Workouts</button>
         </Link>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/Create.css";
 import "../styles/main.css";
-import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Create() {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
@@ -56,7 +56,15 @@ export default function Create() {
 
   return (
     <div>
-      <Header />
+      <header>
+        <div className="img-container">
+          <img className="home-img" src="workout1.jpeg" alt="Snow" />
+          <p className="heading-comment">Create Your Custom Workouts</p>
+          <Link to="/signup">
+            <button className="btn btn-primary">GET STARTED!</button>
+          </Link>
+        </div>
+      </header>
       <h1 style={{ marginTop: "2rem" }}>Select Muscle Groups</h1>
       <div className="create-container">
         <div className="create-workout">

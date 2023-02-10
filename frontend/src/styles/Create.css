@@ -37,7 +37,7 @@
 /* .create-button {
 } */
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1200px) {
   .create-workout {
     flex-direction: column;
   }
