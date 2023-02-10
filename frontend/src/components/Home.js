@@ -29,9 +29,6 @@ export default function Home() {
           <img className="home-img2" src="workout3.jpg" alt="" />
         </div>
       </section>
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 }
