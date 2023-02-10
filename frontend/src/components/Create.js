@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "../styles/Create.css";
 import "../styles/main.css";
-import Footer from "./Footer";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
 export default function Create() {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
+  const difficultyList = ["Beginner", "Intermediate", "Expert"];
   const [selected, setSelected] = useState(options[0]);
+  const [difficulty, setDifficulty] = useState(difficultyList[0]);
   const [list, setList] = useState([]);
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ export default function Create() {
         credentials: "include",
         body: JSON.stringify({
           groups,
+          difficulty,
         }),
       };
       fetch("http://localhost:8080/user/groups", ops)
@@ -55,7 +57,7 @@ export default function Create() {
   return (
     <div>
       <Header />
-      <h1 style={{ marginTop: "2rem" }}>Select Muslce Groups</h1>
+      <h1 style={{ marginTop: "2rem" }}>Select Muscle Groups</h1>
       <div className="create-container">
         <div className="create-workout">
           <div>
@@ -69,6 +71,21 @@ export default function Create() {
                 onChange={(e) => setSelected(e.target.value)}
               >
                 {options.map((value) => (
+                  <option value={value} key={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <br />
+              <h3>Select Difficulty</h3>
+              <select
+                id="select-difficulty"
+                className="form-select"
+                aria-label="Default select example"
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+              >
+                {difficultyList.map((value) => (
                   <option value={value} key={value}>
                     {value}
                   </option>
