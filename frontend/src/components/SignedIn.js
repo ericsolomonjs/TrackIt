@@ -1,11 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/SignedIn.css";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 export default function SignedIn() {
+  const [muscles, setMuscles] = useState([]);
+
   useEffect(() => {
-    const id = Cookies.get("user_id");
-    console.log(id);
+    const arr = [];
+    const ops = {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+    };
+    fetch("http://localhost:8080/user/groups", ops)
+      .then((res) => res.json())
+      .then((data) => {
+        for (const item in data) {
+          arr.push(data[item]);
+        }
+        setMuscles(arr);
+      });
   }, []);
 
   return (
@@ -16,9 +34,9 @@ export default function SignedIn() {
           src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all"
           alt=""
         />
-        <a href="/create">
-          <button class="btn btn-primary">Create New Workout</button>
-        </a>
+        <Link style={{ marginBottom: "25px" }} to="/schedule">
+          <button className="btn btn-primary">Go to my full schedule</button>
+        </Link>
       </div>
 
       <div className="general-container">
@@ -26,54 +44,74 @@ export default function SignedIn() {
         <h3>My Quick Workouts </h3>
         <div className="my-workouts-grid">
           {/* add grid-container-view */}
-          <div className="my-workouts-card">
-            <img
-              className="my-workouts-card-image"
-              src="https://thumbs.dreamstime.com/b/highlighted-biceps-d-rendered-illustration-30721898.jpg"
-            />
-            <div className="workout-pic-info">
-              <button className="btn-btn-primary"> My Arm Day</button>
-            </div>
-          </div>
-          <div className="my-workouts-card">
-            <img
-              className="my-workouts-card-image"
-              src="https://thumbs.dreamstime.com/b/highlighted-biceps-d-rendered-illustration-30721898.jpg"
-            />
-            <div className="workout-pic-info">
-              <button className="btn-btn-primary"> My Leg Day</button>
-            </div>
-          </div>
-          <div className="my-workouts-card">
-            <img
-              className="my-workouts-card-image"
-              src="https://thumbs.dreamstime.com/b/highlighted-biceps-d-rendered-illustration-30721898.jpg"
-            />
-            <div className="workout-pic-info">
-              <button className="btn-btn-primary"> My Chest Day</button>
-            </div>
-          </div>
-          <div className="my-workouts-card">
-            <img
-              className="my-workouts-card-image"
-              src="https://thumbs.dreamstime.com/b/highlighted-biceps-d-rendered-illustration-30721898.jpg"
-            />
-            <div className="workout-pic-info">
-              <button className="btn-btn-primary"> My Abs Day</button>
-            </div>
-          </div>
+          {muscles.includes("Arms") && (
+            <>
+              <div className="my-workouts-card">
+                <img
+                  className="my-workouts-card-image"
+                  src="body_images/arms.jpg"
+                />
+                <div className="workout-pic-info">
+                  <button className="btn-btn-primary"> My Arm Day</button>
+                </div>
+              </div>
+            </>
+          )}
+          {muscles.includes("Legs") && (
+            <>
+              <div className="my-workouts-card">
+                <img
+                  className="my-workouts-card-image"
+                  src="body_images/legs.jpg"
+                />
+                <div className="workout-pic-info">
+                  <button className="btn-btn-primary"> My Leg Day</button>
+                </div>
+              </div>
+            </>
+          )}
+          {muscles.includes("Chest") && (
+            <>
+              <div className="my-workouts-card">
+                <img
+                  className="my-workouts-card-image"
+                  src="body_images/chest.jpg"
+                />
+                <div className="workout-pic-info">
+                  <button className="btn-btn-primary"> My Chest Day</button>
+                </div>
+              </div>
+            </>
+          )}
+          {muscles.includes("Abs") && (
+            <>
+              <div className="my-workouts-card">
+                <img
+                  className="my-workouts-card-image"
+                  src="body_images/abs.jpg"
+                />
+                <div className="workout-pic-info">
+                  <button className="btn-btn-primary"> My Abs Day</button>
+                </div>
+              </div>
+            </>
+          )}
+          {muscles.includes("Back") && (
+            <>
+              <div className="my-workouts-card">
+                <img
+                  className="my-workouts-card-image"
+                  src="body_images/back.jpg"
+                />
+                <div className="workout-pic-info">
+                  <button className="btn-btn-primary"> My Abs Day</button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
-      <div className="schedule-container">
-        <a href="/schedule" className="go-to-schedule">
-          {" "}
-          Go to my full schedule{" "}
-        </a>
-        <img
-          className="my-schedule-image"
-          src="https://images.unsplash.com/photo-1603077492579-39ff927823db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        />
-      </div>
+      <div className="schedule-container"></div>
     </div>
   );
 }

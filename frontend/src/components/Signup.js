@@ -47,7 +47,7 @@ export default function Signup(props) {
     fetch("http://localhost:8080/user/create", ops)
       .then((res) => {
         setLoggedIn(true);
-        navigate("/main");
+        navigate("/home");
       })
       .catch((err) => alert(err, "Server Error"));
   };

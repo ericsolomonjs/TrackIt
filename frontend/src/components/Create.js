@@ -3,11 +3,13 @@ import "../styles/Create.css";
 import "../styles/main.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
-  const options = ["Arms", "Legs", "Chest", "Abs"];
+  const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
   const [selected, setSelected] = useState(options[0]);
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (list.includes(selected)) {
@@ -28,6 +30,7 @@ export default function Create() {
       for (let i = 0; i < list.length; i++) {
         groups[`Workout${i}`] = list[i];
       }
+
       const ops = {
         method: "POST",
         headers: {
@@ -41,7 +44,13 @@ export default function Create() {
       };
       fetch("http://localhost:8080/user/groups", ops)
         .then((res) => {
-          window.location = "main";
+          if (res.status === 404) {
+            alert(
+              "User has already created workouts, please contact the admin for help."
+            );
+          } else {
+            navigate("/home");
+          }
         })
         .catch((err) => alert(err, "Server Error"));
     } else {

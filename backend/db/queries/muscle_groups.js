@@ -7,8 +7,8 @@ const insertGroups = (groups, id) => {
   );
 };
 
-const getGroups = (id) => {
-  return db.query("SELECT muslces FROM muscle_groups WHERE id=$1", [id]);
+const getAllGroups = (id) => {
+  return db.query("SELECT muscles FROM muscle_groups WHERE user_id=$1", [id]);
 };
 
-module.exports = { insertGroups };
+module.exports = { insertGroups, getAllGroups };
