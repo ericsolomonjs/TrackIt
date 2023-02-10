@@ -52,7 +52,7 @@ export default function NavBar(props) {
             Track-it
           </Link>
         ) : (
-          <Link to="/signin" className="navbar-brand">
+          <Link to="/" className="navbar-brand">
             Track-it
           </Link>
         )}

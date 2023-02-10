@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -8,7 +9,9 @@ export default function Header() {
         <p className="heading-comment">
           Track It! Where you can find the best workouts!
         </p>
-        <button className="btn btn-primary">GET STARTED!</button>
+        <Link to="/signup">
+          <button className="btn btn-primary">GET STARTED!</button>
+        </Link>
       </div>
     </header>
   );
