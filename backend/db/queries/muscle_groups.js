@@ -7,4 +7,8 @@ const insertGroups = (groups, id) => {
   );
 };
 
+const getGroups = (id) => {
+  return db.query("SELECT muslces FROM muscle_groups WHERE id=$1", [id]);
+};
+
 module.exports = { insertGroups };

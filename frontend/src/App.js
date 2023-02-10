@@ -38,8 +38,7 @@ function App() {
             element={<Signup setLoggedIn={setLoggedIn} />}
           ></Route>
           <Route path="/schedule" element={<WeeklySchedule />}></Route>
-          <Route path="/main" element={<SignedIn />}></Route>a
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/home" element={<SignedIn />}></Route>
           <Route path="/create" element={<Create />}></Route>
           <Route path="/days" element={<DaysWorkout />}></Route>
         </Routes>
