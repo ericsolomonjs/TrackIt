@@ -112,7 +112,7 @@ export default function SignedIn() {
                   src="body_images/back.jpg"
                 />
                 <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Abs Day</button>
+                  <button className="btn-btn-primary"> My Back Day</button>
                 </div>
               </div>
             </>
