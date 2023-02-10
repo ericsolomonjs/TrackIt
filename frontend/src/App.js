@@ -11,6 +11,7 @@ import DaysWorkout from "./components/DaysWorkout";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import PrivateRoutes from "./auth/PrivateRoutes";
 
 function App() {
   const [loggedin, setLoggedIn] = useState();
@@ -28,6 +29,13 @@ function App() {
       <BrowserRouter>
         <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} />
         <Routes>
+          <Route element={<PrivateRoutes />}>
+          <Route path="/schedule" element={<WeeklySchedule />}></Route>
+          <Route path="/home" element={<SignedIn />}></Route>
+          <Route path="/create" element={<Create />}></Route>
+          <Route path="/days" element={<DaysWorkout />}></Route>
+          </Route>
+
           <Route path="/" element={<Home />}></Route>
           <Route
             path="/signin"
@@ -37,10 +45,6 @@ function App() {
             path="/signup"
             element={<Signup setLoggedIn={setLoggedIn} />}
           ></Route>
-          <Route path="/schedule" element={<WeeklySchedule />}></Route>
-          <Route path="/home" element={<SignedIn />}></Route>
-          <Route path="/create" element={<Create />}></Route>
-          <Route path="/days" element={<DaysWorkout />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
