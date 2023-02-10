@@ -104,34 +104,39 @@ export default function Create() {
           </div>
         </div>
       </div>
+      <br />
       <div className="bottom-section">
-        <h1 style={{ marginTop: "2rem" }}>Your Selections</h1>
-        {list.map((item, idx) => (
-          <div key={idx} className="create-alert">
-            <div
-              style={{ width: "200px" }}
-              className="alert-secondary"
-              role="alert"
-              key={idx + 1}
-            >
-              {item}
-            </div>
+        {list.length > 0 && (
+          <>
+            <h1 style={{ marginTop: "2rem" }}>Your Selections</h1>
+            {list.map((item, idx) => (
+              <div key={idx} className="create-alert">
+                <div
+                  style={{ width: "200px" }}
+                  className="alert-secondary"
+                  role="alert"
+                  key={idx + 1}
+                >
+                  {item}
+                </div>
+                <button
+                  onClick={(e) => deleteGroup(item, idx)}
+                  className="btn btn-primary create-button"
+                  key={idx + 2}
+                >
+                  -
+                </button>
+              </div>
+            ))}
             <button
-              onClick={(e) => deleteGroup(item, idx)}
-              className="btn btn-primary create-button"
-              key={idx + 2}
+              onClick={handleSubmit}
+              className="btn btn-primary"
+              style={{ width: "35%", marginBottom: "25px" }}
             >
-              -
+              Submit
             </button>
-          </div>
-        ))}
-        <button
-          onClick={handleSubmit}
-          className="btn btn-primary"
-          style={{ width: "35%", marginBottom: "25px" }}
-        >
-          Submit
-        </button>
+          </>
+        )}
       </div>
     </div>
   );
