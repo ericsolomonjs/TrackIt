@@ -36,9 +36,16 @@ router.route("/")
 
 router.route("/create/")
   //route for generating a new schedule and returning it
-  .get(async (req, res) => {
-    const schedule = await generateSchedule(req.params);
-    await saveSchedule(schedule);
+  .post(async (req, res) => {
+    try {
+      const schedule = await generateSchedule(req.body);
+      console.log("schedule ", schedule)
+      //await saveSchedule(schedule, req.body.user_id);
+      res.sendStatus(201);
+    } catch (err) {
+      res.sendStatus(501)
+      return console.error(err);
+    }
     res.send(schedule);
   })
 
