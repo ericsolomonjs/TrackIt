@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
 import "../styles/Admin.css"
 import Axios from 'axios';
+
 export default function Admin(props) {
   const user = (props.user) ? props.user : null;
   let admin = false;
-  //check if admin on load and set admin in local const
+
+  function submitExercise (object) {
+    Axios.post('exercises/create/', object)
+    .then(() => {console.log("successfully created exercise")})
+  }
+
+  //check if admin on load and set admin in local variable
   useEffect(() => {
     if (user) {
       Axios.get('user/isAdmin', { user_id: user.id })
         .then((res) => { admin = res.data; })
     }
   }, [])
-
-  function submitExercise (object) {
-    Axios.post('exercises/create/', object)
-    .then(() => {console.log("successfully created exercise")})
-  }
 
   return (
     <div className='admin-container container-fluid'>
@@ -49,7 +51,7 @@ export default function Admin(props) {
               <label htmlFor="typeChoice3">Stretching</label>
             </div>
             <br />
-            <button type="submit" className='btn btn-primary' onClick={() => submitExercise(props)}>Submit</button>
+            <button type="submit" className='btn btn-primary' onClick={() => submitExercise(target.value)}>Submit</button>
           </form>
           <br />
           <div className='admin-analytics '></div>
@@ -62,7 +64,6 @@ export default function Admin(props) {
         :
         <h2>Must be Admin to view this page.</h2>
       }
-
     </div>
   )
 
