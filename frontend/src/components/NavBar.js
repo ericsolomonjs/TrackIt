@@ -91,9 +91,14 @@ export default function NavBar(props) {
           <li className="nav-item"></li>
           <li className="nav-item user-buttons">
             {!loggedIn && (
-              <Link className="nav-link" to="signup">
-                Register
-              </Link>
+              <>
+                <Link className="nav-link" to="signup">
+                  Register
+                </Link>
+                <Link className="nav-link" to="/admin">
+                  Admin
+                </Link>
+              </>
             )}
             {button}
           </li>

@@ -3,6 +3,7 @@ import Signin from "./components/Signin";
 import WeeklySchedule from "./components/WeeklySchedule";
 import SignedIn from "./components/SignedIn";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -30,10 +31,11 @@ function App() {
         <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} />
         <Routes>
           <Route element={<PrivateRoutes />}>
-          <Route path="/schedule" element={<WeeklySchedule />}></Route>
-          <Route path="/home" element={<SignedIn />}></Route>
-          <Route path="/create" element={<Create />}></Route>
-          <Route path="/days" element={<DaysWorkout />}></Route>
+            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/schedule" element={<WeeklySchedule />}></Route>
+            <Route path="/home" element={<SignedIn />}></Route>
+            <Route path="/create" element={<Create />}></Route>
+            <Route path="/days" element={<DaysWorkout />}></Route>
           </Route>
 
           <Route path="/" element={<Home />}></Route>

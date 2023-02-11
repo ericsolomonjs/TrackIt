@@ -31,7 +31,7 @@ export default function SignedIn() {
 
   return (
     <div className="broad-container">
-      <div class="img-container">
+      <div className="img-container">
         <img
           className="main-image"
           src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all"
@@ -57,7 +57,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/arms.jpg"
-                  alt="arms"
+                  alt="arm workouts"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Arm Day</button>
@@ -71,7 +71,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/legs.jpg"
-                  alt="legs"
+                  alt="leg workouts"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Leg Day</button>
@@ -85,7 +85,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/chest.jpg"
-                  alt="chest"
+                  alt="chest workouts"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Chest Day</button>
@@ -99,7 +99,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/abs.jpg"
-                  alt="abs"
+                  alt="ab workouts"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Abs Day</button>
@@ -113,6 +113,7 @@ export default function SignedIn() {
                 <img
                   className="my-workouts-card-image"
                   src="body_images/back.jpg"
+                  alt="back workouts"
                 />
                 <div className="workout-pic-info">
                   <button className="btn-btn-primary"> My Back Day</button>
