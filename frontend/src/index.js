@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 //axios defaults config (to be verified)
-Axios.defaults.baseURL = "http://localhost:3001/api/";
+Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import "../styles/Admin.css";
 import Axios from "axios";
@@ -5,6 +6,22 @@ export default function Admin(props) {
   const user = props.user ? props.user : null;
   let admin = true;
   //check if admin on load and set admin in local const
+=======
+import React, { useEffect } from 'react';
+import "../styles/Admin.css"
+import Axios from 'axios';
+
+export default function Admin(props) {
+  const user = (props.user) ? props.user : null;
+  let admin = false;
+
+  function submitExercise (object) {
+    Axios.post('exercises/create/', object)
+    .then(() => {console.log("successfully created exercise")})
+  }
+
+  //check if admin on load and set admin in local variable
+>>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
   useEffect(() => {
     if (user) {
       Axios.get("user/isAdmin", { user_id: user.id }).then((res) => {
@@ -13,12 +30,15 @@ export default function Admin(props) {
     }
   }, []);
 
+<<<<<<< HEAD
   function submitExercise(object) {
     Axios.post("exercises/create", object).then(() => {
       console.log("successfully created exercise");
     });
   }
 
+=======
+>>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
   return (
     <div className="admin-container container-fluid">
       {admin ? (
@@ -85,6 +105,7 @@ export default function Admin(props) {
               <label htmlFor="typeChoice3">Stretching</label>
             </div>
             <br />
+<<<<<<< HEAD
             <button
               type="submit"
               className="btn btn-primary"
@@ -92,6 +113,9 @@ export default function Admin(props) {
             >
               Submit
             </button>
+=======
+            <button type="submit" className='btn btn-primary' onClick={() => submitExercise(target.value)}>Submit</button>
+>>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
           </form>
           <br />
           <div className="admin-analytics "></div>
@@ -103,7 +127,11 @@ export default function Admin(props) {
         </>
       ) : (
         <h2>Must be Admin to view this page.</h2>
+<<<<<<< HEAD
       )}
+=======
+      }
+>>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
     </div>
   );
 }

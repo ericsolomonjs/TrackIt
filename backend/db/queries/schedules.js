@@ -18,9 +18,8 @@ const shuffleArray = async (array) => {
   return Promise.resolve(array);
 }
 
-
 const getSchedule = async (user) => {
-  const data = await db.query("SELECT * FROM schedules WHERE user_id = \"$1\";", user.id)
+  const data = await db.query("SELECT * FROM schedules WHERE user_id = $1;", user.id)
   if (data.rows.length > 0) {
     return Promise.resolve(data.rows);
   }
@@ -28,14 +27,17 @@ const getSchedule = async (user) => {
 };
 
 const saveSchedule = async (schedule, user) => {
+
   await db.query("INSERT INTO schedules (schedule, user_id) VALUES ($1,$2);", [schedule, user.id]);
   return Promise.resolve();
 };
 
 const generateSchedule = async (params) => {
+  
   const difficulty = params.difficulty
   const scheduleObj = {
     "time": params.time,
+    "difficulty": difficulty,
     "0": {
       exercises: [],
       daysFocus: ""
@@ -130,7 +132,7 @@ const generateSchedule = async (params) => {
       }
     }
   }
-
+  console.log("generator params: ", scheduleObj)
   //shuffle the exercises
   for (let i = 0; i < 7; i++) {
     scheduleObj[`${i}`].exercises = await shuffleArray(scheduleObj[`${i}`].exercises);

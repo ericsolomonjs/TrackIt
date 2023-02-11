@@ -11,22 +11,30 @@ export default function Home() {
       <section>
         <div className="section1-container">
           <img className="home-img2" src="workout2.jpg" alt="" />
-          <p style={{ fontSize: "2rem", textAlign: "center" }}>
-            Track it is a web application that allows you to input your desired
-            muscles to workout and we give you the workouts. Feeling like there
-            is something taking care of your exercises takes the burden off of
-            you and lets us take care of the rest.
+          <p className="info-textbox" style={{ fontSize: "1.75rem", textAlign: "center" }}>
+          Track it is a web application that allows you to input the muscles you want to workout, while we handle finding you the exercises that can do that. Taking the stress off the user so that they can focus on working out and Track it takes care of the rest.
           </p>
         </div>
       </section>
       <section>
         <div className="section2-container">
-          <p style={{ fontSize: "2rem", textAlign: "center" }}>
-            Track it is a new program and we don't have any memberships yet, but
-            that will come in the future! Help us help you get better workouts
-            and don't forget to review us online.
+          <p className="info-textbox" style={{ fontSize: "1.75rem", textAlign: "center" }}>
+          Built to help target major muscle groups including chest, arms, legs, back, etc. We have an exercise pool that ranges from beginner level up towards advanced and is constantly expanding, meaning there is something for everyone no matter your experience level!
+
           </p>
           <img className="home-img2" src="workout3.jpg" alt="" />
+        </div>
+      </section>
+      <section>
+        <div className="footer-img-one">
+          <img className="motiv-img" src="do-great.png" alt="" />
+        </div>
+      </section>
+      <section>
+        <div className="section3-container">
+        <p className="info-textbox" style={{ fontSize: "1.25rem", textAlign: "center" }}>
+        Track it is a new program and is currently without any memberships, but they will be implemented in the near future! Help us help you improve your lifestyle and if you enjoy Track it then don’t forget to leave us a review!
+          </p>
         </div>
       </section>
     </div>

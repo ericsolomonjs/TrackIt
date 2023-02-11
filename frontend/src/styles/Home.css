@@ -1,6 +1,7 @@
 .home-img2 {
   width: 50%;
   height: 50%;
+  border-radius: 40px;
 }
 
 .section1-container {
@@ -20,6 +21,28 @@
   align-items: center;
   gap: 25px;
 }
+
+
+.info-textbox {
+  margin: 10px;
+  border: solid 4px;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.footer-img-one {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.motiv-img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
 
 @media only screen and (max-width: 600px) {
   .heading-comment {
