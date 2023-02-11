@@ -28,12 +28,11 @@ async function initExercises() {
     "traps",
     "triceps",
   ]
-  for (let i = 0; i < 1000; i = i + 10) {
-    console.log("i = : ", i)
-    const exercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?offset=${i}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
-    await saveExerciseBatch(exercises.data);
-    // for (let muscleGroup of muscleGroupsArr) {
-    // }
+
+  for (let muscleGroup of muscleGroupsArr) {
+    console.log("muscleGroup = : ", muscleGroup)
+    const moreExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleGroup}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })  
+    await saveExerciseBatch(moreExercises.data);
   }
   // const cardioExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?type=cardio`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
   // await saveExerciseBatch(cardioExercises.data);
