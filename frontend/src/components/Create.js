@@ -3,6 +3,8 @@ import "../styles/Create.css";
 import "../styles/main.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+import Cookies from "js-cookie";
 
 export default function Create() {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
@@ -25,7 +27,28 @@ export default function Create() {
     setList(filteredArray);
   };
 
+  const createSaveGetSchedule = (list) => {
+    const params = {user_id: Cookies.get("user_id"), difficulty: difficulty.toLowerCase()}
+    for (let lclGroup of list) {
+      params[`${lclGroup.toLowerCase()}`] = true;
+    }
+
+    console.log(params);
+    Axios.post("/schedule/create", params)
+            .then((res) => {
+              console.log("res: ", res.data);
+              localStorage.setItem('schedule', res.data);
+            })
+            .catch((error) => {
+              console.error("Create Schedule Request Failed!! : ", error)
+            })
+  }
+
   const handleSubmit = () => {
+    //create and save and return schedule using list items
+    createSaveGetSchedule(list);
+
+
     if (list.length > 0) {
       const groups = {};
       for (let i = 0; i < list.length; i++) {
@@ -43,16 +66,17 @@ export default function Create() {
           groups,
           difficulty,
         }),
-      };
-      fetch("http://localhost:8080/user/groups", ops)
+      }
+      fetch("/user/groups", ops)
         .then(() => {
+          
           navigate("/home");
         })
         .catch((err) => alert(err, "Server Error"));
     } else {
       alert("You need to select at least one mucle group");
     }
-  };
+  }
 
   return (
     <div>
