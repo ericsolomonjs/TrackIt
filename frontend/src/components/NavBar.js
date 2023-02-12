@@ -17,7 +17,7 @@ export default function NavBar(props) {
     };
 
     fetch("http://localhost:8080/user/logout", ops)
-      .then((res) => {
+      .then(() => {
         setLoggedIn(false);
         navigate("/");
       })

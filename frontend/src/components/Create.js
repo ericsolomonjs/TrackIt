@@ -28,25 +28,27 @@ export default function Create() {
   };
 
   const createSaveGetSchedule = (list) => {
-    const params = { user_id: Cookies.get("user_id"), difficulty: difficulty.toLowerCase() }
+    const params = {
+      user_id: Cookies.get("user_id"),
+      difficulty: difficulty.toLowerCase(),
+    };
     for (let lclGroup of list) {
       params[`${lclGroup.toLowerCase()}`] = true;
     }
 
-    Axios.post("/schedule/create/", params)
+    Axios.post("/schedule/create", params)
       .then((res) => {
         console.log("res: ", res.data);
-        localStorage.setItem('schedule', res.data);
+        localStorage.setItem("schedule", res.data);
       })
       .catch((error) => {
-        console.error("Create Schedule Request Failed!! : ", error)
-      })
-  }
+        console.error("Create Schedule Request Failed!! : ", error);
+      });
+  };
 
   const handleSubmit = () => {
     //create and save and return schedule using list items
     createSaveGetSchedule(list);
-
 
     if (list.length > 0) {
       const groups = {};
@@ -65,17 +67,16 @@ export default function Create() {
           groups,
           difficulty,
         }),
-      }
-      fetch("/user/groups", ops)
+      };
+      fetch("http://localhost:8080/user/groups", ops)
         .then(() => {
-
           navigate("/home");
         })
         .catch((err) => alert(err, "Server Error"));
     } else {
       alert("You need to select at least one mucle group");
     }
-  }
+  };
 
   return (
     <div>
@@ -83,8 +84,8 @@ export default function Create() {
         <div className="img-container">
           <img className="home-img" src="workout1.jpeg" alt="Snow" />
           <p className="heading-comment">Create Your Custom Workouts</p>
-          <Link to="/signup">
-            <button className="btn btn-primary">GET STARTED!</button>
+          <Link to="/home">
+            <button className="btn btn-primary">Quick Workouts</button>
           </Link>
         </div>
       </header>

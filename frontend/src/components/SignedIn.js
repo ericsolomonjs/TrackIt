@@ -17,19 +17,17 @@ export default function SignedIn() {
       mode: "cors",
       credentials: "include",
     };
-    fetch("/user/groups", ops)
+    fetch("http://localhost:8080/user/groups", ops)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         //added a condition for muscles in case it doesn't exist
-        if (data[0].muscles) {
-          for (const item in data[0].muscles) {
-            arr.push(data[0].muscles[item]);
+        if (data.muscles) {
+          for (const item in data.muscles) {
+            arr.push(data.muscles[item]);
           }
           setMuscles(arr);
-          setDifficulty(data[0].difficulty);
-
-
+          setDifficulty(data.difficulty);
         }
       });
   }, []);
