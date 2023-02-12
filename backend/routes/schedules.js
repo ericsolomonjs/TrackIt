@@ -10,13 +10,15 @@ router
   .route("/")
   //route for getting schedule
   .get(async (req, res) => {
-    if (req.user) {
+    let user_id = req.query.user_id
+    if (user_id) {
       try {
-        const jsonObject = await getSchedule(req.user);
+        const jsonObject = await getSchedule(user_id);
+        console.log("json Object: ", jsonObject)
         res.send(jsonObject);
       } catch (error) {
         console.error(error);
-        res.sendStatus(404);
+        res.sendStatus(401);
       }
     } else {
       res.sendStatus(418);
@@ -46,14 +48,13 @@ router
   .post(async (req, res) => {
     try {
       const schedule = await generateSchedule(req.body);
-      console.log("schedule ", schedule);
-      //await saveSchedule(schedule, req.body.user_id);
+      await saveSchedule(schedule, req.body.user_id);
       res.sendStatus(201);
     } catch (err) {
       res.sendStatus(501);
       return console.error(err);
     }
-    res.send(schedule);
+    
   });
 
 module.exports = router;
