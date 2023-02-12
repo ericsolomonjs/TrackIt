@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "../styles/Admin.css";
+import { useNavigate } from "react-router-dom";
+
 export default function Admin(props) {
   let admin = true;
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState("beginner");
@@ -31,6 +34,7 @@ export default function Admin(props) {
     fetch("http://localhost:8080/exercises/create", ops)
       .then((res) => {
         console.log("fetch success");
+        navigate("/admin");
       })
       .catch((err) => alert(err));
   };

@@ -24,6 +24,14 @@ export default function NavBar(props) {
       .catch((err) => alert(err));
   };
 
+  const authenticateAdmin = () => {
+    const pw = window.prompt("Please enter admin password");
+    if (pw === "admin") {
+      console.log("here");
+      window.location = "/admin";
+    }
+  };
+
   let button;
   if (loggedIn) {
     button = (
@@ -95,7 +103,7 @@ export default function NavBar(props) {
                 <Link className="nav-link" to="signup">
                   Register
                 </Link>
-                <Link className="nav-link" to="/admin">
+                <Link onClick={authenticateAdmin} className="nav-link">
                   Admin
                 </Link>
               </>
