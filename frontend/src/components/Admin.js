@@ -1,54 +1,55 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
+import { useState } from "react";
 import "../styles/Admin.css";
-import Axios from "axios";
 export default function Admin(props) {
-  const user = props.user ? props.user : null;
   let admin = true;
-  //check if admin on load and set admin in local const
-=======
-import React, { useEffect } from 'react';
-import "../styles/Admin.css"
-import Axios from 'axios';
 
-export default function Admin(props) {
-  const user = (props.user) ? props.user : null;
-  let admin = false;
+  const [name, setName] = useState("");
+  const [difficulty, setDifficulty] = useState("beginner");
+  const [muscleGroup, setMuscleGroup] = useState("");
+  const [equipment, setEquipment] = useState("");
+  const [instructions, setInstructions] = useState("");
+  const [exercise, setExercise] = useState("strength");
 
-  function submitExercise (object) {
-    Axios.post('exercises/create/', object)
-    .then(() => {console.log("successfully created exercise")})
-  }
+  const submitExercise = () => {
+    const ops = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        difficulty,
+        muscleGroup,
+        equipment,
+        instructions,
+        exercise,
+      }),
+    };
 
-  //check if admin on load and set admin in local variable
->>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
-  useEffect(() => {
-    if (user) {
-      Axios.get("user/isAdmin", { user_id: user.id }).then((res) => {
-        admin = res.data;
-      });
-    }
-  }, []);
+    fetch("http://localhost:8080/exercises/create", ops)
+      .then((res) => {
+        console.log("fetch success");
+      })
+      .catch((err) => alert(err));
+  };
 
-<<<<<<< HEAD
-  function submitExercise(object) {
-    Axios.post("exercises/create", object).then(() => {
-      console.log("successfully created exercise");
-    });
-  }
-
-=======
->>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
   return (
     <div className="admin-container container-fluid">
       {admin ? (
         <>
           <h1>Create a new exercise</h1>
-          <form action="/exercises/create/" method="POST">
+          <form>
             <label>Exercise Name</label>
-            <input type="text" name="name" required />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
             <label>Exercise Difficulty</label>
-            <div>
+            <div onChange={(e) => setDifficulty(e.target.value)}>
               <input
                 type="radio"
                 id="difficultyChoice1"
@@ -72,21 +73,33 @@ export default function Admin(props) {
               <label htmlFor="difficultyChoice3">Expert</label>
             </div>
             <label>Exercise Muscle Group</label>
-            <input type="text" name="muscle" required />
+            <input
+              type="text"
+              value={muscleGroup}
+              onChange={(e) => setMuscleGroup(e.target.value)}
+              required
+            />
             <label>
               Exercise Equipment (Type none if no equipment required)
             </label>
-            <input type="text" name="equipment" required />
+            <input
+              type="text"
+              value={equipment}
+              onChange={(e) => setEquipment(e.target.value)}
+              required
+            />
             <label>Exercise Instructions</label>
             <textarea
               type="text"
               name="instructions"
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
               rows="4"
               cols="45"
               required
             />
             <label>Exercise Type</label>
-            <div>
+            <div onChange={(e) => setExercise(e.target.value)}>
               <input
                 type="radio"
                 id="typeChoice1"
@@ -105,33 +118,18 @@ export default function Admin(props) {
               <label htmlFor="typeChoice3">Stretching</label>
             </div>
             <br />
-<<<<<<< HEAD
             <button
-              type="submit"
+              type="button"
               className="btn btn-primary"
-              onClick={() => submitExercise(props)}
+              onClick={() => submitExercise()}
             >
               Submit
             </button>
-=======
-            <button type="submit" className='btn btn-primary' onClick={() => submitExercise(target.value)}>Submit</button>
->>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
           </form>
-          <br />
-          <div className="admin-analytics "></div>
-          <h1>Website Analytics</h1>
-          <p>Website Users : </p>
-          <p>{props.userCount ? props.userCount : "Error. No Props"}</p>
-          <p>Exercise count : </p>
-          <p>{props.exerciseCount ? props.exerciseCount : "Error. No Props"}</p>
         </>
       ) : (
         <h2>Must be Admin to view this page.</h2>
-<<<<<<< HEAD
       )}
-=======
-      }
->>>>>>> b3cb7f02dcec9390375e159fbed126afa5b7c3c8
     </div>
   );
 }
