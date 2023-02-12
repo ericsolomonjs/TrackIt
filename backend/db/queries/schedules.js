@@ -19,10 +19,10 @@ const shuffleArray = async (array) => {
   return Promise.resolve(array);
 };
 
-const getSchedule = async (user) => {
+const getSchedule = async (userId) => {
   const data = await db.query(
-    "SELECT * FROM schedules WHERE user_id = $1;",
-    user.id
+    "SELECT schedule FROM schedules WHERE user_id = $1 LIMIT 1;",
+    [userId]
   );
   if (data.rows.length > 0) {
     return Promise.resolve(data.rows);
