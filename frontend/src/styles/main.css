@@ -56,6 +56,11 @@
   display: flex;
 }
 
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 991px) {
   .user-buttons {
     flex-direction: column;

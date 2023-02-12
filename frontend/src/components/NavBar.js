@@ -17,7 +17,7 @@ export default function NavBar(props) {
     };
 
     fetch("http://localhost:8080/user/logout", ops)
-      .then(() => {
+      .then((res) => {
         setLoggedIn(false);
         navigate("/");
       })
@@ -108,6 +108,9 @@ export default function NavBar(props) {
                 </Link>
               </>
             )}
+            <Link onClick={authenticateAdmin} className="nav-link">
+              Admin
+            </Link>
             {button}
           </li>
         </ul>

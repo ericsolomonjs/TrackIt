@@ -6,16 +6,15 @@ import Row from "react-bootstrap/Row";
 import { Axios } from "axios";
 
 export default function DaysWorkout(props) {
-  const schedule = {}
+  const schedule = {};
   const todayString = `${props.day}`;
 
   useEffect(() => {
-    Axios.get('/schedule/', {user_id: props.user.id})
-    .then((res) => {
-      schedule = res.data;
+    Axios.get("/schedule/", { user_id: props.user.id }).then((res) => {
+      const schedule = res.data;
       console.log(res.data);
-    })
-  })
+    });
+  });
 
   return (
     <div>
