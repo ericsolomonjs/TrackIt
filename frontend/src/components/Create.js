@@ -28,20 +28,19 @@ export default function Create() {
   };
 
   const createSaveGetSchedule = (list) => {
-    const params = {user_id: Cookies.get("user_id"), difficulty: difficulty.toLowerCase()}
+    const params = { user_id: Cookies.get("user_id"), difficulty: difficulty.toLowerCase() }
     for (let lclGroup of list) {
       params[`${lclGroup.toLowerCase()}`] = true;
     }
 
-    console.log(params);
-    Axios.post("/schedule/create", params)
-            .then((res) => {
-              console.log("res: ", res.data);
-              localStorage.setItem('schedule', res.data);
-            })
-            .catch((error) => {
-              console.error("Create Schedule Request Failed!! : ", error)
-            })
+    Axios.post("/schedule/create/", params)
+      .then((res) => {
+        console.log("res: ", res.data);
+        localStorage.setItem('schedule', res.data);
+      })
+      .catch((error) => {
+        console.error("Create Schedule Request Failed!! : ", error)
+      })
   }
 
   const handleSubmit = () => {
@@ -69,7 +68,7 @@ export default function Create() {
       }
       fetch("/user/groups", ops)
         .then(() => {
-          
+
           navigate("/home");
         })
         .catch((err) => alert(err, "Server Error"));
