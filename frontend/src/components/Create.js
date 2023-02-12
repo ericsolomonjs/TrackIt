@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Cookies from "js-cookie";
+Axios.defaults.baseURL = "http://localhost:8080";
+Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function Create() {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
@@ -36,7 +39,7 @@ export default function Create() {
       params[`${lclGroup.toLowerCase()}`] = true;
     }
 
-    Axios.post("/schedule/create", params)
+    Axios.post("/schedule/create/", params)
       .then((res) => {
         console.log("res: ", res.data);
         localStorage.setItem("schedule", res.data);
@@ -68,7 +71,7 @@ export default function Create() {
           difficulty,
         }),
       };
-      fetch("http://localhost:8080/user/groups", ops)
+      fetch("/user/groups", ops)
         .then(() => {
           navigate("/home");
         })
@@ -84,8 +87,8 @@ export default function Create() {
         <div className="img-container">
           <img className="home-img" src="workout1.jpeg" alt="Snow" />
           <p className="heading-comment">Create Your Custom Workouts</p>
-          <Link to="/home">
-            <button className="btn btn-primary">Quick Workouts</button>
+          <Link to="/signup">
+            <button className="btn btn-primary">GET STARTED!</button>
           </Link>
         </div>
       </header>
