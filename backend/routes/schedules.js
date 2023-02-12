@@ -29,9 +29,9 @@ router
     //generate the scheduleObj with API data
 
     //query to save the users schedule
-    if (req.user_id) {
+    if (req.cookies["user_id"]) {
       try {
-        await SaveUserSchedule(req.user_id, req.scheduleObj);
+        await SaveUserSchedule(req.cookies["user_id"], req.scheduleObj);
       } catch (err) {
         return console.error(err);
       }
@@ -41,19 +41,19 @@ router
   });
 
 router
-  .route("/create/")
+  .route("/create")
   //route for generating a new schedule and returning it
   .post(async (req, res) => {
     try {
-      console.log("req: ", req)
       const schedule = await generateSchedule(req.body);
-      console.log("user_id = ", req.body.user_id)
-      await saveSchedule(schedule, req.body.user_id);
-      res.send(schedule);
+      console.log("schedule ", schedule);
+      //await saveSchedule(schedule, req.body.user_id);
+      res.sendStatus(201);
     } catch (err) {
       res.sendStatus(501);
       return console.error(err);
     }
+    res.send(schedule);
   });
 
 module.exports = router;

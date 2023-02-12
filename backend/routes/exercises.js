@@ -1,4 +1,8 @@
-const { getExercises, getExercisesByType, insertExercise } = require("../db/queries/exercises");
+const {
+  getExercises,
+  getExercisesByType,
+  insertExercise,
+} = require("../db/queries/exercises");
 
 const router = require("express").Router();
 
@@ -9,13 +13,13 @@ router.get("/getByType/:type", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const json = await getExercises();
-  res.send(json)
+  res.send(json);
 });
 
-router.post("/create/"), async (req, res) => {
-  const json = req;
-  await insertExercise(json);
-  res.sendStatus(201)
-}
+router.post("/create", async (req, res) => {
+  const body = req.body;
+  console.log(body);
+  res.sendStatus(201);
+});
 
 module.exports = router;
