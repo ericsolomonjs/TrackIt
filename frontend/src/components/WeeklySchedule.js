@@ -1,8 +1,16 @@
 import React from "react";
 import "../styles/WeeklySchedule.css";
 import { Link } from "react-router-dom";
+import {firstLetterCapitalize} from '../helpers/CapitalizeFirst'
 
-export default function WeeklySchedule() {
+export default function WeeklySchedule(props) {
+  const focusArray = [];
+  if (props.schedule) {
+    for (let i = 0; i < 7; i++) {
+      focusArray.push(props.schedule[0].schedule[i].daysFocus);
+    }
+  }
+  console.log("focus array : ", focusArray);
   return (
     <div>
       <div class="image-container">
@@ -15,50 +23,70 @@ export default function WeeklySchedule() {
           <button class="btn btn-primary">See Quick Workouts</button>
         </Link>
       </div>
-      <br />
-      <di className="caption-header"> Here's Your Weekly Workout Schedule!</di>
-      <br />
-      <p className="info-note">
-        {" "}
-        Click on a day to open up that day's workout plan
-      </p>
-      <br />
-      <div className="main-container-alpha">
-        <div className="row">
-          <div className="column">
-            <Link to="/days" className="card-click">
-              <div className="card">
-                <h3>Monday</h3>
-                <p>Biceps</p>
+      {props.schedule && (
+        <>
+          <br />
+          <div className="caption-header">
+            {" "}
+            Here's Your Weekly Workout Schedule!
+          </div>
+          <br />
+          <p className="info-note">
+            {" "}
+            Click on a day to open up that day's workout plan
+          </p>
+          <br />
+          <div className="main-container-alpha">
+            <div className="row">
+              <div className="column">
+                <Link to="/days/0" className="card-click">
+                  <div className="card">
+                    <h3>Monday</h3>
+                    <p>{firstLetterCapitalize(focusArray[0])}</p>
+                  </div>
+                </Link>
+                <Link to="/days/1" className="card-click">
+                  <div class="card">
+                    <h3>Tuesday</h3>
+                    <p>{firstLetterCapitalize(focusArray[1])}</p>
+                  </div>
+                </Link>
+                <Link to="/days/2" className="card-click">
+                  <div class="card">
+                    <h3>Wednesday</h3>
+                    <p>{firstLetterCapitalize(focusArray[2])}</p>
+                  </div>
+                </Link>
+                <Link to="/days/3" className="card-click">
+                  <div class="card">
+                    <h3>Thursday</h3>
+                    <p>{firstLetterCapitalize(focusArray[3])}</p>
+                  </div>
+                </Link>
+                <Link to="/days/4" className="card-click">
+                  <div class="card">
+                    <h3>Friday</h3>
+                    <p>{firstLetterCapitalize(focusArray[4])}</p>
+                  </div>
+                </Link>
               </div>
-            </Link>
-            <Link to="/days" className="card-click">
+            </div>
+          </div>
+        </>
+      )}
+      {!props.schedule && (
+        <>
+          <div className="container centre">
+            <h2>You haven't created a schedule yet</h2>
+            <h2>Please create one at the link below</h2>
+            <Link to="/create" className="card-click">
               <div class="card">
-                <h3>Tuesday</h3>
-                <p>Back</p>
-              </div>
-            </Link>
-            <Link to="/days" className="card-click">
-              <div class="card">
-                <h3>Wednesday</h3>
-                <p>Chest</p>
-              </div>
-            </Link>
-            <Link to="/days" className="card-click">
-              <div class="card">
-                <h3>Thursday</h3>
-                <p>Cardio</p>
-              </div>
-            </Link>
-            <Link to="/days" className="card-click">
-              <div class="card">
-                <h3>Friday</h3>
-                <p>Rest</p>
+                <h3>Create</h3>
               </div>
             </Link>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

@@ -3,18 +3,17 @@ import "../styles/DaysWorkout.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Axios } from "axios";
+import {firstLetterCapitalize} from '../helpers/CapitalizeFirst'
 
 export default function DaysWorkout(props) {
-  const schedule = {};
-  const todayString = `${props.day}`;
-
-  useEffect(() => {
-    Axios.get("/schedule/", { user_id: props.user.id }).then((res) => {
-      const schedule = res.data;
-      console.log(res.data);
-    });
-  });
+  const schedule = props.schedule ? props.schedule : null;
+  const todayInt = props.day;
+  let thisDaysExercises = schedule
+    ? schedule[0].schedule[todayInt].exercises
+    : [];
+  const thisDaysFocus = schedule
+    ? schedule[0].schedule[todayInt].daysFocus
+    : "";
 
   return (
     <div>
@@ -26,46 +25,42 @@ export default function DaysWorkout(props) {
         />
       </div>
       <p className="todays-workout"> Today's Workout</p>
-      <p className="workout-name"> Chest Day</p>
+      <p className="workout-name">
+        {" "}
+        {firstLetterCapitalize(thisDaysFocus)} Day
+      </p>
       <div className="main-workout-container">
         <Row xs={1} md={2} className="g-5 row-days">
-          {Array.from({ length: 4 }).map((_, idx) => (
+          {thisDaysExercises.map((exercise) => (
             <Col>
               <Card>
                 <Card.Img variant="top" src="" />
                 <Card.Body>
-                  <Card.Title>Pushups</Card.Title>
+                  <Card.Title>{exercise.name}</Card.Title>
                   <br />
                   <Card.Subtitle className="mb-2 text-muted">
                     Duration
                   </Card.Subtitle>
-                  <Card.Text>15 minutes</Card.Text>
+                  <Card.Text>60 Seconds</Card.Text>
                   <br />
                   <Card.Subtitle className="mb-2 text-muted">
                     Difficulty
                   </Card.Subtitle>
-                  <Card.Text>Beginner</Card.Text>
+                  <Card.Text>
+                    {firstLetterCapitalize(exercise.difficulty)}
+                  </Card.Text>
                   <br />
                   <Card.Subtitle className="mb-2 text-muted">
                     Equipment
                   </Card.Subtitle>
-                  <Card.Text>None</Card.Text>
-                  <br />
-                  <Card.Subtitle className="mb-2 text-muted">
-                    Sets/Reps
-                  </Card.Subtitle>
-                  <Card.Text>3 Sets - 10 reps each</Card.Text>
-                  <br />
-                  <Card.Subtitle className="mb-2 text-muted">
-                    How-To
-                  </Card.Subtitle>
                   <Card.Text>
-                    How to do a pushup is simple, just get into the plant
-                    position with your legs together and arms shoulder width
-                    apart. With your back straight bend your arms along your
-                    torso untill your chest is about 6 inches from the floor and
-                    then press yourself back up to plank position.
+                    {firstLetterCapitalize(exercise.equipment)}
                   </Card.Text>
+                  <br />
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Instructions
+                  </Card.Subtitle>
+                  <Card.Text>{exercise.instructions}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
