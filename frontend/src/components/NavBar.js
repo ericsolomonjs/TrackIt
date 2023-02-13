@@ -75,7 +75,7 @@ export default function NavBar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse me-auto" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav">
             {loggedIn && (
               <>
@@ -92,7 +92,7 @@ export default function NavBar(props) {
               </>
             )}
           </ul>
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item"></li>
             <li className="nav-item user-buttons">
               {!loggedIn && (

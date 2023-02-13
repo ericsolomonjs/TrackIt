@@ -58,39 +58,20 @@ export default function Create(props) {
         groups[`Workout${i}`] = list[i];
       }
 
-      const ops = {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-        body: JSON.stringify({
+      Axios.post("/user/groups", {
+        params: {
           groups,
           difficulty,
-        }),
-      };
-
-      fetch("http://localhost:8080/user/groups", ops)
+          id: Cookies.get("user_id"),
+        },
+      })
         .then(() => {
           navigate("/home");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => alert(err, "Server Error"));
+    } else {
+      alert("You need to select at least one mucle group");
     }
-    //   Axios.post("/user/groups", {
-    //     params: {
-    //       groups,
-    //       difficulty,
-    //       id: Cookies.get("user_id")
-    //     },
-    //   })
-    //     .then(() => {
-    //       navigate("/home");
-    //     })
-    //     .catch((err) => alert(err, "Server Error"));
-    // } else {
-    //   alert("You need to select at least one mucle group");
-    // }
   };
 
   return (
