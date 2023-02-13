@@ -42,7 +42,6 @@ function App() {
         },
       })
         .then((res) => {
-          console.log("successfully retrieved res data: ", res);
           setSchedule(res.data[0].schedule);
         })
         .catch((error) => {
@@ -54,7 +53,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} />
+        <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} schedule={schedule}/>
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/admin" element={<Admin />}></Route>
