@@ -13,7 +13,6 @@ const cookieParser = require("cookie-parser");
 app.use(morgan(enviroment));
 app.use(bodyParser.json());
 app.use(cookieParser());
-//app.use(cors({ origin: true, credentials: true }));
 
 var whitelist = ["http://localhost/", "http://localhost:3000"];
 var corsOptionsDelegate = function (req, callback) {

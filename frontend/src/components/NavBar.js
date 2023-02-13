@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar(props) {
   const loggedIn = props.loggedIn;
   const setLoggedIn = props.setLoggedIn;
-  const schedule = props.schedule;
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -76,18 +75,15 @@ export default function NavBar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-lg-0">
+        <div className="collapse navbar-collapse me-auto" id="navbarNav">
+          <ul className="navbar-nav">
             {loggedIn && (
               <>
-                {" "}
-                {schedule && (
-                  <li className="nav-item">
-                    <Link to="schedule" className="nav-link">
-                      Schedule
-                    </Link>
-                  </li>
-                )}
+                <li className="nav-item">
+                  <Link to="schedule" className="nav-link">
+                    Schedule
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="create">
                     Create Workouts
@@ -98,7 +94,7 @@ export default function NavBar(props) {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item"></li>
-            <li className="nav-item">
+            <li className="nav-item user-buttons">
               {!loggedIn && (
                 <>
                   <Link className="nav-link" to="signup">
@@ -107,14 +103,14 @@ export default function NavBar(props) {
                   <Link onClick={authenticateAdmin} className="nav-link">
                     Admin
                   </Link>
+                  {button}
                 </>
               )}
-              {button}
             </li>
+            {button}
           </ul>
         </div>
       </div>
-      <div></div>
     </nav>
   );
 }
