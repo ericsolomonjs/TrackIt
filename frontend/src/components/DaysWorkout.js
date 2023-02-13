@@ -3,18 +3,14 @@ import "../styles/DaysWorkout.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import {firstLetterCapitalize} from '../helpers/CapitalizeFirst'
+import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 
 export default function DaysWorkout(props) {
   const schedule = props.schedule ? props.schedule : null;
   const todayInt = props.day;
-  let thisDaysExercises = schedule
-    ? schedule[todayInt].exercises
-    : [];
-  const thisDaysFocus = schedule
-    ? schedule[todayInt].daysFocus
-    : "";
-
+  let thisDaysExercises = schedule ? schedule[todayInt].exercises : [];
+  const thisDaysFocus = schedule ? schedule[todayInt].daysFocus : "";
+  window.scrollTo(0, 0);
   return (
     <div>
       <div className="header-image-container">
