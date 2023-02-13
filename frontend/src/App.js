@@ -49,7 +49,6 @@ function App() {
       .catch((err) => alert(err, "Server Error"));
 
     //get data in app load for schedules if not in
-    const userId = Cookies.get("user_id");
     if (userId && !schedule) {
       Axios.get("/schedule/", {
         params: {
