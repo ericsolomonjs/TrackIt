@@ -13,9 +13,18 @@
   width: 25%;
 }
 
-/* .card-click {
- padding: 10px;
-} */
+.container-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  margin-top: 25px;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 40px;
+  border: 3px solid rgb(156, 155, 155);
+  color: rgb(147, 147, 147);
+}
 
 
  .info-note {
@@ -67,6 +76,16 @@ body {
   text-align: center;
   background-color: f4f4f4;
   margin: 15px;
+}
+
+
+.card-two {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  background-color: f4f4f4;
+  margin: 45px;
+
 }
 
 

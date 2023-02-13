@@ -12,7 +12,7 @@
 .todays-workout {
   display: flex;
   justify-content: center;
-  font-size:larger;
+  font-size: larger;
   padding-top: 25px;
   padding-bottom: 15px;
 }
@@ -21,6 +21,8 @@
 .row-days {
   margin: 0;
   margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .workout-name {
@@ -34,4 +36,13 @@
 
 .main-workout-container {
   padding-bottom: 15px;
+}
+
+
+@media (min-width: 768px) {
+
+  .row-cols-md-2>* {
+    flex: 0 0 auto;
+    width: 100% !important;
+  }
 }
