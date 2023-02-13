@@ -76,12 +76,15 @@ export default function WeeklySchedule(props) {
       )}
       {!props.schedule && (
         <>
-          <div className="container centre">
-            <h2>You haven't created a schedule yet</h2>
-            <h2>Please create one at the link below</h2>
+          <div >
+            <br/>
+            <div className="container-centre">
+            <h2>You currently have no workouts scheduled!</h2>
+            <h2>Click below to create a new workout</h2>
+            </div>
             <Link to="/create" className="card-click">
-              <div class="card">
-                <h3>Create</h3>
+              <div class="card-two">
+                <h3>Create New Workout</h3>
               </div>
             </Link>
           </div>
