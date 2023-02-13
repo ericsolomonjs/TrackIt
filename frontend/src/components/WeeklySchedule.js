@@ -1,12 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 import "../styles/WeeklySchedule.css";
 import { Link } from "react-router-dom";
 import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
-import Axios from "axios";
-import Cookies from "js-cookie";
-Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function WeeklySchedule(props) {
   const focusArray = [];
