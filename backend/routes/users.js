@@ -47,11 +47,12 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/groups", async (req, res) => {
-  const groups = req.body.groups;
-  const difficulty = req.body.difficulty;
-  const id = req.cookies["user_id"];
-  const user = await getAllGroups(id);
-  if (user.rows.length === 0) {
+  const groups = req.query.groups;
+  const difficulty = req.query.difficulty;
+  const id = req.query.user_id;
+  try { const user = await getAllGroups(id);}
+  catch (error) {res.sendStatus(404); return;}
+  if (user && user.rows.length === 0) {
     await insertGroups(groups, difficulty, id);
     res.sendStatus(200);
   } else {
@@ -63,6 +64,7 @@ router.post("/groups", async (req, res) => {
 router.get("/groups", async (req, res) => {
   const id = req.cookies["user_id"];
   const user = await getAllGroups(id);
+  console.log("got user")
   if (user.rows.length > 0) {
     res.send(user.rows[0]);
   } else {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar(props) {
   const loggedIn = props.loggedIn;
   const setLoggedIn = props.setLoggedIn;
+  const schedule = props.schedule;
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -78,12 +79,12 @@ export default function NavBar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             {loggedIn && (
-              <>
+              <> {schedule && 
                 <li className="nav-item">
                   <Link to="schedule" className="nav-link">
                     Schedule
                   </Link>
-                </li>
+                </li>}
                 <li className="nav-item">
                   <Link className="nav-link" to="create">
                     Create Workouts

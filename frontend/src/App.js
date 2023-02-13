@@ -22,6 +22,10 @@ function App() {
   const [loggedin, setLoggedIn] = useState(false);
   const [schedule, setSchedule] = useState(null);
 
+  function getScheduleState() {
+    return schedule;
+  }
+
   useEffect(() => {
     const userId = Cookies.get("user_id");
     const ops = {
@@ -45,15 +49,15 @@ function App() {
       .catch((err) => alert(err, "Server Error"));
 
     //get data in app load for schedules if not in
-    if (userId) {
+    const userId = Cookies.get("user_id");
+    if (userId && !schedule) {
       Axios.get("/schedule/", {
         params: {
           user_id: userId,
         },
       })
         .then((res) => {
-          //console.log("successfully retrieved res data: ", res.data);
-          setSchedule(res.data);
+          setSchedule(res.data[0].schedule);
         })
         .catch((error) => {
           console.error("get schedule error", error);
@@ -64,16 +68,30 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar loggedIn={loggedin} setLoggedIn={setLoggedIn} />
+        <NavBar
+          loggedIn={loggedin}
+          setLoggedIn={setLoggedIn}
+          schedule={schedule}
+        />
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/admin" element={<Admin />}></Route>
             <Route
               path="/schedule"
-              element={<WeeklySchedule schedule={schedule} />}
+              key={Math.random()}
+              element={
+                <WeeklySchedule
+                  schedule={schedule}
+                  setSchedule={setSchedule}
+                  getSchedule={getScheduleState}
+                />
+              }
             ></Route>
             <Route path="/home" element={<SignedIn />}></Route>
-            <Route path="/create" element={<Create />}></Route>
+            <Route
+              path="/create"
+              element={<Create schedule={schedule} setSchedule={setSchedule} />}
+            ></Route>
             <Route
               path="/days/0"
               element={<DaysWorkout day={0} schedule={schedule} />}

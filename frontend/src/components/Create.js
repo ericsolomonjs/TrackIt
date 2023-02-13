@@ -9,7 +9,7 @@ Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
-export default function Create() {
+export default function Create(props) {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
   const difficultyList = ["Beginner", "Intermediate", "Expert"];
   const [selected, setSelected] = useState(options[0]);
@@ -41,8 +41,8 @@ export default function Create() {
 
     Axios.post("/schedule/create/", params)
       .then((res) => {
-        console.log("res: ", res.data);
-        localStorage.setItem("schedule", res.data);
+        console.log("res: ", res);
+        props.setSchedule(res.data);
       })
       .catch((error) => {
         console.error("Create Schedule Request Failed!! : ", error);
@@ -59,19 +59,30 @@ export default function Create() {
         groups[`Workout${i}`] = list[i];
       }
 
-      const ops = {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-        body: JSON.stringify({
+      // const ops = {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      //   mode: "cors",
+      //   credentials: "include",
+      //   body: JSON.stringify({
+      //     groups,
+      //     difficulty,
+      //   }),
+      // };
+      // fetch("http://localhost:8080/user/groups", ops)
+      //   .then(() => {
+      //     navigate("/home");
+      //   })
+      //   .catch((err) => alert(err, "Server Error"));
+      Axios.post("/user/groups", {
+        params: {
           groups,
           difficulty,
-        }),
-      };
-      fetch("/user/groups", ops)
+          id: Cookies.get("user_id")
+        },
+      })
         .then(() => {
           navigate("/home");
         })

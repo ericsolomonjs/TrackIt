@@ -30,10 +30,15 @@ const getSchedule = async (userId) => {
   return Promise.reject();
 };
 
+const deleteSchedule = async (userId) => {
+  await db.query("DELETE FROM schedules WHERE user_id = $1;", [user_id]);
+  return Promise.resolve();
+};
+
 const saveSchedule = async (schedule, user_id) => {
   await db.query("INSERT INTO schedules (schedule, user_id) VALUES ($1,$2);", [
     schedule,
-    user_id
+    user_id,
   ]);
   return Promise.resolve();
 };
@@ -160,4 +165,5 @@ module.exports = {
   getSchedule,
   generateSchedule,
   saveSchedule,
+  deleteSchedule
 };
