@@ -23,14 +23,28 @@ function App() {
   const [schedule, setSchedule] = useState(null);
 
   useEffect(() => {
-    if (Cookies.get("user_id")) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+    const userId = Cookies.get("user_id");
+    const ops = {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+    };
+
+    fetch("http://localhost:8080/user", ops)
+      .then((res) => {
+        console.log(res);
+        if (Cookies.get("user_id") && res) {
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
+        }
+      })
+      .catch((err) => alert(err, "Server Error"));
 
     //get data in app load for schedules if not in
-    const userId = Cookies.get("user_id");
     if (userId) {
       Axios.get("/schedule/", {
         params: {
@@ -38,7 +52,7 @@ function App() {
         },
       })
         .then((res) => {
-          console.log("successfully retrieved res data: ", res.data);
+          //console.log("successfully retrieved res data: ", res.data);
           setSchedule(res.data);
         })
         .catch((error) => {

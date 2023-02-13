@@ -110,6 +110,7 @@ export default function NavBar(props) {
               </>
             )}
           </li>
+          {button}
         </ul>
       </div>
     </nav>
