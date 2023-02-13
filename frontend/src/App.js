@@ -15,7 +15,6 @@ import Cookies from "js-cookie";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import Axios from "axios";
 Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 function App() {

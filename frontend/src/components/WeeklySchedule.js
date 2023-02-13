@@ -6,7 +6,6 @@ import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 import Axios from "axios";
 import Cookies from "js-cookie";
 Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function WeeklySchedule(props) {
