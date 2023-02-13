@@ -1,4 +1,3 @@
-/////////// catsRoutes.js [EXAMPLE ROUTER ROUTE]
 const router = require("express").Router();
 const {
   insertUser,
@@ -18,7 +17,7 @@ router.get("/", async (req, res) => {
   if (user.rows.length === 0) {
     res.send(null);
   } else {
-    res.send(200);
+    res.sendStatus(200);
   }
 });
 
@@ -47,10 +46,11 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/groups", async (req, res) => {
-  const groups = req.query.groups;
-  const difficulty = req.query.difficulty;
-  const id = req.query.user_id;
-  try { const user = await getAllGroups(id);}
+  const groups = req.body.groups;
+  const difficulty = req.body.difficulty;
+  const id = req.cookies["user_id"];
+  let user;
+  try { user = await getAllGroups(id);}
   catch (error) {res.sendStatus(404); return;}
   if (user && user.rows.length === 0) {
     await insertGroups(groups, difficulty, id);
@@ -63,12 +63,13 @@ router.post("/groups", async (req, res) => {
 
 router.get("/groups", async (req, res) => {
   const id = req.cookies["user_id"];
+  console.log("logging id: ", id)
   const user = await getAllGroups(id);
   console.log("got user")
-  if (user.rows.length > 0) {
-    res.send(user.rows[0]);
+  if (user.length > 0) {
+    res.send(user);
   } else {
-    res.sendStatus(401);
+    res.sendStatus(404);
   }
 });
 

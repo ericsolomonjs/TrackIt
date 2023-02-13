@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../styles/SignedIn.css";
 import "../styles/main.css";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+Axios.defaults.baseURL = "http://localhost:8080";
+Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function SignedIn() {
   const [muscles, setMuscles] = useState([]);
@@ -18,9 +22,13 @@ export default function SignedIn() {
       credentials: "include",
     };
     fetch("http://localhost:8080/user/groups", ops)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.hasOwnProperty("data")) {
+          console.log("res data: ", res.data);
+        }
+        return res.data;
+      })
       .then((data) => {
-        console.log(data);
         //added a condition for muscles in case it doesn't exist
         if (data.muscles) {
           for (const item in data.muscles) {
@@ -31,6 +39,18 @@ export default function SignedIn() {
         }
       });
   }, []);
+
+  // //simpler
+  // useEffect(() => {
+  //   try {Axios.get("/user/groups",{ credentials:"include" } ).then((res) => {
+  //     console.log(res);
+  //     // if (res.data.muscles) {
+  //     //   setMuscles(res.data.muscles);
+  //     //   setDifficulty(data.difficulty);
+  //     // }
+  //   });}
+  //   catch (error) {console.error(error);}
+  // }, []);
 
   return (
     <div className="broad-container">
