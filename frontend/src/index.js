@@ -8,7 +8,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 //axios defaults config (to be verified)
 Axios.defaults.baseURL = "http://localhost:8080/";
-Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

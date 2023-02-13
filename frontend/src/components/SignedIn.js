@@ -4,7 +4,6 @@ import "../styles/main.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function SignedIn() {
