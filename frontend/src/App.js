@@ -22,6 +22,10 @@ function App() {
   const [loggedin, setLoggedIn] = useState(false);
   const [schedule, setSchedule] = useState(null);
 
+  function getScheduleState() {
+    return schedule;
+  }
+
   useEffect(() => {
     if (Cookies.get("user_id")) {
       setLoggedIn(true);
@@ -31,15 +35,15 @@ function App() {
 
     //get data in app load for schedules if not in
     const userId = Cookies.get("user_id");
-    if (userId) {
+    if (userId && !schedule) {
       Axios.get("/schedule/", {
         params: {
           user_id: userId,
         },
       })
         .then((res) => {
-          console.log("successfully retrieved res data: ", res.data);
-          setSchedule(res.data);
+          console.log("successfully retrieved res data: ", res);
+          setSchedule(res.data[0].schedule);
         })
         .catch((error) => {
           console.error("get schedule error", error);
@@ -56,10 +60,20 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route
               path="/schedule"
-              element={<WeeklySchedule schedule={schedule} />}
+              key={Math.random()} 
+              element={
+                <WeeklySchedule
+                  schedule={schedule}
+                  setSchedule={setSchedule}
+                  getSchedule={getScheduleState}
+                />
+              }
             ></Route>
             <Route path="/home" element={<SignedIn />}></Route>
-            <Route path="/create" element={<Create />}></Route>
+            <Route
+              path="/create"
+              element={<Create schedule={schedule} setSchedule={setSchedule} />}
+            ></Route>
             <Route
               path="/days/0"
               element={<DaysWorkout day={0} schedule={schedule} />}

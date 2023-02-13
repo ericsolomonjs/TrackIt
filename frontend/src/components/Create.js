@@ -9,7 +9,7 @@ Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 
-export default function Create() {
+export default function Create(props) {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
   const difficultyList = ["Beginner", "Intermediate", "Expert"];
   const [selected, setSelected] = useState(options[0]);
@@ -41,8 +41,8 @@ export default function Create() {
 
     Axios.post("/schedule/create/", params)
       .then((res) => {
-        console.log("res: ", res.data);
-        localStorage.setItem("schedule", res.data);
+        console.log("res: ", res);
+        props.setSchedule(res.data);
       })
       .catch((error) => {
         console.error("Create Schedule Request Failed!! : ", error);
@@ -71,7 +71,7 @@ export default function Create() {
           difficulty,
         }),
       };
-      fetch("/user/groups", ops)
+      fetch("http://localhost:8080/user/groups", ops)
         .then(() => {
           navigate("/home");
         })

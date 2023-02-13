@@ -9,10 +9,10 @@ export default function DaysWorkout(props) {
   const schedule = props.schedule ? props.schedule : null;
   const todayInt = props.day;
   let thisDaysExercises = schedule
-    ? schedule[0].schedule[todayInt].exercises
+    ? schedule[todayInt].exercises
     : [];
   const thisDaysFocus = schedule
-    ? schedule[0].schedule[todayInt].daysFocus
+    ? schedule[todayInt].daysFocus
     : "";
 
   return (

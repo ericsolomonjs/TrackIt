@@ -1,16 +1,23 @@
 import React from "react";
+import { useEffect } from "react";
 import "../styles/WeeklySchedule.css";
 import { Link } from "react-router-dom";
-import {firstLetterCapitalize} from '../helpers/CapitalizeFirst'
+import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
+import Axios from "axios";
+import Cookies from "js-cookie";
+Axios.defaults.baseURL = "http://localhost:8080";
+Axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function WeeklySchedule(props) {
   const focusArray = [];
-  if (props.schedule) {
+  const lclSchedule = props.getSchedule();
+  if (props.schedule == null) window.location.reload();
+  if (lclSchedule) {
     for (let i = 0; i < 7; i++) {
-      focusArray.push(props.schedule[0].schedule[i].daysFocus);
+      focusArray.push(props.schedule[i].daysFocus);
     }
   }
-  console.log("focus array : ", focusArray);
   return (
     <div>
       <div class="image-container">
@@ -76,11 +83,11 @@ export default function WeeklySchedule(props) {
       )}
       {!props.schedule && (
         <>
-          <div >
-            <br/>
+          <div>
+            <br />
             <div className="container-centre">
-            <h2>You currently have no workouts scheduled!</h2>
-            <h2>Click below to create a new workout</h2>
+              <h2>You currently have no workouts scheduled!</h2>
+              <h2>Click below to create a new workout</h2>
             </div>
             <Link to="/create" className="card-click">
               <div class="card-two">
