@@ -77,7 +77,7 @@ export default function NavBar(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-lg-0">
             {loggedIn && (
               <>
                 {" "}
@@ -98,7 +98,7 @@ export default function NavBar(props) {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item"></li>
-            <li className="nav-item user-buttons">
+            <li className="nav-item">
               {!loggedIn && (
                 <>
                   <Link className="nav-link" to="signup">
