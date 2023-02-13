@@ -79,12 +79,15 @@ export default function NavBar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             {loggedIn && (
-              <> {schedule && 
-                <li className="nav-item">
-                  <Link to="schedule" className="nav-link">
-                    Schedule
-                  </Link>
-                </li>}
+              <>
+                {" "}
+                {schedule && (
+                  <li className="nav-item">
+                    <Link to="schedule" className="nav-link">
+                      Schedule
+                    </Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link className="nav-link" to="create">
                     Create Workouts
@@ -107,11 +110,10 @@ export default function NavBar(props) {
                 <Link onClick={authenticateAdmin} className="nav-link">
                   Admin
                 </Link>
-                {button}
               </>
             )}
+            {button}
           </li>
-          {button}
         </ul>
       </div>
     </nav>
