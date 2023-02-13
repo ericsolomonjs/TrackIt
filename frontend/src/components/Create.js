@@ -87,8 +87,8 @@ export default function Create() {
         <div className="img-container">
           <img className="home-img" src="workout1.jpeg" alt="Snow" />
           <p className="heading-comment">Create Your Custom Workouts</p>
-          <Link to="/signup">
-            <button className="btn btn-primary">GET STARTED!</button>
+          <Link to="/home">
+            <button className="btn btn-primary">Quick Workouts</button>
           </Link>
         </div>
       </header>
