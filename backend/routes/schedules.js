@@ -10,11 +10,11 @@ router
   .route("/")
   //route for getting schedule
   .get(async (req, res) => {
-    let user_id = req.query.user_id
+    let user_id = req.query.user_id;
     if (user_id) {
       try {
         const jsonObject = await getSchedule(user_id);
-        console.log("json Object: ", jsonObject)
+        console.log("json Object: ", jsonObject);
         res.send(jsonObject);
       } catch (error) {
         console.error(error);
@@ -54,7 +54,6 @@ router
       res.sendStatus(501);
       return console.error(err);
     }
-    
   });
 
 module.exports = router;

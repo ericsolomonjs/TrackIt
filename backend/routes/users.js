@@ -1,7 +1,11 @@
 /////////// catsRoutes.js [EXAMPLE ROUTER ROUTE]
 const router = require("express").Router();
 const { insertUser, loginUser, getUserId } = require("../db/queries/users");
-const { insertGroups, getAllGroups } = require("../db/queries/muscle_groups");
+const {
+  insertGroups,
+  getAllGroups,
+  updateGroups,
+} = require("../db/queries/muscle_groups");
 
 router.post("/create", async (req, res) => {
   const firstName = req.body.firstName;
@@ -29,23 +33,23 @@ router.post("/login", async (req, res) => {
 
 router.post("/groups", async (req, res) => {
   const groups = req.body.groups;
+  const difficulty = req.body.difficulty;
   const id = req.cookies["user_id"];
   const user = await getAllGroups(id);
-  console.log(user);
   if (user.rows.length === 0) {
-    await insertGroups(groups, id);
+    await insertGroups(groups, difficulty, id);
     res.sendStatus(200);
   } else {
-    res.sendStatus(404);
+    await updateGroups(groups, difficulty, id);
+    res.sendStatus(200);
   }
 });
 
 router.get("/groups", async (req, res) => {
   const id = req.cookies["user_id"];
   const user = await getAllGroups(id);
-  console.log(user);
   if (user.rows.length > 0) {
-    res.send(user.rows[0].muscles);
+    res.send(user.rows[0]);
   } else {
     res.sendStatus(401);
   }

@@ -20,7 +20,8 @@ const userRoutes = require("./routes/users");
 app.use("/user", userRoutes);
 const scheduleRoutes = require("./routes/schedules");
 app.use("/schedule", scheduleRoutes);
-
+const exerciseRoutes = require("./routes/exercises");
+app.use("/exercises", exerciseRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server is listening on port ${process.env.PORT}`)
