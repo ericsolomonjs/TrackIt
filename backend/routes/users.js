@@ -1,11 +1,26 @@
 /////////// catsRoutes.js [EXAMPLE ROUTER ROUTE]
 const router = require("express").Router();
-const { insertUser, loginUser, getUserId } = require("../db/queries/users");
+const {
+  insertUser,
+  loginUser,
+  getUserId,
+  getUserById,
+} = require("../db/queries/users");
 const {
   insertGroups,
   getAllGroups,
   updateGroups,
 } = require("../db/queries/muscle_groups");
+
+router.get("/", async (req, res) => {
+  const id = req.cookies["user_id"];
+  const user = await getUserById(id);
+  if (user.rows.length === 0) {
+    res.send(null);
+  } else {
+    res.send(200);
+  }
+});
 
 router.post("/create", async (req, res) => {
   const firstName = req.body.firstName;

@@ -40,4 +40,4 @@ const loginUser = async (email, password) => {
   }
 };
 
-module.exports = { getUsers, getUserId, insertUser, loginUser };
+module.exports = { getUsers, getUserId, insertUser, loginUser, getUserById };

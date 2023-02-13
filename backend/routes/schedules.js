@@ -14,7 +14,7 @@ router
     if (user_id) {
       try {
         const jsonObject = await getSchedule(user_id);
-        console.log("json Object: ", jsonObject);
+        //console.log("json Object: ", jsonObject);
         res.send(jsonObject);
       } catch (error) {
         console.error(error);
