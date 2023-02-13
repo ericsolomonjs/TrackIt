@@ -106,12 +106,9 @@ export default function NavBar(props) {
                 <Link onClick={authenticateAdmin} className="nav-link">
                   Admin
                 </Link>
+                {button}
               </>
             )}
-            <Link onClick={authenticateAdmin} className="nav-link">
-              Admin
-            </Link>
-            {button}
           </li>
         </ul>
       </div>
