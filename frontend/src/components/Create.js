@@ -70,11 +70,12 @@ export default function Create(props) {
           difficulty,
         }),
       };
+
       fetch("http://localhost:8080/user/groups", ops)
         .then(() => {
           navigate("/home");
         })
-        .catch((err) => alert(err, "Server Error"));
+        .catch((err) => console.log(err));
     }
     //   Axios.post("/user/groups", {
     //     params: {

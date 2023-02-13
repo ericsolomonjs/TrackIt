@@ -45,31 +45,34 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/groups", async (req, res) => {
+router.post("/groups", (req, res) => {
   const groups = req.body.groups;
   const difficulty = req.body.difficulty;
   const id = req.cookies["user_id"];
-  let user;
-  try { user = await getAllGroups(id);}
-  catch (error) {res.sendStatus(404); return;}
-  if (user && user.rows.length === 0) {
-    await insertGroups(groups, difficulty, id);
-    res.sendStatus(200);
-  } else {
-    await updateGroups(groups, difficulty, id);
-    res.sendStatus(200);
-  }
+  let promise;
+
+  getAllGroups(id)
+    .then((user) => {
+      if (user.length === 0) {
+        promise = insertGroups(groups, difficulty, id);
+      } else {
+        promise = updateGroups(groups, difficulty, id);
+      }
+      promise.then((result) => res.send(result)).catch((e) => res.send(e));
+    })
+    .catch((e) => {
+      console.log("##ERROR", e);
+      res.status(500).send("");
+    });
 });
 
 router.get("/groups", async (req, res) => {
   const id = req.cookies["user_id"];
-  console.log("logging id: ", id)
-  const user = await getAllGroups(id);
-  console.log("got user")
-  if (user.length > 0) {
-    res.send(user);
+  const muscles = await getAllGroups(id);
+  if (muscles.length > 0) {
+    res.send(muscles);
   } else {
-    res.sendStatus(404);
+    res.status(404).send("User not found");
   }
 });
 

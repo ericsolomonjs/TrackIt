@@ -16,6 +16,7 @@ import PrivateRoutes from "./auth/PrivateRoutes";
 import Axios from "axios";
 Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
+Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
@@ -27,25 +28,15 @@ function App() {
 
   useEffect(() => {
     const userId = Cookies.get("user_id");
-    const ops = {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-      mode: "cors",
-      credentials: "include",
-    };
-
-    fetch("http://localhost:8080/user", ops)
-      .then((res) => {
-        console.log(res);
-        if (Cookies.get("user_id") && res) {
-          setLoggedIn(true);
-        } else {
-          setLoggedIn(false);
-        }
-      })
-      .catch((err) => alert(err, "Server Error"));
+    Axios.get("/user", {
+      withCredentials: true,
+    }).then((res) => {
+      if (Cookies.get("user_id") && res.data) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
 
     //get data in app load for schedules if not in
     if (userId && !schedule) {
@@ -53,6 +44,7 @@ function App() {
         params: {
           user_id: userId,
         },
+        withCredentials: true,
       })
         .then((res) => {
           setSchedule(res.data[0].schedule);

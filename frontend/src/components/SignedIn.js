@@ -5,51 +5,30 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
+Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export default function SignedIn() {
   const [muscles, setMuscles] = useState([]);
   const [difficulty, setDifficulty] = useState();
 
+  //simpler
   useEffect(() => {
     const arr = [];
-    const ops = {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-      mode: "cors",
-      credentials: "include",
-    };
-    fetch("http://localhost:8080/user/groups", ops)
-      .then((res) => {
-        if (res.hasOwnProperty("data")) {
-          console.log("res data: ", res.data);
-        }
-        return res.data;
-      })
-      .then((data) => {
-        //added a condition for muscles in case it doesn't exist
-        if (data.muscles) {
-          for (const item in data.muscles) {
-            arr.push(data.muscles[item]);
+    try {
+      Axios.get("/user/groups", { withCredentials: true }).then((res) => {
+        console.log(res);
+        if (res.data[0].muscles) {
+          for (const item in res.data[0].muscles) {
+            arr.push(res.data[0].muscles[item]);
           }
           setMuscles(arr);
-          setDifficulty(data.difficulty);
+          setDifficulty(res.data[0].difficulty);
         }
       });
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
-
-  // //simpler
-  // useEffect(() => {
-  //   try {Axios.get("/user/groups",{ credentials:"include" } ).then((res) => {
-  //     console.log(res);
-  //     // if (res.data.muscles) {
-  //     //   setMuscles(res.data.muscles);
-  //     //   setDifficulty(data.difficulty);
-  //     // }
-  //   });}
-  //   catch (error) {console.error(error);}
-  // }, []);
 
   return (
     <div className="broad-container">

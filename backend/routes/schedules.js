@@ -4,7 +4,7 @@ const {
   getSchedule,
   generateSchedule,
   saveSchedule,
-  deleteSchedule
+  deleteSchedule,
 } = require("../db/queries/schedules");
 
 router
@@ -18,7 +18,7 @@ router
         //console.log("json Object: ", jsonObject);
         res.send(jsonObject);
       } catch (error) {
-        console.error(error);
+        console.log(error);
         res.sendStatus(401);
       }
     } else {
@@ -48,9 +48,9 @@ router
   //route for generating a new schedule and returning it
   .post(async (req, res) => {
     try {
-      if (await getSchedule(req.body.user_id).length > 0) {
-        await deleteSchedule(req.body.user_id)
-        console.log("schedule deleted before new generated")
+      if ((await getSchedule(req.body.user_id).length) > 0) {
+        await deleteSchedule(req.body.user_id);
+        console.log("schedule deleted before new generated");
       }
       const schedule = await generateSchedule(req.body);
       await saveSchedule(schedule, req.body.user_id);
