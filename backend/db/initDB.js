@@ -62,7 +62,7 @@ async function runQueries() {
 
 runQueries()
   .then(() => { console.log("queries run successfully") ;
-  process.exitCode = 1;
+  process.exitCode = 0;
 })
 
 
