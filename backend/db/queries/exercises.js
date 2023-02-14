@@ -109,6 +109,34 @@ const insertExercise = async (exerciseObj) => {
   }
 };
 
+const insertExerciseRandomDiff = async (exerciseObj) => {
+  const randomInt = Math.floor((Math.random() * 3));
+  let difficulty;
+  if (randomInt === 0) {
+    difficulty = "beginner"
+  } else if (randomInt === 1) {
+    difficulty = "intermediate"
+  } else if (randomInt === 2) {
+    difficulty = "expert"
+  } else difficulty = "expert"
+  try { 
+    const data = await db.query(
+      "INSERT INTO exercises(name, type, muscle, equipment, difficulty, instructions) VALUES ($1, $2, $3, $4, $5, $6);",
+      [
+        exerciseObj.name,
+        exerciseObj.type,
+        exerciseObj.muscle,
+        exerciseObj.equipment,
+        difficulty,
+        exerciseObj.instructions,
+      ]
+    );
+    return data.rows;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getExercises,
   insertExercise,
@@ -119,4 +147,5 @@ module.exports = {
   getExercisesForBack,
   getExercisesForAbs,
   getExercisesForChest,
+  insertExerciseRandomDiff
 };
