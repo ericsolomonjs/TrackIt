@@ -1,8 +1,12 @@
 const db = require("../connection");
 
 const getExercises = async () => {
-  const data = await db.query("SELECT * FROM exercises;");
-  return Promise.resolve(data.rows);
+  try {
+    const data = await db.query("SELECT * FROM exercises;");
+    return data.rows;
+  } catch (error) {
+    return error;
+  }
 };
 
 const getExercisesForCardio = async (difficulty) => {
