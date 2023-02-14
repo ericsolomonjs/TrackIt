@@ -34,7 +34,8 @@ export default function Admin(props) {
     fetch("http://localhost:8080/exercises/create", ops)
       .then((res) => {
         console.log("fetch success");
-        navigate("/admin");
+        alert("Successfully saved the new exercise")
+        window.location.reload();
       })
       .catch((err) => alert(err));
   };
