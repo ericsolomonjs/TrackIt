@@ -68,7 +68,7 @@ export default function DaysWorkout(props) {
                   <Card.Subtitle className="mb-2 text-muted">
                     Instructions
                   </Card.Subtitle>
-                  <Card.Text>{exercise.instructions}</Card.Text>
+                  <Card.Text className= "exer-info">{exercise.instructions}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
