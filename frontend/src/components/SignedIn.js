@@ -10,7 +10,7 @@ import Axios from "axios";
 export default function SignedIn(props) {
   const [muscles, setMuscles] = useState([]);
   const [difficulty, setDifficulty] = useState();
-
+  if (props.schedule == null) window.location.reload();
   //simpler
   useEffect(() => {
     const arr = [];
