@@ -8,16 +8,29 @@ import Cookies from "js-cookie";
 export default function SignedIn(props) {
   const [muscles, setMuscles] = useState([]);
   const [difficulty, setDifficulty] = useState();
-  const refreshCounter = Number(sessionStorage.getItem("refreshCount")) || 0;
-  let schedule;
+  const [schedule, setSchedule] = useState(null);
   //simpler init data
-  useEffect(() => {
-    schedule = props.schedule;
-    if (refreshCounter < 2 && !schedule) {
-      sessionStorage.setItem("refreshCount", String(refreshCounter + 1));
-    } else {
-      sessionStorage.removeItem("refreshCount");
+
+  function getSchedule(id) {
+    if (id) {
+      Axios.get("/schedule/", {
+        params: {
+          user_id: id,
+        },
+        withCredentials: true,
+      })
+        .then((res) => {
+          setSchedule(res.data[0].schedule);
+        })
+        .catch((error) => {
+          console.error("get schedule error", error);
+        });
     }
+  }
+
+  useEffect(() => {
+    const userId = Cookies.get("user_id");
+    getSchedule(userId);
     const arr = [];
     try {
       Axios.get("/user/groups", { withCredentials: true }).then((res) => {
