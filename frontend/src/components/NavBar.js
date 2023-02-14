@@ -75,7 +75,7 @@ export default function NavBar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarScroll">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             {loggedIn && (
               <>
@@ -93,21 +93,21 @@ export default function NavBar(props) {
             )}
           </ul>
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item"></li>
-            <li className="nav-item user-buttons">
-              {!loggedIn && (
-                <>
-                  <Link className="nav-link" to="signup">
-                    Register
-                  </Link>
-                  <Link onClick={authenticateAdmin} className="nav-link">
-                    Admin
-                  </Link>
-                  {button}
-                </>
-              )}
-            </li>
-            
+            {!loggedIn && (
+              <li className="nav-item">
+                <Link className="nav-link" to="signup">
+                  Register
+                </Link>
+              </li>
+            )}
+            {!loggedIn && (
+              <li className="nav-item">
+                <Link onClick={authenticateAdmin} className="nav-link">
+                  Admin
+                </Link>
+              </li>
+            )}
+            <li className="nav-item">{button}</li>
           </ul>
         </div>
       </div>
