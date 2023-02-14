@@ -47,6 +47,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/groups", (req, res) => {
   const groups = req.body.groups;
+  console.log(req.body.groups)
   const difficulty = req.body.difficulty;
   const id = req.cookies["user_id"];
   let promise;
@@ -68,6 +69,7 @@ router.post("/groups", (req, res) => {
 
 router.get("/groups", async (req, res) => {
   const id = req.cookies["user_id"];
+  console.log("id", id);
   const muscles = await getAllGroups(id);
   if (muscles.length > 0) {
     res.send(muscles);

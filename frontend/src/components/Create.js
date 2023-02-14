@@ -59,11 +59,9 @@ export default function Create(props) {
       }
 
       Axios.post("/user/groups", {
-        params: {
-          groups,
-          difficulty,
-          id: Cookies.get("user_id"),
-        },
+        groups,
+        difficulty,
+        id: Cookies.get("user_id"),
       })
         .then(() => {
           navigate("/home");
