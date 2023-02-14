@@ -29,8 +29,9 @@ export default function Create(props) {
 
   const createSaveGetSchedule = (list) => {
     const params = {
-      user_id: Cookies.get("user_id"),
+      withCredentials: true,
       difficulty: difficulty.toLowerCase(),
+      user_id: Cookies.get("user_id")
     };
     for (let lclGroup of list) {
       params[`${lclGroup.toLowerCase()}`] = true;
@@ -38,7 +39,6 @@ export default function Create(props) {
 
     Axios.post("/schedule/create/", params)
       .then((res) => {
-        console.log("res: ", res);
         props.setSchedule(res.data);
       })
       .catch((error) => {
