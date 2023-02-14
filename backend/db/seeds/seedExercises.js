@@ -1,5 +1,5 @@
 const {
-  insertExercise,
+  insertExerciseRandomDiff,
   getExercises,
   clearExercises,
 } = require("../queries/exercises");
@@ -9,7 +9,7 @@ const Axios = require("axios");
 async function saveExerciseBatch(exercises) {
   try {
     for (let exercise of exercises) {
-      await insertExercise(exercise);
+      await insertExerciseRandomDiff(exercise);
     }
     return;
   } catch (e) {
@@ -43,13 +43,13 @@ async function initExercises() {
   //   await saveExerciseBatch(moreExercises.data);
   // }
   try {
-    for (let i = 0; i < 5000; i = i + 10) {
+    for (let i = 0; i < 3420; i = i + 10) {
       console.log("i = : ", i);
       const moreExercises = await Axios.get(
         `https://api.api-ninjas.com/v1/exercises?offset=${i}`,
         { headers: { "X-Api-Key": process.env.ENVApiKey }}
       );
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise(resolve => setTimeout(resolve, 400))
 
       await saveExerciseBatch(moreExercises.data);
     }
