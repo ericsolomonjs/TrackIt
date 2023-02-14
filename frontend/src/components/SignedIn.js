@@ -3,9 +3,9 @@ import "../styles/SignedIn.css";
 import "../styles/main.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.post["Content-Type"] = "application/json";
-Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+// Axios.defaults.baseURL = "http://localhost:8080";
+// Axios.defaults.headers.post["Content-Type"] = "application/json";
+// Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export default function SignedIn() {
   const [muscles, setMuscles] = useState([]);

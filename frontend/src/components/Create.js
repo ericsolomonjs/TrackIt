@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Cookies from "js-cookie";
-Axios.defaults.baseURL = "http://localhost:8080";
-Axios.defaults.headers.post["Content-Type"] = "application/json";
+// Axios.defaults.baseURL = "http://localhost:8080";
+// Axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export default function Create(props) {
   const options = ["Arms", "Legs", "Chest", "Abs", "Back"];
