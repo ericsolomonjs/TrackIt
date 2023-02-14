@@ -14,7 +14,6 @@ export default function Signup(props) {
   const navigate = useNavigate();
 
   const onChange = () => {
-    console.log("here");
     document.getElementById("errorMsg").innerHTML = "";
   };
 
@@ -47,7 +46,7 @@ export default function Signup(props) {
     fetch("http://localhost:8080/user/create", ops)
       .then((res) => {
         setLoggedIn(true);
-        navigate("/home");
+        navigate("/create");
       })
       .catch((err) => alert(err, "Server Error"));
   };
