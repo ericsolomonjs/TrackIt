@@ -19,6 +19,23 @@ function App() {
   const [loggedin, setLoggedIn] = useState(false);
   const [schedule, setSchedule] = useState(null);
 
+  function getSchedule (id) {
+    if (id && !schedule) {
+      Axios.get("/schedule/", {
+        params: {
+          user_id: id,
+        },
+        withCredentials: true,
+      })
+        .then((res) => {
+          setSchedule(res.data[0].schedule);
+        })
+        .catch((error) => {
+          console.error("get schedule error", error);
+        });
+    }
+  }
+
   useEffect(() => {
     const userId = Cookies.get("user_id");
 
@@ -34,21 +51,10 @@ function App() {
     });
 
     //get data in app load for schedules if not in
-    if (userId && !schedule) {
-      Axios.get("/schedule/", {
-        params: {
-          user_id: userId,
-        },
-        withCredentials: true,
-      })
-        .then((res) => {
-          setSchedule(res.data[0].schedule);
-        })
-        .catch((error) => {
-          console.error("get schedule error", error);
-        });
-    }
+    getSchedule(userId);
   }, []);
+
+  const homeProps = {userId: Cookies.get("user_id"), getSchedule, schedule, setSchedule};
 
   return (
     <div>
@@ -71,7 +77,7 @@ function App() {
                 />
               }
             ></Route>
-            <Route path="/home" element={<SignedIn schedule={schedule} setSchedule={setSchedule}/>}></Route>
+            <Route path="/home" element={<SignedIn {...homeProps} />}></Route>
             <Route
               path="/create"
               element={<Create schedule={schedule} setSchedule={setSchedule} />}

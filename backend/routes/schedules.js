@@ -48,10 +48,7 @@ router
   //route for generating a new schedule and returning it
   .post(async (req, res) => {
     try {
-      if ((await getSchedule(req.body.user_id).length) > 0) {
-        await deleteSchedule(req.body.user_id);
-        console.log("schedule deleted before new generated");
-      }
+      await deleteSchedule(req.body.user_id);
       const schedule = await generateSchedule(req.body);
       await saveSchedule(schedule, req.body.user_id);
       res.send(schedule);

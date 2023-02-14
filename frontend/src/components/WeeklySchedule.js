@@ -5,7 +5,7 @@ import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 
 export default function WeeklySchedule(props) {
   const focusArray = [];
-  let schedule;
+  let schedule = props.schedule;
   const refreshCounter = Number(sessionStorage.getItem('refreshCount')) || 0;
   if (schedule) {
     for (let i = 0; i < 7; i++) {
@@ -50,7 +50,7 @@ export default function WeeklySchedule(props) {
             Click on a day to open up that day's workout plan
           </p>
           <br />
-          <div className="main-container-alpha">
+          <div className="main-container-alpha container">
             <div className="row">
               <div className="column">
                 <Link to="/days/0" className="card-click">

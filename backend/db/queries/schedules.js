@@ -22,12 +22,10 @@ const shuffleArray = (array) => {
 const getSchedule = async (userId) => {
   try {
     const data = await db.query(
-      "SELECT schedule FROM schedules WHERE user_id = $1 LIMIT 1;",
+      "SELECT schedule FROM schedules WHERE user_id = $1;",
       [userId]
     );
-    if (data.rows.length > 0) {
-      return Promise.resolve(data.rows);
-    }
+    return data.rows;
   } catch (error) {
     return error;
   }
@@ -35,8 +33,7 @@ const getSchedule = async (userId) => {
 
 const deleteSchedule = async (userId) => {
   try {
-    await db.query("DELETE FROM schedules WHERE user_id = $1;", [user_id]);
-    return;
+    return db.query("DELETE FROM schedules WHERE user_id=$1;", [userId]);
   } catch (error) {
     return error;
   }
@@ -44,11 +41,10 @@ const deleteSchedule = async (userId) => {
 
 const saveSchedule = async (schedule, user_id) => {
   try {
-    await db.query(
+    return await db.query(
       "INSERT INTO schedules (schedule, user_id) VALUES ($1,$2);",
       [schedule, user_id]
     );
-    return;
   } catch (error) {
     return error;
   }
@@ -56,7 +52,6 @@ const saveSchedule = async (schedule, user_id) => {
 
 const generateSchedule = async (params) => {
   try {
-    console.log("params: ", params);
     const difficulty = params.difficulty;
     const scheduleObj = {
       time: params.time,
