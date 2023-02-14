@@ -79,11 +79,15 @@ export default function NavBar(props) {
           <ul className="navbar-nav">
             {loggedIn && (
               <>
-                <li className="nav-item">
-                  <Link to="schedule" className="nav-link">
-                    Schedule
-                  </Link>
-                </li>
+                {props.schedule ? (
+                  <li className="nav-item">
+                    <Link to="schedule" className="nav-link">
+                      Schedule
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
                 <li className="nav-item">
                   <Link className="nav-link" to="create">
                     Create Workouts
