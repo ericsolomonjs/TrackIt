@@ -7,7 +7,7 @@ import Axios from "axios";
 // Axios.defaults.headers.post["Content-Type"] = "application/json";
 // Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
-export default function SignedIn() {
+export default function SignedIn(props) {
   const [muscles, setMuscles] = useState([]);
   const [difficulty, setDifficulty] = useState();
 
@@ -29,6 +29,21 @@ export default function SignedIn() {
       console.error(error);
     }
   }, []);
+
+  function getDaysWorkoutLink(muscleGroup) {
+    if (muscles.includes(muscleGroup)) {
+      for (let i = 0; i < 7; i++) {
+        if (props.schedule[i].daysFocus === muscleGroup.toLowerCase()) {
+          const url = `/days/${i}`;
+          return (
+            <Link to={url} className="btn btn-primary">
+              My {muscleGroup} Day
+            </Link>
+          );
+        }
+      }
+    }
+  }
 
   return (
     <div className="broad-container">
@@ -60,8 +75,8 @@ export default function SignedIn() {
                   src="body_images/arms.jpg"
                   alt="arm workouts"
                 />
-                <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Arm Day</button>
+                <div className="workout-pic-info col-md-12 text-center">
+                  {getDaysWorkoutLink("Arms")}
                 </div>
               </div>
             </>
@@ -74,8 +89,8 @@ export default function SignedIn() {
                   src="body_images/legs.jpg"
                   alt="leg workouts"
                 />
-                <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Leg Day</button>
+                <div className="workout-pic-info col-md-12 text-center">
+                  {getDaysWorkoutLink("Legs")}
                 </div>
               </div>
             </>
@@ -88,8 +103,8 @@ export default function SignedIn() {
                   src="body_images/chest.jpg"
                   alt="chest workouts"
                 />
-                <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Chest Day</button>
+                <div className="workout-pic-info col-md-12 text-center">
+                  {getDaysWorkoutLink("Chest")}
                 </div>
               </div>
             </>
@@ -102,8 +117,8 @@ export default function SignedIn() {
                   src="body_images/abs.jpg"
                   alt="ab workouts"
                 />
-                <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Abs Day</button>
+                <div className="workout-pic-info col-md-12 text-center">
+                  {getDaysWorkoutLink("Abs")}
                 </div>
               </div>
             </>
@@ -116,8 +131,8 @@ export default function SignedIn() {
                   src="body_images/back.jpg"
                   alt="back workouts"
                 />
-                <div className="workout-pic-info">
-                  <button className="btn-btn-primary"> My Back Day</button>
+                <div className="workout-pic-info col-md-12 text-center">
+                  {getDaysWorkoutLink("Back")}
                 </div>
               </div>
             </>

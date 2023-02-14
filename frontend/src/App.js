@@ -14,9 +14,6 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import Axios from "axios";
-// Axios.defaults.baseURL = "http://localhost:8080";
-// Axios.defaults.headers.post["Content-Type"] = "application/json";
-// Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
@@ -68,7 +65,7 @@ function App() {
             <Route path="/admin" element={<Admin />}></Route>
             <Route
               path="/schedule"
-              key={Math.random()}
+              key={Math.random(200)}
               element={
                 <WeeklySchedule
                   schedule={schedule}
@@ -77,7 +74,7 @@ function App() {
                 />
               }
             ></Route>
-            <Route path="/home" element={<SignedIn />}></Route>
+            <Route path="/home" element={<SignedIn schedule={schedule}/>}></Route>
             <Route
               path="/create"
               element={<Create schedule={schedule} setSchedule={setSchedule} />}
