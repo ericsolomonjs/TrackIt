@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../styles/DaysWorkout.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -26,10 +26,12 @@ export default function DaysWorkout(props) {
         />
       </div>
       <p className="todays-workout"> Today's Workout</p>
-      <p className="workout-name">
-        {" "}
-        {firstLetterCapitalize(thisDaysFocus)} Day
-      </p>
+      <div className="container">
+        <p className="workout-name">
+          {" "}
+          {firstLetterCapitalize(thisDaysFocus)} Day
+        </p>
+      </div>
       <div className="daysworkout-back container-fluid">
         <button className="btn btn-primary centre" onClick={() => goBack()}>
           Back
