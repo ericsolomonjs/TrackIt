@@ -83,7 +83,6 @@ export default function SignedIn(props) {
       <div className="general-container">
         <br />
         <h3>My Quick Workouts </h3>
-        {difficulty && <h4>Difficulty: {difficulty}</h4>}
         <div className="my-workouts-grid">
           {/* add grid-container-view */}
           {muscles.includes("Arms") && (
