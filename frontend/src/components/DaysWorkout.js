@@ -4,12 +4,17 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
-
 export default function DaysWorkout(props) {
   const schedule = props.schedule ? props.schedule : null;
   const todayInt = props.day;
-  let thisDaysExercises = schedule ? schedule[todayInt].exercises : [];
   const thisDaysFocus = schedule ? schedule[todayInt].daysFocus : "";
+  let thisDaysExercises = schedule ? schedule[todayInt].exercises : [];
+
+  function goBack() {
+    window.history.go(-1);
+    return false;
+  }
+
   window.scrollTo(0, 0);
   return (
     <div>
@@ -25,6 +30,11 @@ export default function DaysWorkout(props) {
         {" "}
         {firstLetterCapitalize(thisDaysFocus)} Day
       </p>
+      <div className="daysworkout-back container-fluid">
+        <button className="btn btn-primary centre" onClick={() => goBack()}>
+          Back
+        </button>
+      </div>
       <div className="main-workout-container">
         <Row xs={1} md={2} className="g-5 row-days">
           {thisDaysExercises.map((exercise) => (

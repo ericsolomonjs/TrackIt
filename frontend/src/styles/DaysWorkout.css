@@ -17,6 +17,10 @@
   padding-bottom: 15px;
 }
 
+.daysworkout-back {
+  display: flex;
+  justify-content: center;
+}
 
 .row-days {
   margin: 0;
