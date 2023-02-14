@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/WeeklySchedule.css";
 import { Link } from "react-router-dom";
 import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
@@ -6,22 +6,33 @@ import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 export default function WeeklySchedule(props) {
   const focusArray = [];
   const lclSchedule = props.getSchedule();
-  if (props.schedule == null) window.location.reload();
+  const refreshCounter = Number(sessionStorage.getItem('refreshCount')) || 0;
   if (lclSchedule) {
     for (let i = 0; i < 7; i++) {
       focusArray.push(props.schedule[i].daysFocus);
     }
   }
+
+  useEffect(() => {
+    //limits refreshes of page to break infinite reload loop
+    if (refreshCounter < 1) {
+      sessionStorage.setItem('refreshCount', String(refreshCounter+1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('refreshCount')
+    }
+  }, []);
+
   return (
     <div>
-      <div class="image-container">
+      <div className="image-container">
         <img
           className="main-image"
           src="https://images.unsplash.com/photo-1614928228253-dc09cbc3b11c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
           alt=""
         />
         <Link to="/home">
-          <button class="btn btn-primary">See Quick Workouts</button>
+          <button className="btn btn-primary">See Quick Workouts</button>
         </Link>
       </div>
       {props.schedule && (
@@ -47,25 +58,25 @@ export default function WeeklySchedule(props) {
                   </div>
                 </Link>
                 <Link to="/days/1" className="card-click">
-                  <div class="card">
+                  <div className="card">
                     <h3>Tuesday</h3>
                     <p>{firstLetterCapitalize(focusArray[1])}</p>
                   </div>
                 </Link>
                 <Link to="/days/2" className="card-click">
-                  <div class="card">
+                  <div className="card">
                     <h3>Wednesday</h3>
                     <p>{firstLetterCapitalize(focusArray[2])}</p>
                   </div>
                 </Link>
                 <Link to="/days/3" className="card-click">
-                  <div class="card">
+                  <div className="card">
                     <h3>Thursday</h3>
                     <p>{firstLetterCapitalize(focusArray[3])}</p>
                   </div>
                 </Link>
                 <Link to="/days/4" className="card-click">
-                  <div class="card">
+                  <div className="card">
                     <h3>Friday</h3>
                     <p>{firstLetterCapitalize(focusArray[4])}</p>
                   </div>
@@ -84,7 +95,7 @@ export default function WeeklySchedule(props) {
               <h2>Click below to create a new workout</h2>
             </div>
             <Link to="/create" className="card-click">
-              <div class="card-two">
+              <div className="card-two">
                 <h3>Create New Workout</h3>
               </div>
             </Link>
