@@ -5,17 +5,19 @@ import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 
 export default function WeeklySchedule(props) {
   const focusArray = [];
-  const lclSchedule = props.getSchedule();
+  let schedule;
   const refreshCounter = Number(sessionStorage.getItem('refreshCount')) || 0;
-  if (lclSchedule) {
+  if (schedule) {
     for (let i = 0; i < 7; i++) {
       focusArray.push(props.schedule[i].daysFocus);
     }
   }
 
   useEffect(() => {
+    //get schedule
+    schedule = props.schedule;
     //limits refreshes of page to break infinite reload loop
-    if (refreshCounter < 1) {
+    if (refreshCounter < 1 && !props.schedule) {
       sessionStorage.setItem('refreshCount', String(refreshCounter+1));
       window.location.reload();
     } else {

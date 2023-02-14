@@ -3,20 +3,24 @@ import "../styles/SignedIn.css";
 import "../styles/main.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-// Axios.defaults.baseURL = "http://localhost:8080";
-// Axios.defaults.headers.post["Content-Type"] = "application/json";
-// Axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+import Cookies from "js-cookie";
 
 export default function SignedIn(props) {
   const [muscles, setMuscles] = useState([]);
   const [difficulty, setDifficulty] = useState();
-  if (props.schedule == null) window.location.reload();
-  //simpler
+  const refreshCounter = Number(sessionStorage.getItem("refreshCount")) || 0;
+  let schedule;
+  //simpler init data
   useEffect(() => {
+    schedule = props.schedule;
+    if (refreshCounter < 2 && !schedule) {
+      sessionStorage.setItem("refreshCount", String(refreshCounter + 1));
+    } else {
+      sessionStorage.removeItem("refreshCount");
+    }
     const arr = [];
     try {
       Axios.get("/user/groups", { withCredentials: true }).then((res) => {
-        console.log(res);
         if (res.data[0].muscles) {
           for (const item in res.data[0].muscles) {
             arr.push(res.data[0].muscles[item]);
@@ -31,15 +35,17 @@ export default function SignedIn(props) {
   }, []);
 
   function getDaysWorkoutLink(muscleGroup) {
-    if (muscles.includes(muscleGroup)) {
-      for (let i = 0; i < 7; i++) {
-        if (props.schedule[i].daysFocus === muscleGroup.toLowerCase()) {
-          const url = `/days/${i}`;
-          return (
-            <Link to={url} className="btn btn-primary">
-              My {muscleGroup} Day
-            </Link>
-          );
+    if (schedule) {
+      if (muscles.includes(muscleGroup)) {
+        for (let i = 0; i < 7; i++) {
+          if (schedule[`${i}`].daysFocus === muscleGroup.toLowerCase()) {
+            const url = `/days/${i}`;
+            return (
+              <Link to={url} className="btn btn-primary">
+                My {muscleGroup} Day
+              </Link>
+            );
+          }
         }
       }
     }

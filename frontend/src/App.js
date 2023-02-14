@@ -19,12 +19,10 @@ function App() {
   const [loggedin, setLoggedIn] = useState(false);
   const [schedule, setSchedule] = useState(null);
 
-  function getScheduleState() {
-    return schedule;
-  }
-
   useEffect(() => {
     const userId = Cookies.get("user_id");
+
+    //get user
     Axios.get("/user", {
       withCredentials: true,
     }).then((res) => {
@@ -70,11 +68,10 @@ function App() {
                 <WeeklySchedule
                   schedule={schedule}
                   setSchedule={setSchedule}
-                  getSchedule={getScheduleState}
                 />
               }
             ></Route>
-            <Route path="/home" element={<SignedIn schedule={schedule}/>}></Route>
+            <Route path="/home" element={<SignedIn schedule={schedule} setSchedule={setSchedule}/>}></Route>
             <Route
               path="/create"
               element={<Create schedule={schedule} setSchedule={setSchedule} />}
