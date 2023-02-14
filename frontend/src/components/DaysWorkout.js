@@ -38,7 +38,7 @@ export default function DaysWorkout(props) {
       <div className="main-workout-container">
         <Row xs={1} md={2} className="g-5 row-days">
           {thisDaysExercises.map((exercise) => (
-            <Col>
+            <Col key={Math.random(1000)}>
               <Card>
                 <Card.Img variant="top" src="" />
                 <Card.Body>
