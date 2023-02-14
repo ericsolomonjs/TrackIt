@@ -29,7 +29,7 @@ export default function Signin(props) {
           alert("Invalid credentials");
         } else {
           setLoggedIn(true);
-          navigate("/home");
+          navigate("/create");
         }
       })
       .catch((err) => alert(err));
