@@ -7,10 +7,14 @@ require("dotenv").config();
 const Axios = require("axios");
 
 async function saveExerciseBatch(exercises) {
-  try {for (let exercise of exercises) {
-    await insertExercise(exercise);
+  try {
+    for (let exercise of exercises) {
+      await insertExercise(exercise);
+    }
+    return;
+  } catch (e) {
+    return e;
   }
-  return;} catch (e) {return e;}
 }
 
 async function initExercises() {
@@ -38,15 +42,21 @@ async function initExercises() {
   //   const moreExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleGroup}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
   //   await saveExerciseBatch(moreExercises.data);
   // }
-  try {for (let i = 0; i < 5000; i = i + 10) {
-    console.log("i = : ", i);
-    const moreExercises = await Axios.get(
-      `https://api.api-ninjas.com/v1/exercises?offset=${i}`,
-      { headers: { "X-Api-Key": process.env.ENVApiKey } }
-    );
-    await saveExerciseBatch(moreExercises.data);
+  try {
+    for (let i = 0; i < 5000; i = i + 10) {
+      console.log("i = : ", i);
+      const moreExercises = await Axios.get(
+        `https://api.api-ninjas.com/v1/exercises?offset=${i}`,
+        { headers: { "X-Api-Key": process.env.ENVApiKey }}
+      );
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      await saveExerciseBatch(moreExercises.data);
+    }
+    return;
+  } catch (e) {
+    return e;
   }
-  return;} catch (e) {return e;}
 }
 
 clearExercises();
