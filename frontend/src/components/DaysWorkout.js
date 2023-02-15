@@ -31,7 +31,7 @@ export default function DaysWorkout(props) {
           {firstLetterCapitalize(thisDaysFocus)} Day
         </p>
       </div>
-      <div className="daysworkout-back container-fluid">
+      <div className="daysworkout-back container-fluid w-25">
         <button className="btn btn-primary centre" onClick={() => goBack()}>
           Back
         </button>
