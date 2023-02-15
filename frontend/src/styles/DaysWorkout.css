@@ -36,7 +36,7 @@
   margin: 20px;
   margin-bottom: 40px;
   border: solid 3px;
-  border-radius: 45px;
+  border-radius: 10px;
 }
 
 .main-workout-container {
@@ -64,3 +64,4 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
