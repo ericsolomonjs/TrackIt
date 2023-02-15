@@ -21,6 +21,68 @@ const getExercisesForCardio = async (difficulty) => {
   }
 };
 
+const getQuickWorkout = async (muscleGroup, difficulty) => {
+  if (muscleGroup.toLowerCase() === "arms") {
+    try {
+      const data = await db.query(
+        "SELECT * FROM exercises WHERE (muscle='biceps' OR muscle='forearms' OR muscle='triceps') AND difficulty=$1;",
+        [difficulty.toLowerCase()]
+      );
+      return data.rows;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  if (muscleGroup.toLowerCase() === "legs") {
+    try {
+      const data = await db.query(
+        "SELECT * FROM exercises WHERE difficulty=$1 AND (muscle='calves' OR muscle='glutes' OR muscle='hamstrings');",
+        [difficulty.toLowerCase()]
+      );
+      return data.rows;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  if (muscleGroup.toLowerCase() === "chest") {
+    try {
+      const data = await db.query(
+        "SELECT * FROM exercises WHERE muscle='chest' AND difficulty=$1;",
+        [difficulty.toLowerCase()]
+      );
+      return data.rows;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  if (muscleGroup.toLowerCase() === "abs") {
+    try {
+      const data = await db.query(
+        "SELECT * FROM exercises WHERE difficulty=$1 AND muscle='abdominals';",
+        [difficulty.toLowerCase()]
+      );
+      return data.rows;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  if (muscleGroup.toLowerCase() === "back") {
+    try {
+      const data = await db.query(
+        "SELECT * FROM exercises WHERE (muscle='lower_back' OR muscle='middle_back' OR muscle='traps') AND difficulty=$1;",
+        [difficulty.toLowerCase()]
+      );
+      return data.rows;
+    } catch (error) {
+      return error;
+    }
+  }
+}
+
 const getExercisesForArms = async (difficulty) => {
   try {
     const data = await db.query(
@@ -147,5 +209,6 @@ module.exports = {
   getExercisesForBack,
   getExercisesForAbs,
   getExercisesForChest,
-  insertExerciseRandomDiff
+  insertExerciseRandomDiff,
+  getQuickWorkout
 };
