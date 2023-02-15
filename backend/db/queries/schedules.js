@@ -164,7 +164,7 @@ const generateSchedule = async (params) => {
     for (let i = 0; i < 7; i++) {
       scheduleObj[`${i}`].exercises = scheduleObj[`${i}`].exercises.slice(
         0,
-        10
+        4
       ); //10 items for a 15 minutes schedule incl rest breaks
     }
     //return promise with scheduleObj completed
@@ -179,4 +179,5 @@ module.exports = {
   generateSchedule,
   saveSchedule,
   deleteSchedule,
+  shuffleArray
 };
