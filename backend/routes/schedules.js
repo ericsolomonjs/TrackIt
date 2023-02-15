@@ -65,8 +65,9 @@ router
   //route for generating a quick workout and returning it
   .get(async (req, res) => {
     try {
-      const schedule = await getQuickWorkout(req.body.muscleGroup,req.body.difficulty);
-      schedule = shuffleArray(schedule);
+      console.log("req body: ",req.query)
+      let schedule = await getQuickWorkout(req.query.muscleGroup,req.query.difficulty);
+      shuffleArray(schedule);
       schedule = schedule.slice(0, 2);
       res.send(schedule);
     } catch (err) {

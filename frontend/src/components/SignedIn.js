@@ -1,67 +1,34 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SignedIn.css";
 import "../styles/main.css";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Axios from "axios";
-import Cookies from "js-cookie";
+import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
 
 export default function SignedIn(props) {
-  const [muscles, setMuscles] = useState([]);
-  const [difficulty, setDifficulty] = useState();
-  const [schedule, setSchedule] = useState(null);
-  //simpler init data
+  const [difficulty, setDifficulty] = useState("beginner");
+  const [quickWorkout, setQuickWorkout] = useState(null);
 
-  function getSchedule(id) {
-    if (id) {
-      Axios.get("/schedule/", {
-        params: {
-          user_id: id,
-        },
-        withCredentials: true,
-      })
-        .then((res) => {
-          setSchedule(res.data[0].schedule);
-        })
-        .catch((error) => {
-          console.error("get schedule error", error);
-        });
-    }
+  function getQuickWorkout(muscleGroup, difficulty) {
+    Axios.get("schedule/quickworkout", {
+      params: {
+        muscleGroup: muscleGroup ? muscleGroup : "beginner",
+        difficulty: difficulty,
+      },
+    }).then((res) => {
+      const data = res.data;
+      setQuickWorkout(data);
+    });
   }
 
-  useEffect(() => {
-    const userId = Cookies.get("user_id");
-    getSchedule(userId);
-    const arr = [];
-    try {
-      Axios.get("/user/groups", { withCredentials: true }).then((res) => {
-        if (res.data[0].muscles) {
-          for (const item in res.data[0].muscles) {
-            arr.push(res.data[0].muscles[item]);
-          }
-          setMuscles(arr);
-          setDifficulty(res.data[0].difficulty);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  function getDaysWorkoutLink(muscleGroup) {
-    if (schedule) {
-      if (muscles.includes(muscleGroup)) {
-        for (let i = 0; i < 7; i++) {
-          if (schedule[`${i}`].daysFocus === muscleGroup.toLowerCase()) {
-            const url = `/days/${i}`;
-            return (
-              <Link to={url} className="btn btn-primary">
-                My {muscleGroup} Day
-              </Link>
-            );
-          }
-        }
-      }
-    }
+  function handleChange(value) {
+    setDifficulty(value);
+  }
+  function goBack(){
+    window.location.reload();
   }
 
   return (
@@ -72,91 +39,164 @@ export default function SignedIn(props) {
           src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all"
           alt=""
         />
-        <p className="heading-comment">
+        <p className="heading-comment" margin="10px">
           Track It. Where you can find the best workouts.
         </p>
-        <Link style={{ marginBottom: "25px" }} to="/create">
-          <button className="btn btn-primary">Create Workouts</button>
-        </Link>
       </div>
 
-      <div className="general-container">
-        <br />
-        <h3>My Quick Workouts </h3>
-        <div className="my-workouts-grid">
-          {/* add grid-container-view */}
-          {muscles.includes("Arms") && (
-            <>
-              <div className="my-workouts-card">
-                <img
-                  className="my-workouts-card-image"
-                  src="body_images/arms.jpg"
-                  alt="arm workouts"
-                />
-                <div className="workout-pic-info col-md-12 text-center">
-                  {getDaysWorkoutLink("Arms")}
-                </div>
-              </div>
-            </>
-          )}
-          {muscles.includes("Legs") && (
-            <>
-              <div className="my-workouts-card">
-                <img
-                  className="my-workouts-card-image"
-                  src="body_images/legs.jpg"
-                  alt="leg workouts"
-                />
-                <div className="workout-pic-info col-md-12 text-center">
-                  {getDaysWorkoutLink("Legs")}
-                </div>
-              </div>
-            </>
-          )}
-          {muscles.includes("Chest") && (
-            <>
-              <div className="my-workouts-card">
-                <img
-                  className="my-workouts-card-image"
-                  src="body_images/chest.jpg"
-                  alt="chest workouts"
-                />
-                <div className="workout-pic-info col-md-12 text-center">
-                  {getDaysWorkoutLink("Chest")}
-                </div>
-              </div>
-            </>
-          )}
-          {muscles.includes("Abs") && (
-            <>
-              <div className="my-workouts-card">
-                <img
-                  className="my-workouts-card-image"
-                  src="body_images/abs.jpg"
-                  alt="ab workouts"
-                />
-                <div className="workout-pic-info col-md-12 text-center">
-                  {getDaysWorkoutLink("Abs")}
-                </div>
-              </div>
-            </>
-          )}
-          {muscles.includes("Back") && (
-            <>
-              <div className="my-workouts-card">
-                <img
-                  className="my-workouts-card-image"
-                  src="body_images/back.jpg"
-                  alt="back workouts"
-                />
-                <div className="workout-pic-info col-md-12 text-center">
-                  {getDaysWorkoutLink("Back")}
-                </div>
-              </div>
-            </>
-          )}
+      {quickWorkout && (
+        <div>
+          <br/>
+          <div className="daysworkout-back container-fluid">
+            <button className="btn btn-primary centre" onClick={() => goBack()}>
+              Back
+            </button>
+          </div>
+          <div className="main-workout-container">
+            <Row xs={1} md={2} className="g-5 row-days">
+              {quickWorkout.map((exercise) => (
+                <Col key={Math.random(1000)}>
+                  <Card>
+                    <Card.Img variant="top" src="" />
+                    <Card.Body>
+                      <Card.Title>{exercise.name}</Card.Title>
+                      <br />
+                      <Card.Subtitle className="mb-2 text-muted">
+                        Duration
+                      </Card.Subtitle>
+                      <Card.Text>60 Seconds</Card.Text>
+                      <br />
+                      <Card.Subtitle className="mb-2 text-muted">
+                        Difficulty
+                      </Card.Subtitle>
+                      <Card.Text>
+                        {firstLetterCapitalize(exercise.difficulty)}
+                      </Card.Text>
+                      <br />
+                      <Card.Subtitle className="mb-2 text-muted">
+                        Equipment
+                      </Card.Subtitle>
+                      <Card.Text>
+                        {firstLetterCapitalize(exercise.equipment)}
+                      </Card.Text>
+                      <br />
+                      <Card.Subtitle className="mb-2 text-muted">
+                        Instructions
+                      </Card.Subtitle>
+                      <Card.Text className="exer-info">
+                        {exercise.instructions}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
         </div>
-      </div>
+      )}
+
+      {!quickWorkout && (
+        <div className="general-container container">
+          <br />
+          <h3>Create a Quick Workout!</h3>
+          <h4>Select difficulty first...</h4>
+          <select
+            className="custom-select mr-sm-2"
+            id="difficultySelect"
+            onChange={(e) => handleChange(e.target.value)}
+          >
+            <option defaultValue disabled>
+              Select difficulty
+            </option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+          </select>
+          <div className="my-workouts-grid">
+            <div className="my-workouts-card">
+              <img
+                className="my-workouts-card-image"
+                src="body_images/arms.jpg"
+                alt="arm workouts"
+              />
+              <div className="workout-pic-info col-md-12 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => getQuickWorkout("arms", difficulty)}
+                >
+                  {" "}
+                  Quick Arms Workout
+                </button>
+              </div>
+            </div>
+            <div className="my-workouts-card">
+              <img
+                className="my-workouts-card-image"
+                src="body_images/legs.jpg"
+                alt="leg workouts"
+              />
+              <div className="workout-pic-info col-md-12 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => getQuickWorkout("legs", difficulty)}
+                >
+                  Quick Legs Workout
+                </button>
+              </div>
+            </div>
+            <div className="my-workouts-card">
+              <img
+                className="my-workouts-card-image"
+                src="body_images/chest.jpg"
+                alt="chest workouts"
+              />
+              <div className="workout-pic-info col-md-12 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => getQuickWorkout("chest", difficulty)}
+                >
+                  Quick Chest Workout
+                </button>
+              </div>
+            </div>
+            <div className="my-workouts-card">
+              <img
+                className="my-workouts-card-image"
+                src="body_images/abs.jpg"
+                alt="abs workouts"
+              />
+              <div className="workout-pic-info col-md-12 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => getQuickWorkout("abs", difficulty)}
+                >
+                  Quick Back Workout
+                </button>
+              </div>
+            </div>
+            <div className="my-workouts-card">
+              <img
+                className="my-workouts-card-image"
+                src="body_images/back.jpg"
+                alt="back workouts"
+              />
+              <div className="workout-pic-info col-md-12 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => getQuickWorkout("back", difficulty)}
+                >
+                  Quick Back Workout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="schedule-container"></div>
     </div>
   );
