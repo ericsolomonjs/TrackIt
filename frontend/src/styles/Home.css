@@ -1,7 +1,11 @@
 .home-img2 {
-  width: 50%;
-  height: 50%;
-  border-radius: 40px;
+  width: 49%;
+  height: 49%;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #ccc;
+  -moz-box-shadow: 10px 10px 5px #ccc;
+  -webkit-box-shadow: 10px 10px 5px #ccc;
+  -khtml-box-shadow: 10px 10px 5px #ccc;
 }
 
 .section1-container {
@@ -25,8 +29,7 @@
 
 .info-textbox {
   margin: 10px;
-  border: solid 4px;
-  border-radius: 25px;
+  border: solid 2px;
   padding: 10px;
 }
 
@@ -43,6 +46,31 @@
   object-fit: cover;
 }
 
+.info-card-title {
+font-size: medium;
+color: rgb(62, 134, 242);
+}
+
+
+.info-card-info {
+  font-size: 20px !important;
+  color: rgb(56, 55, 55);
+}
+
+.info-card-about{
+  font-size: 20px !important;
+  color: rgb(143, 141, 141);
+}
+
+
+.home-info-card {
+  margin: 90px !important;
+}
+
+
+.home-info-card-two{
+ 
+}
 
 @media only screen and (max-width: 600px) {
   .heading-comment {
