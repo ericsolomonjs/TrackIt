@@ -62,7 +62,7 @@ export default function Create(props) {
         id: Cookies.get("user_id"),
       })
         .then(() => {
-          navigate("/home");
+          navigate("/schedule");
         })
         .catch((err) => alert(err, "Server Error"));
     } else {
