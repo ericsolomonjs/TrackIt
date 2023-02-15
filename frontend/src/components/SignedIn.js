@@ -28,7 +28,7 @@ export default function SignedIn(props) {
     setDifficulty(value);
   }
   function goBack(){
-    window.location.reload();
+    setQuickWorkout(null);
   }
 
   return (

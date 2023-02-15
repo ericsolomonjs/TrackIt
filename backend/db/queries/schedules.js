@@ -1,6 +1,5 @@
 const db = require("../connection");
 const {
-  getExercisesForCardio,
   getExercisesForArms,
   getExercisesForLegs,
   getExercisesForBack,
