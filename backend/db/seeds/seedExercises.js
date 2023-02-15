@@ -18,39 +18,14 @@ async function saveExerciseBatch(exercises) {
 }
 
 async function initExercises() {
-  // const muscleGroupsArr = [
-  //   "abdominals",
-  //   "abductors",
-  //   "adductors",
-  //   "biceps",
-  //   "calves",
-  //   "chest",
-  //   "forearms",
-  //   "glutes",
-  //   "hamstrings",
-  //   "lats",
-  //   "lower_back",
-  //   "middle_back",
-  //   "neck",
-  //   "quadriceps",
-  //   "traps",
-  //   "triceps",
-  // ];
-
-  // for (let muscleGroup of muscleGroupsArr) {
-  //   console.log("muscleGroup = : ", muscleGroup)
-  //   const moreExercises = await Axios.get(`https://api.api-ninjas.com/v1/exercises?muscle=${muscleGroup}`, { headers: { "X-Api-Key": process.env.ENVApiKey } })
-  //   await saveExerciseBatch(moreExercises.data);
-  // }
   try {
-    for (let i = 0; i < 3420; i = i + 10) {
+    for (let i = 0; i < 500; i = i + 10) {
       console.log("i = : ", i);
       const moreExercises = await Axios.get(
         `https://api.api-ninjas.com/v1/exercises?offset=${i}`,
-        { headers: { "X-Api-Key": process.env.ENVApiKey }}
+        { headers: { "X-Api-Key": process.env.ENVApiKey } }
       );
-      await new Promise(resolve => setTimeout(resolve, 400))
-
+      await new Promise((resolve) => setTimeout(resolve, 400));
       await saveExerciseBatch(moreExercises.data);
     }
     return;

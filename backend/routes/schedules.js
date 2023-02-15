@@ -5,7 +5,9 @@ const {
   generateSchedule,
   saveSchedule,
   deleteSchedule,
+  shuffleArray,
 } = require("../db/queries/schedules");
+const { getQuickWorkout } = require("../db/queries/exercises");
 
 router
   .route("/")
@@ -51,6 +53,21 @@ router
       await deleteSchedule(req.body.user_id);
       const schedule = await generateSchedule(req.body);
       await saveSchedule(schedule, req.body.user_id);
+      res.send(schedule);
+    } catch (err) {
+      res.sendStatus(501);
+      return console.error(err);
+    }
+  });
+
+router
+  .route("/quickworkout")
+  //route for generating a quick workout and returning it
+  .get(async (req, res) => {
+    try {
+      const schedule = await getQuickWorkout(req.body.muscleGroup,req.body.difficulty);
+      schedule = shuffleArray(schedule);
+      schedule = schedule.slice(0, 2);
       res.send(schedule);
     } catch (err) {
       res.sendStatus(501);
