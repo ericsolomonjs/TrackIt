@@ -23,6 +23,14 @@ const insertUser = (firstName, lastName, email, password) => {
   );
 };
 
+const insertNote = (id, title, description) => {
+  return db.query("INSERT INTO notes(user_id, title, description)", [
+    id,
+    title,
+    "",
+  ]);
+};
+
 const loginUser = async (email, password) => {
   // check if users email is in the db
 
@@ -40,4 +48,11 @@ const loginUser = async (email, password) => {
   }
 };
 
-module.exports = { getUsers, getUserId, insertUser, loginUser, getUserById };
+module.exports = {
+  getUsers,
+  getUserId,
+  insertUser,
+  loginUser,
+  getUserById,
+  insertNote,
+};

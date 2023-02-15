@@ -1,23 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Note from "./Note";
 import "../styles/Journal.css";
 
 export default function Journal() {
-  const [newNote, setNewNote] = useState();
-  const [notes, setNotes] = useState();
-  const [note, setNote] = useState();
+  const [noteInput, setNoteInput] = useState("");
+  const [notes, setNotes] = useState([]);
+
+  const makeid = (length) => {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  };
 
   const createNote = () => {
-    const note = (
-      <div className="note-container">
-        <h3>{newNote}</h3>
-      </div>
-    );
+    const id = makeid(6);
+    const title = noteInput;
+    const note = <Note modalId={id} noteTitle={title} />;
+    setNotes((prev) => [note, ...prev]);
+    fetch("");
   };
 
   return (
     <>
-      <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
-        <i class="fas fa-check-square me-1"></i>
+      <p className="h1 text-center mt-3 mb-4 pb-3 text-primary">
+        <i className="fa fa-book" aria-hidden="true">
+          {" "}
+        </i>
         <u>My Jounral</u>
       </p>
       <div className="card">
@@ -26,20 +40,23 @@ export default function Journal() {
             <div className="custom-search">
               <input
                 type="text"
+                id="note-input"
                 className="custom-search-input"
                 placeholder="Enter your email"
-                value={newNote}
-                onChange={(e) => setNewNote(e.target.value)}
+                value={noteInput}
+                onChange={(e) => setNoteInput(e.target.value)}
+                required
               />
               <button
                 className="custom-search-botton"
-                type="button"
+                type="submit"
                 onClick={createNote}
               >
                 Add Note
               </button>
             </div>
           </div>
+          {notes}
         </div>
       </div>
     </>

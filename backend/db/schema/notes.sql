@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255),
+  desciption VARCHAR(255),
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

@@ -4,6 +4,7 @@ const {
   loginUser,
   getUserId,
   getUserById,
+  insertNote,
 } = require("../db/queries/users");
 const {
   insertGroups,
@@ -47,7 +48,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/groups", (req, res) => {
   const groups = req.body.groups;
-  console.log(req.body.groups)
+  console.log(req.body.groups);
   const difficulty = req.body.difficulty;
   const id = req.cookies["user_id"];
   let promise;
@@ -76,6 +77,14 @@ router.get("/groups", async (req, res) => {
   } else {
     res.status(404).send("User not found");
   }
+});
+
+router.post("/notes", async (res, res) => {
+  const id = req.cookies["user_id"];
+  const title = req.body.title;
+  const description = "";
+  await insertNote(id, title, description);
+  res.send(200);
 });
 
 router.get("/logout", (req, res) => {
