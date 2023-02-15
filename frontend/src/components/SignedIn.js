@@ -161,6 +161,7 @@ export default function SignedIn(props) {
           </div>
         </div>
       )}
+      <br/>
     </div>
   );
 }

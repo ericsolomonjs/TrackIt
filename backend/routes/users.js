@@ -79,7 +79,7 @@ router.get("/groups", async (req, res) => {
   }
 });
 
-router.post("/notes", async (res, res) => {
+router.post("/notes", async (req, res) => {
   const id = req.cookies["user_id"];
   const title = req.body.title;
   const description = "";
