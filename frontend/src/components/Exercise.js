@@ -63,7 +63,7 @@ export default function Exercise(props) {
                   <div id="example-collapse-text">{exercise.instructions}</div>
                 </Collapse>
                 <br/>
-                <Button className="btn btn-primary"
+                <Button className="btn btn-secondary"
                   onClick={() => setOpen(!open)}
                   aria-controls="example-collapse-text"
                   aria-expanded={open}
