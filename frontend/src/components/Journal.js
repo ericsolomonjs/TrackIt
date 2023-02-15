@@ -6,6 +6,39 @@ export default function Journal() {
   const [noteInput, setNoteInput] = useState("");
   const [notes, setNotes] = useState([]);
 
+  useEffect(() => {
+    const ops = {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    fetch("http://localhost:8080/user/notes", ops)
+      .then((response) => response.json())
+      .then((result) => {
+        const arr = [];
+        for (const item of result) {
+          const note = (
+            <Note
+              title={item.title}
+              description={item.description}
+              modalId={makeid(6)}
+              key={makeid(6)}
+              dbId={item.id}
+            />
+          );
+          arr.push(note);
+        }
+        setNotes(arr);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
   const makeid = (length) => {
     let result = "";
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -19,11 +52,35 @@ export default function Journal() {
   };
 
   const createNote = () => {
-    const id = makeid(6);
     const title = noteInput;
-    const note = <Note modalId={id} noteTitle={title} />;
-    setNotes((prev) => [note, ...prev]);
-    fetch("");
+    const ops = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+      }),
+    };
+
+    fetch("http://localhost:8080/user/notes", ops)
+      .then((res) => {
+        res.json().then((res) => {
+          const note = (
+            <Note
+              title={noteInput}
+              description={""}
+              modalId={makeid(6)}
+              key={makeid(6)}
+              dbId={res.returnedId}
+            />
+          );
+          setNotes((prev) => [note, ...prev]);
+        });
+      })
+      .catch((err) => alert(err));
   };
 
   return (

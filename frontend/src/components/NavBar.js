@@ -94,7 +94,7 @@ export default function NavBar(props) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="journalA">
+                  <Link className="nav-link" to="journal">
                     Journal
                   </Link>
                 </li>

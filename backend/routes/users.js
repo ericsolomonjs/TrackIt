@@ -83,8 +83,8 @@ router.post("/notes", async (res, res) => {
   const id = req.cookies["user_id"];
   const title = req.body.title;
   const description = "";
-  await insertNote(id, title, description);
-  res.send(200);
+  const note = await insertNote(id, title, description);
+  res.send(note);
 });
 
 router.get("/logout", (req, res) => {

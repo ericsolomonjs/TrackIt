@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Note(props) {
+  const [addDescription, setAddDescription] = useState("");
+
+  const saveNote = () => {};
+
   return (
     <>
       <div className="note-container mt-3">
-        <h3>{props.noteTitle}</h3>
-        <div style={{ fontSize: "2rem" }}>
-          <i style={{ marginRight: "15px" }}>{new Date().toLocaleString()}</i>
+        <h3>{props.title}</h3>
+        <div style={{ fontSize: "1.65rem" }}>
           <i
             className="fa fa-pencil-square-o"
             data-bs-toggle="modal"
@@ -23,43 +26,48 @@ export default function Note(props) {
         </div>
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id={props.modalId}
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                {props.noteTitle}
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                {props.title}
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <textarea
+            <div className="modal-body">
+              <input
                 style={{ width: "100%" }}
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-              ></textarea>
+                value={addDescription}
+                onChange={(e) => setAddDescription(e.target.value)}
+                type="text"
+              />
+              <div>{props.description}</div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={saveNote}
+              >
                 Save changes
               </button>
             </div>
