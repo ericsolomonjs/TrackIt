@@ -66,7 +66,7 @@ function App() {
         />
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route path="/admin" element={<Admin />}></Route>
+           
             <Route
               path="/schedule"
               key={Math.random(200)}
@@ -103,7 +103,7 @@ function App() {
               element={<DaysWorkout day={4} schedule={schedule} />}
             ></Route>
           </Route>
-
+          <Route path="/admin" element={<Admin />}></Route>
           <Route path="/" element={<Home />}></Route>
           <Route
             path="/signin"
