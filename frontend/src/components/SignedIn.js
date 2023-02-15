@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SignedIn.css";
 import "../styles/main.css";
-import { Navigate } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Axios from "axios";
-import { firstLetterCapitalize } from "../helpers/CapitalizeFirst";
+import Exercise from "./Exercise";
 
 export default function SignedIn(props) {
   const [difficulty, setDifficulty] = useState("beginner");
@@ -55,40 +52,7 @@ export default function SignedIn(props) {
           <div className="main-workout-container">
             <Row xs={1} md={2} className="g-5 row-days">
               {quickWorkout.map((exercise) => (
-                <Col key={Math.random(1000)}>
-                  <Card>
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                      <Card.Title>{exercise.name}</Card.Title>
-                      <br />
-                      <Card.Subtitle className="mb-2 text-muted">
-                        Duration
-                      </Card.Subtitle>
-                      <Card.Text>60 Seconds</Card.Text>
-                      <br />
-                      <Card.Subtitle className="mb-2 text-muted">
-                        Difficulty
-                      </Card.Subtitle>
-                      <Card.Text>
-                        {firstLetterCapitalize(exercise.difficulty)}
-                      </Card.Text>
-                      <br />
-                      <Card.Subtitle className="mb-2 text-muted">
-                        Equipment
-                      </Card.Subtitle>
-                      <Card.Text>
-                        {firstLetterCapitalize(exercise.equipment)}
-                      </Card.Text>
-                      <br />
-                      <Card.Subtitle className="mb-2 text-muted">
-                        Instructions
-                      </Card.Subtitle>
-                      <Card.Text className="exer-info">
-                        {exercise.instructions}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
+                <Exercise exercise={exercise} key={Math.random()*100}/>
               ))}
             </Row>
           </div>
