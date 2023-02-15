@@ -9,6 +9,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Create from "./components/Create";
 import DaysWorkout from "./components/DaysWorkout";
+import Journal from "./components/Journal";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -19,7 +20,7 @@ function App() {
   const [loggedin, setLoggedIn] = useState(false);
   const [schedule, setSchedule] = useState(null);
 
-  function getSchedule (id) {
+  function getSchedule(id) {
     if (id && !schedule) {
       Axios.get("/schedule/", {
         params: {
@@ -54,7 +55,12 @@ function App() {
     getSchedule(userId);
   }, []);
 
-  const homeProps = {userId: Cookies.get("user_id"), getSchedule, schedule, setSchedule};
+  const homeProps = {
+    userId: Cookies.get("user_id"),
+    getSchedule,
+    schedule,
+    setSchedule,
+  };
 
   return (
     <div>
@@ -71,13 +77,11 @@ function App() {
               path="/schedule"
               key={Math.random(200)}
               element={
-                <WeeklySchedule
-                  schedule={schedule}
-                  setSchedule={setSchedule}
-                />
+                <WeeklySchedule schedule={schedule} setSchedule={setSchedule} />
               }
             ></Route>
             <Route path="/home" element={<SignedIn {...homeProps} />}></Route>
+            <Route path="/journal" element={<Journal />}></Route>
             <Route
               path="/create"
               element={<Create schedule={schedule} setSchedule={setSchedule} />}

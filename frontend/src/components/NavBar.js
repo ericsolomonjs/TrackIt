@@ -93,6 +93,11 @@ export default function NavBar(props) {
                     Create Workouts
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="journalA">
+                    Journal
+                  </Link>
+                </li>
               </>
             )}
           </ul>
