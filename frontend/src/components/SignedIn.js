@@ -63,7 +63,7 @@ export default function SignedIn(props) {
       {!quickWorkout && (
         <div className="general-container container">
 
-          <h3>Quick Workout</h3>
+          <h3>Pick a Quick Workout!</h3>
           <h4>Select difficulty first...</h4>
           <select
             className="custom-select mr-sm-2"
