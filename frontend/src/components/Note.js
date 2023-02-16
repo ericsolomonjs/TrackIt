@@ -24,6 +24,8 @@ export default function Note(props) {
       .then((response) => response.json())
       .then((result) => {
         setDescriptions((prev) => prev + appendToNote);
+        setAddDescription("");
+        console.log("here");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -36,10 +38,10 @@ export default function Note(props) {
         <h3>{props.title}</h3>
         <div style={{ fontSize: "1.65rem" }}>
           <i
-            className="fa fa-pencil-square-o"
+            className="fa fa-clipboard"
+            aria-hidden="true"
             data-bs-toggle="modal"
             data-bs-target={`#${props.modalId}`}
-            aria-hidden="true"
             style={{ marginRight: "15px" }}
           ></i>
 
@@ -71,18 +73,21 @@ export default function Note(props) {
               ></button>
             </div>
             <div className="modal-body">
-              <input
-                style={{ width: "100%" }}
-                value={addDescription}
-                onChange={(e) => setAddDescription(e.target.value)}
-                type="text"
-                required
-              />
+              <form>
+                <input
+                  id="addNote"
+                  style={{ width: "100%" }}
+                  value={addDescription}
+                  onChange={(e) => setAddDescription(e.target.value)}
+                  type="text"
+                  required
+                />
+              </form>
+
               {descriptions.split("•").map((item) => {
                 return <div className="note">{item}</div>;
               })}
             </div>
-
             <div className="modal-footer">
               <button
                 type="button"
