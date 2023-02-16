@@ -23,12 +23,26 @@ const insertUser = (firstName, lastName, email, password) => {
   );
 };
 
-const insertNote = (id, title, description) => {
-  return db.query("INSERT INTO notes(user_id, title, description)", [
+const getAllNotes = (id) => {
+  return db.query("SELECT * FROM notes WHERE user_id=$1", [id]);
+};
+
+const insertNoteDescription = (id, description) => {
+  return db.query("UPDATE notes SET description=$1 WHERE id=$2", [
+    description,
     id,
-    title,
-    "",
   ]);
+};
+
+const insertNote = (id, title, description) => {
+  return db.query(
+    "INSERT INTO notes(title, description, user_id) VALUES ($1, $2, $3) RETURNING id",
+    [title, description, id]
+  );
+};
+
+const getNoteById = (id) => {
+  return db.query("SELECT * FROM notes WHERE id=$1", [id]);
 };
 
 const loginUser = async (email, password) => {
@@ -55,4 +69,7 @@ module.exports = {
   loginUser,
   getUserById,
   insertNote,
+  getNoteById,
+  getAllNotes,
+  insertNoteDescription,
 };

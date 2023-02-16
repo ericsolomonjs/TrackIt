@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS notes CASCADE;
 CREATE TABLE notes (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255),
-  desciption TEXT,
+  description TEXT,
   user_id INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
