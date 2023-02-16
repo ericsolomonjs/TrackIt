@@ -33,11 +33,12 @@ export default function SignedIn(props) {
       <div className="img-container">
         <img
           className="main-image"
-          src="https://www.muscleandfitness.com/wp-content/uploads/2020/01/DEADLIFT.jpg?quality=86&strip=all"
+          src="https://images.pexels.com/photos/5327534/pexels-photo-5327534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt=""
         />
+        <br/>
         <p className="heading-comment" margin="10px">
-          Track It. Where you can find the best workouts.
+          Find what drives you.
         </p>
       </div>
 
@@ -61,8 +62,8 @@ export default function SignedIn(props) {
 
       {!quickWorkout && (
         <div className="general-container container">
-          <br />
-          <h3>Create a Quick Workout!</h3>
+
+          <h3>Pick a Quick Workout!</h3>
           <h4>Select difficulty first...</h4>
           <select
             className="custom-select mr-sm-2"
