@@ -82,12 +82,6 @@ router.get("/groups", async (req, res) => {
   }
 });
 
-router.get("/notes", async (req, res) => {
-  const id = req.cookies["user_id"];
-  const notes = await getAllNotes(id);
-  res.json(notes.rows);
-});
-
 router.post("/notes", async (req, res) => {
   const id = req.cookies["user_id"];
   const title = req.body.title;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/SignedIn.css";
 import "../styles/main.css";
 import Row from "react-bootstrap/Row";
@@ -20,7 +20,7 @@ export default function SignedIn(props) {
       setQuickWorkout(data);
     });
   }
-
+  
   function handleChange(value) {
     setDifficulty(value);
   }
@@ -49,8 +49,8 @@ export default function SignedIn(props) {
               Back
             </button>
           </div>
-          <div className="main-workout-container">
-            <Row xs={1} md={2} className="g-5 row-days">
+          <div className="main-workout-container container">
+            <Row >
               {quickWorkout.map((exercise) => (
                 <Exercise exercise={exercise} key={Math.random()*100}/>
               ))}
@@ -161,7 +161,7 @@ export default function SignedIn(props) {
           </div>
         </div>
       )}
-      <div className="schedule-container"></div>
+      <br/>
     </div>
   );
 }
