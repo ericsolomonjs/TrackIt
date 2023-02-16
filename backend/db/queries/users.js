@@ -28,15 +28,15 @@ const getAllNotes = (id) => {
 };
 
 const insertNoteDescription = (id, description) => {
-  return db.query("UPDATE notes SET description=$1 WHERE id=$2", [
-    description,
-    id,
-  ]);
+  return db.query(
+    "UPDATE notes SET description=$1 WHERE id=$2 RETURNING description",
+    [description, id]
+  );
 };
 
 const insertNote = (id, title, description) => {
   return db.query(
-    "INSERT INTO notes(title, description, user_id) VALUES ($1, $2, $3) RETURNING id",
+    "INSERT INTO notes(title, description, user_id) VALUES ($1, $2, $3) RETURNING *",
     [title, description, id]
   );
 };

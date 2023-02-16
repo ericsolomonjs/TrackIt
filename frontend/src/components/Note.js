@@ -1,9 +1,34 @@
 import React, { useEffect, useState } from "react";
-
+import "../styles/Journal.css";
 export default function Note(props) {
   const [addDescription, setAddDescription] = useState("");
+  const [descriptions, setDescriptions] = useState(props.description);
 
-  const saveNote = () => {};
+  const saveNote = () => {
+    const appendToNote = "•" + addDescription;
+    const noteToSend = descriptions + appendToNote;
+    const ops = {
+      method: "PUT",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        id: props.dbId,
+        description: noteToSend,
+      }),
+    };
+
+    fetch("http://localhost:8080/user/notes", ops)
+      .then((response) => response.json())
+      .then((result) => {
+        setDescriptions((prev) => prev + appendToNote);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <>
@@ -51,9 +76,13 @@ export default function Note(props) {
                 value={addDescription}
                 onChange={(e) => setAddDescription(e.target.value)}
                 type="text"
+                required
               />
-              <div>{props.description}</div>
+              {descriptions.split("•").map((item) => {
+                return <div className="note">{item}</div>;
+              })}
             </div>
+
             <div className="modal-footer">
               <button
                 type="button"
@@ -65,10 +94,9 @@ export default function Note(props) {
               <button
                 type="button"
                 className="btn btn-primary"
-                data-bs-dismiss="modal"
                 onClick={saveNote}
               >
-                Save changes
+                Add Subnote
               </button>
             </div>
           </div>

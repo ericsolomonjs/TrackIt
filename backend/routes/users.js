@@ -82,20 +82,26 @@ router.get("/groups", async (req, res) => {
   }
 });
 
+router.get("/notes", async (req, res) => {
+  const id = req.cookies["user_id"];
+  const notes = await getAllNotes(id);
+  res.json(notes.rows);
+});
+
 router.post("/notes", async (req, res) => {
   const id = req.cookies["user_id"];
   const title = req.body.title;
   const description = "";
   const note = await insertNote(id, title, description);
-  const returnedId = note.rows[0].id;
-  res.json({ returnedId });
+  const returnNote = note.rows[0];
+  res.json(returnNote);
 });
 
 router.put("/notes", async (req, res) => {
   const id = req.body.id;
   const description = req.body.description;
-  const note = await insertNoteDescription(id, description);
-  res.json(note.rows);
+  const desc = await insertNoteDescription(id, description);
+  res.json(desc);
 });
 
 router.get("/logout", (req, res) => {

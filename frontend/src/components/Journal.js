@@ -19,20 +19,7 @@ export default function Journal() {
     fetch("http://localhost:8080/user/notes", ops)
       .then((response) => response.json())
       .then((result) => {
-        const arr = [];
-        for (const item of result) {
-          const note = (
-            <Note
-              title={item.title}
-              description={item.description}
-              modalId={makeid(6)}
-              key={makeid(6)}
-              dbId={item.id}
-            />
-          );
-          arr.push(note);
-        }
-        setNotes(arr);
+        setNotes(result);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -68,16 +55,7 @@ export default function Journal() {
     fetch("http://localhost:8080/user/notes", ops)
       .then((res) => {
         res.json().then((res) => {
-          const note = (
-            <Note
-              title={noteInput}
-              description={""}
-              modalId={makeid(6)}
-              key={makeid(6)}
-              dbId={res.returnedId}
-            />
-          );
-          setNotes((prev) => [note, ...prev]);
+          setNotes((prev) => [res, ...prev]);
         });
       })
       .catch((err) => alert(err));
@@ -99,7 +77,7 @@ export default function Journal() {
                 type="text"
                 id="note-input"
                 className="custom-search-input"
-                placeholder="Enter your email"
+                placeholder="Note Text"
                 value={noteInput}
                 onChange={(e) => setNoteInput(e.target.value)}
                 required
@@ -113,7 +91,17 @@ export default function Journal() {
               </button>
             </div>
           </div>
-          {notes}
+          {notes.map((item) => {
+            return (
+              <Note
+                title={item.title}
+                description={item.description}
+                modalId={makeid(6)}
+                key={makeid(6)}
+                dbId={item.id}
+              />
+            );
+          })}
         </div>
       </div>
     </>
