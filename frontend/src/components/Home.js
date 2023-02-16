@@ -39,7 +39,7 @@ export default function Home() {
       <br />
       <section>
         <div className="footer-img-one">
-          <img className="motiv-img" src="do-great.png" alt="" />
+          <img className="motiv-img" src="footer-FIN.png" alt="" />
         </div>
       </section>
       <section>
