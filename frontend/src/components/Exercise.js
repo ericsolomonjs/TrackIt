@@ -19,7 +19,7 @@ export default function Exercise(props) {
           <Col key={Math.random(1000)}>
             <Card>
               <Card.Img variant="top" src="" />
-              <Card.Body>
+              <Card.Body className="border-top-bar">
                 <Card.Title>{exercise.name}</Card.Title>
                 <br></br>
                 <div

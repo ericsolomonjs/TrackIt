@@ -2,13 +2,15 @@ import React from "react";
 import "../styles/Home.css";
 import "../styles/main.css";
 import Card from "react-bootstrap/Card";
+import Header from "./Header.js"
 
 export default function Home() {
   return (
     <div>
+      <Header/>
       <section>
         <div className="section1-container">
-          <img className="home-img2" src="workout2.jpg" alt="" />
+          <img className="home-img2" src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80" alt="" />
           <Card className="home-info-card">
             <Card.Title className="info-card-title">What is it?</Card.Title>
             <br />
