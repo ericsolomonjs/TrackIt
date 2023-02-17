@@ -34,10 +34,10 @@ const insertNoteDescription = (id, description) => {
   );
 };
 
-const insertNote = (id, title, description) => {
+const insertNote = (id, title, description, date) => {
   return db.query(
-    "INSERT INTO notes(title, description, user_id) VALUES ($1, $2, $3) RETURNING *",
-    [title, description, id]
+    "INSERT INTO notes(title, description, date, user_id) VALUES ($1, $2, $3, $4) RETURNING *",
+    [title, description, date, id]
   );
 };
 

@@ -93,7 +93,8 @@ router.post("/notes", async (req, res) => {
   const id = req.cookies["user_id"];
   const title = req.body.title;
   const description = "";
-  const note = await insertNote(id, title, description);
+  const date = req.body.newDate;
+  const note = await insertNote(id, title, description, date);
   const returnNote = note.rows[0];
   res.json(returnNote);
 });

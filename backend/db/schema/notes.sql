@@ -3,6 +3,7 @@ CREATE TABLE notes (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255),
   description TEXT,
+  date VARCHAR(255),
   user_id INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
