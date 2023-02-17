@@ -50,7 +50,6 @@ export default function Note(props) {
         console.log(result.id);
         console.log(props.notes);
         const newNotes = props.notes.filter((item) => item.id !== result.id);
-
         props.setNotes(newNotes);
       })
       .catch((error) => {
@@ -108,6 +107,7 @@ export default function Note(props) {
                   onChange={(e) => setAddDescription(e.target.value)}
                   type="text"
                   required
+                  placeholder="Enter subnotes here"
                 />
               </form>
 

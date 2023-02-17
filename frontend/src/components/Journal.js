@@ -56,6 +56,7 @@ export default function Journal() {
       .then((res) => {
         res.json().then((res) => {
           setNotes((prev) => [res, ...prev]);
+          setNoteInput("");
         });
       })
       .catch((err) => alert(err));
