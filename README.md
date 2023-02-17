@@ -1,5 +1,9 @@
 # TrackIt
 
+Track it is a web application that allows you to input the specific muscles you want to workout, while we handle finding you the exercises that can do that. 
+
+
+
 ## Set up
 
 1. Open up your terminal
@@ -20,3 +24,8 @@
 11. Open up a new console
 11. In [path]/frontend, run 
 -```npm start``` 
+
+## Dependancies
+
+- psql 10.14
+- node 12.22
