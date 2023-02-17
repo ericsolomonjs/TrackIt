@@ -64,9 +64,3 @@
   margin-left: 10%;
   margin-right: 10%;
 }
-
-.border-top-bar {
-  border-top: solid 5px rgb(3, 138, 240);
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
