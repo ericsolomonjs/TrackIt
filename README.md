@@ -7,7 +7,7 @@
 3. ensure psql server is running
 4. cd into [path]/backend
 5.  Get a free API key from https://api-ninjas.com/
-6. Create an .env file using example.env
+6. Create a .env file using example.env
 7. Run ```npm i``` in both the [path]/frontend and [path]/backend directories
 7. Run 
 ``` npm run init:db ```
