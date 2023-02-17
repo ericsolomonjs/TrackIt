@@ -45,6 +45,10 @@ const getNoteById = (id) => {
   return db.query("SELECT * FROM notes WHERE id=$1", [id]);
 };
 
+const deleteNote = (id) => {
+  return db.query("DELETE FROM notes WHERE id=$1 RETURNING *", [id]);
+};
+
 const loginUser = async (email, password) => {
   // check if users email is in the db
 
@@ -72,4 +76,5 @@ module.exports = {
   getNoteById,
   getAllNotes,
   insertNoteDescription,
+  deleteNote,
 };

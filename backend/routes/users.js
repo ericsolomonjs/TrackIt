@@ -8,6 +8,7 @@ const {
   getNoteById,
   getAllNotes,
   insertNoteDescription,
+  deleteNote,
 } = require("../db/queries/users");
 const {
   insertGroups,
@@ -102,6 +103,13 @@ router.put("/notes", async (req, res) => {
   const description = req.body.description;
   const desc = await insertNoteDescription(id, description);
   res.json(desc);
+});
+
+router.delete("/notes", async (req, res) => {
+  const id = req.body.id;
+  const note = await deleteNote(id);
+  const returnNote = note.rows[0];
+  res.json(returnNote);
 });
 
 router.get("/logout", (req, res) => {
