@@ -2,10 +2,61 @@ import React, { useEffect, useState } from "react";
 import "../styles/Journal.css";
 export default function Note(props) {
   const [addDescription, setAddDescription] = useState("");
+  const [descriptions, setDescriptions] = useState(props.description);
 
-  useEffect(() => {}, []);
+  const saveNote = () => {
+    const appendToNote = "•" + addDescription;
+    const noteToSend = descriptions + appendToNote;
+    const ops = {
+      method: "PUT",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        id: props.noteId,
+        description: noteToSend,
+      }),
+    };
 
-  const saveNote = () => {};
+    fetch("http://localhost:8080/user/notes", ops)
+      .then((response) => response.json())
+      .then((result) => {
+        setDescriptions((prev) => prev + appendToNote);
+        setAddDescription("");
+        console.log("here");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const handleDelete = () => {
+    const ops = {
+      method: "DELETE",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        id: props.noteId,
+      }),
+    };
+    fetch("http://localhost:8080/user/notes", ops)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.id);
+        console.log(props.notes);
+        const newNotes = props.notes.filter((item) => item.id !== result.id);
+
+        props.setNotes(newNotes);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <>
@@ -24,6 +75,7 @@ export default function Note(props) {
             style={{ transform: "translateY(-2px)" }}
             className="fa fa-trash"
             aria-hidden="true"
+            onClick={handleDelete}
           ></i>
         </div>
       </div>
@@ -58,6 +110,14 @@ export default function Note(props) {
                   required
                 />
               </form>
+
+              {descriptions.split("•").map((item, i) => {
+                return (
+                  <div key={i} className="note">
+                    {item}
+                  </div>
+                );
+              })}
             </div>
             <div className="modal-footer">
               <button

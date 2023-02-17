@@ -83,7 +83,7 @@ export default function Signin(props) {
         <div className="right-panel">
           <h1>Track It</h1>
           <p>Don't have an account?</p>
-          <Link to="/">
+          <Link to="/signup">
             <button className="btn btn-primary">Sign up</button>
           </Link>
         </div>
