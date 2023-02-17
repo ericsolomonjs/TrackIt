@@ -10,13 +10,10 @@
 6. Create a .env file using example.env
 7. Run ```npm i``` in both the [path]/frontend and [path]/backend directories
 7. Run 
-``` npm run init:db ```
-
+- ``` npm run init:db ```
 8. Close the script in console with Ctrl + c
-
-
 9. Run
-``` npm run init:exercises ```
+- ``` npm run init:exercises ```
 - In order to initialize the exercises table with data the API key must be set in the .env file
 10. Run ```npm start``` in [path]/backend
 11. Open up a new console
