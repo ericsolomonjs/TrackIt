@@ -15,6 +15,8 @@
 9. Run
 - ``` npm run init:exercises ```
 - In order to initialize the exercises table with data the API key must be set in the .env file
-10. Run ```npm start``` in [path]/backend
+10. In [path]/backend, run 
+-```npm start``` 
 11. Open up a new console
-11. Run ```npm start``` in [path]/frontend
+11. In [path]/frontend, run 
+-```npm start``` 
