@@ -2,35 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../styles/Journal.css";
 export default function Note(props) {
   const [addDescription, setAddDescription] = useState("");
-  const [descriptions, setDescriptions] = useState(props.description);
 
-  const saveNote = () => {
-    const appendToNote = "•" + addDescription;
-    const noteToSend = descriptions + appendToNote;
-    const ops = {
-      method: "PUT",
-      mode: "cors",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        id: props.dbId,
-        description: noteToSend,
-      }),
-    };
+  useEffect(() => {}, []);
 
-    fetch("http://localhost:8080/user/notes", ops)
-      .then((response) => response.json())
-      .then((result) => {
-        setDescriptions((prev) => prev + appendToNote);
-        setAddDescription("");
-        console.log("here");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
+  const saveNote = () => {};
 
   return (
     <>
@@ -83,10 +58,6 @@ export default function Note(props) {
                   required
                 />
               </form>
-
-              {descriptions.split("•").map((item) => {
-                return <div className="note">{item}</div>;
-              })}
             </div>
             <div className="modal-footer">
               <button

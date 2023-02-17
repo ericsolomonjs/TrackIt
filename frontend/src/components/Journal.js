@@ -95,10 +95,9 @@ export default function Journal() {
             return (
               <Note
                 title={item.title}
-                description={item.description}
                 modalId={makeid(6)}
                 key={makeid(6)}
-                dbId={item.id}
+                noteId={item.id}
               />
             );
           })}
